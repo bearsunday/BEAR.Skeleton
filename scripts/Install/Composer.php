@@ -24,8 +24,8 @@ class Composer
     public static function postInstall(Event $event = null)
     {
         $skeletonRoot = dirname(dirname(__DIR__));
-        $appName = (new \SplFileInfo($skeletonRoot))->getFilename();
-        $appName = ucwords($appName);
+        $folderName = (new \SplFileInfo($skeletonRoot))->getFilename();
+        $appName = ucwords($folderName);
         $jobChmod = function (\SplFileInfo $file) {
             chmod($file, 0777);
         };
@@ -46,7 +46,7 @@ class Composer
         self::recursiveJob($skeletonRoot, $jobRename);
 
         // rename app folder
-        $newName = str_replace('Skeleton', $appName, $skeletonRoot);
+        $newName = str_replace($folderName, $appName, $skeletonRoot);
         rename($skeletonRoot, $newName);
 
         // remove composer.json

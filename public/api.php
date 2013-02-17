@@ -1,6 +1,6 @@
 <?php
 /**
- * CLIBuilt-in web server for API
+ * CLI Built-in web server for API
  *
  * This is an entry point for an API response based application build.
  *

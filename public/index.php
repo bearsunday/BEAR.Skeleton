@@ -1,22 +1,34 @@
 <?php
 /**
- * Web server script for production
+ * A Web server script for use in production.
+ *
+ * This script is the entry point for an application whilst in production. This script is a base 
+ * guideline and this procedural boot strap is gives you some defaults as a guide. 
+ * You are free to change and configure this script at will.
  *
  * @package BEAR.Package
  * @global  $mode
  */
-
 use BEAR\Resource\Exception\Parameter as BadRequest;
 use BEAR\Resource\Exception\ResourceNotFound as NotFound;
 
-// Application
+/**
+ * Here we get the production application instance. No $mode variable is needed as it defaults to Prod.
+ *
+ * @var $app \BEAR\Package\Provide\Application\AbstractApp
+ */
 $app = require dirname(__DIR__) . '/scripts/instance.php';
-/** @var $app \BEAR\Package\Provide\Application\AbstractApp */
 
-// Dispatch
+/**
+ * Calling the match of a Bear.Sunday compatible router will give us the $method, $pagePath, $query to be used
+ * in the page request.
+ */
 list($method, $pagePath, $query) = $app->router->match($GLOBALS);
 
-// Request
+/**
+ * An attempt to request the page resource is made.
+ * Upon failure the appropriate error code is assigned and forwarded to ERROR.
+ */
 try {
     $app->page = $app->resource->$method->uri('page://self/' . $pagePath)->withQuery($query)->eager->request();
 } catch (NotFound $e) {
@@ -31,7 +43,10 @@ try {
     goto ERROR;
 }
 
-// Transfer
+/**
+ * OK: Sets the response resources and renders
+ * ERROR: sets the response code and loads error page.
+ */ 
 OK: {
     error_reporting(E_ALL);
     $app->response->setResource($app->page)->render()->send();

@@ -14,7 +14,7 @@
  *
  * $ php -S localhost:8089 api.php
  *
- * @package BEAR.Package
+ * @package Skeleton
  * @global  $mode
  */
 if (PHP_SAPI == 'cli-server') {

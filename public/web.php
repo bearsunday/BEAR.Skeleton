@@ -14,7 +14,7 @@
  * Built-in web server:
  * $ php -S localhost:8080 web.php
  *
- * @package BEAR.Package
+ * @package Skeleton
  * @global  $mode string
  */
 

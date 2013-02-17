@@ -48,7 +48,7 @@ if (PHP_SAPI === 'cli') {
     $uri = $argv[2];
     parse_str((isset(parse_url($uri)['query']) ? parse_url($uri)['query'] : ''), $get);
 } else {
-    $pathInfo = isset($globals['_SERVER']['PATH_INFO']) ? $globals['_SERVER']['PATH_INFO'] : '/index';
+    $pathInfo = $_SERVER['PATH_INFO'] ? $_SERVER['PATH_INFO'] : '/index';
     $uri = 'app://self' . $pathInfo;
     $get = $_GET;
 }

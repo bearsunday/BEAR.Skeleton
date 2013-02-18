@@ -5,7 +5,7 @@
  * @package BEAR.Package
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-namespace scripts\Install;
+namespace Skeleton\Installer;
 
 use Composer\Script\Event;
 use RecursiveIteratorIterator;
@@ -23,7 +23,7 @@ class Composer
      */
     public static function postInstall(Event $event = null)
     {
-        $skeletonRoot = dirname(dirname(__DIR__));
+        $skeletonRoot = dirname(dirname(dirname(__DIR__)));
         $folderName = (new \SplFileInfo($skeletonRoot))->getFilename();
         $appName = ucwords($folderName);
         $jobChmod = function (\SplFileInfo $file) {
@@ -46,8 +46,10 @@ class Composer
         self::recursiveJob($skeletonRoot, $jobRename);
 
         // remove self (install script)
-        unlink("{$skeletonRoot}/scripts/Install/Composer.php");
-        rmdir("{$skeletonRoot}/scripts/Install");
+        unlink("{$skeletonRoot}/src/Skeleton/Installer/Composer.php");
+        rmdir("{$skeletonRoot}/src/Skeleton/Installer");
+        rmdir("{$skeletonRoot}/src/Skeleton");
+        rmdir("{$skeletonRoot}/src");
 
         // rename app folder
         $newName = str_replace($folderName, $appName, $skeletonRoot);
@@ -71,3 +73,5 @@ class Composer
         }
     }
 }
+
+(new Composer)->postInstall();

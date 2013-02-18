@@ -45,6 +45,10 @@ class Composer
         // rename file contents
         self::recursiveJob($skeletonRoot, $jobRename);
 
+        // remove self (install script)
+        unlink("{$skeletonRoot}/scripts/Install/Composer.php");
+        rmdir("{$skeletonRoot}/scripts/Install");
+
         // rename app folder
         $newName = str_replace($folderName, $appName, $skeletonRoot);
         rename($skeletonRoot, $newName);
@@ -56,6 +60,8 @@ class Composer
     /**
      * @param string   $path
      * @param Callable $job
+     *
+     * @return void
      */
     private static function recursiveJob($path, Callable $job)
     {

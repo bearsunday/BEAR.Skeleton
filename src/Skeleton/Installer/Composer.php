@@ -46,9 +46,9 @@ class Composer
         self::recursiveJob($skeletonRoot, $jobRename);
 
         // remove self (install script)
-        unlink("{$skeletonRoot}/src/{$appName}/Installer/Composer.php");
-        rmdir("{$skeletonRoot}/src/{$appName}/Installer");
-        rmdir("{$skeletonRoot}/src/{$appName}");
+        unlink("{$skeletonRoot}/src/Skeleton/Installer/Composer.php");
+        rmdir("{$skeletonRoot}/src/Skeleton/Installer");
+        rmdir("{$skeletonRoot}/src/Skeleton");
         rmdir("{$skeletonRoot}/src");
 
         // rename app folder
@@ -73,5 +73,3 @@ class Composer
         }
     }
 }
-
-(new Composer)->postInstall();

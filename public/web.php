@@ -42,7 +42,7 @@ if (! $app) {
 }
 
 /**
- * Calling the match of a Bear.Sunday compatible router will give us the $method, $pagePath, $query to be used
+ * Calling the match of a BEAR.Sunday compatible router will give us the $method, $pagePath, $query to be used
  * in the page request.
  */
 list($method, $pagePath, $query) = $app->router->match();

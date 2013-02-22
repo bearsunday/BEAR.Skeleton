@@ -48,13 +48,11 @@ try {
  * ERROR: sets the response code and loads error page.
  */ 
 OK: {
-    error_reporting(E_ALL);
     $app->response->setResource($app->page)->render()->send();
     exit(0);
 }
 
 ERROR: {
-    /** @noinspection PhpUnreachableStatementInspection */
     http_response_code($code);
     require dirname(__DIR__) . "/http/{$code}.php";
     exit(1);

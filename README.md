@@ -46,4 +46,4 @@ Page and App Resources
 Other
 ----------------------------
 
-Other custom classes you may want to add can be added freely, some predefined namespaces such as `Annotation`, and `Inteceptor` have been prepared for you. Tests should be added to the tests directory in an appropriate namespace.
+Other custom classes you may want to add can be added freely, some predefined namespaces such as `Annotation`, and `Interceptor` have been prepared for you. Tests should be added to the tests directory in an appropriate namespace.

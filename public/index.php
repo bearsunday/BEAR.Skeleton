@@ -2,15 +2,22 @@
 /**
  * A Web server script for use in production.
  *
- * This script is the entry point for an application whilst in production. This script is a base 
- * guideline and this procedural boot strap is gives you some defaults as a guide. 
+ * This script is the entry point for an application whilst in production. This script is a base
+ * guideline and this procedural boot strap is gives you some defaults as a guide.
  * You are free to change and configure this script at will.
  *
- * @package Skeleton
+ * @package BEAR.Package
  * @global  $mode
  */
 use BEAR\Resource\Exception\Parameter as BadRequest;
 use BEAR\Resource\Exception\ResourceNotFound as NotFound;
+
+/**
+ * Compiled preloader for production
+ *
+ * @see https://github.com/koriym/ClassPreloader
+ */
+require dirname(dirname(dirname(__DIR__))) . '/scripts/preloader.php';
 
 /**
  * Here we get the production application instance. No $mode variable is needed as it defaults to Prod.
@@ -20,7 +27,7 @@ use BEAR\Resource\Exception\ResourceNotFound as NotFound;
 $app = require dirname(__DIR__) . '/scripts/instance.php';
 
 /**
- * Calling the match of a Bear.Sunday compatible router will give us the $method, $pagePath, $query to be used
+ * Calling the match of a BEAR.Sunday compatible router will give us the $method, $pagePath, $query to be used
  * in the page request.
  */
 list($method, $pagePath, $query) = $app->router->match();
@@ -46,7 +53,7 @@ try {
 /**
  * OK: Sets the response resources and renders
  * ERROR: sets the response code and loads error page.
- */ 
+ */
 OK: {
     $app->response->setResource($app->page)->render()->send();
     exit(0);

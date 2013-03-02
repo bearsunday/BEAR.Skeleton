@@ -14,9 +14,11 @@
  * Built-in web server:
  * $ php -S localhost:8080 web.php
  *
- * @package Skeleton
+ * @package BEAR.Package
  * @global  $mode string
  */
+
+ob_start();
 
 /**
  * Here we get an application instance by setting a $mode variable such as (Prod, Dev, Api, Stub, Test)

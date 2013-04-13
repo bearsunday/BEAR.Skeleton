@@ -6,7 +6,7 @@
  * @global $mode
  */
 
-use BEAR\Package\Dev\DevWeb\DevWeb;
+use BEAR\Package\Dev\Web\Web;
 
 // Init
 error_reporting(E_ALL);
@@ -45,7 +45,7 @@ register_shutdown_function(include $packageDir . '/scripts/debugger/shutdown_err
 if ($isDevTool) {
     $isAjaxReq = (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
     $app = $isAjaxReq ? null : (require dirname(__DIR__) . '/instance.php');
-    (new DevWeb)->service($_SERVER['REQUEST_URI'], $app);
+    (new Web)->service($_SERVER['REQUEST_URI'], $app);
     exit(0);
 }
 

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="ja" metal:use-macro="layout/default.xhtml/html">
+<head>
+    <title metal:fill-slot="title">Index</title>
+</head>
+<body>
+    <div class="container" metal:fill-slot="page">
+        <h1><span tal:content="greeting" tal:omit-tag="">Some greeting message</span> (PHPTAL)</h1>
+    </div>
+</body>
+</html>

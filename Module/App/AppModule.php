@@ -47,6 +47,9 @@ class AppModule extends AbstractModule
         // install twig
 //        $this->install(new ProvideModule\TemplateEngine\Twig\TwigModule($this));
 
+        // install PHPTAL
+//        $this->install(new ProvideModule\TemplateEngine\PHPTAL\PHPTALModule($this));
+
         // dependency binding for application
         $this->bind('BEAR\Sunday\Extension\Application\AppInterface')->to('Skeleton\App');
     }

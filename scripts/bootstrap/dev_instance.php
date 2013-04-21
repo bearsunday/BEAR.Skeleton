@@ -52,7 +52,7 @@ if ($isDevTool) {
 // Application
 $mode = isset($argv[3]) ? ucfirst($argv[3]) : (isset($mode) ? $mode : 'Prod');
 $app = require dirname(__DIR__) . '/instance.php';
-/** @var $app \BEAR\Package\Provide\Application\AbstractApp */
+/** @var $app \BEAR\Sunday\Extension\Application\AppInterface */
 
 // Log
 $app->logger->register($app);

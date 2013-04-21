@@ -9,7 +9,7 @@ use BEAR\Sunday\Module as SundayModule;
 use BEAR\Package\Provide as PackageModule;
 
 /**
- * Application module for API
+ * API module
  *
  * @package    Skeleton
  * @subpackage Module
@@ -23,7 +23,7 @@ class ApiModule extends ProdModule
     {
         $this->install(new ProdModule);
 
-        // format module
+        // view module
         $this->install(new PackageModule\ResourceView\HalModule($this));
         //$this->install(new SundayModule\Resource\JsonModule($this));
     }

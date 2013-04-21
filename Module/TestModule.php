@@ -19,8 +19,7 @@ use BEAR\Package\Module as PackageModule;
 class TestModule extends ProdModule
 {
     /**
-     * (non-PHPdoc)
-     * @see Ray\Di.AbstractModule::configure()
+     * {@inheritdoc}
      */
     protected function configure()
     {

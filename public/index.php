@@ -6,8 +6,7 @@
  * guideline and this procedural boot strap is gives you some defaults as a guide.
  * You are free to change and configure this script at will.
  *
- * @package BEAR.Package
- * @global  $mode
+ * @global $mode application run mode
  */
 use BEAR\Resource\Exception\Parameter as BadRequest;
 use BEAR\Resource\Exception\ResourceNotFound as NotFound;

@@ -14,7 +14,6 @@
  *
  * $ php -S localhost:8089 api.php
  *
- * @package Skeleton
  * @global  $mode
  */
 if (PHP_SAPI == 'cli-server') {

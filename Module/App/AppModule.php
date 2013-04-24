@@ -1,8 +1,5 @@
 <?php
-/**
- * @package    Skeleton
- * @subpackage Module
- */
+
 namespace Skeleton\Module\App;
 
 use BEAR\Sunday\Module as SundayModule;
@@ -12,9 +9,6 @@ use Ray\Di\AbstractModule;
 
 /**
  * Application module
- *
- * @package    Skeleton
- * @subpackage Module
  */
 class AppModule extends AbstractModule
 {

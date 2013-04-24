@@ -11,7 +11,6 @@ use BEAR\Package\Dev\Web\Web;
 // Init
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-//ini_set('xdebug.collect_params', '0');
 
 // built-in web server
 $isDevTool = PHP_SAPI  !== 'cli' && substr($_SERVER["REQUEST_URI"], 0, 5) === '/dev/';

@@ -34,7 +34,7 @@ require 'scripts/clear.php';
  * the dev instance provides debugging tools and defaults to help you the development of your application.
  */
 $mode = 'Api';
-$app = require dirname(__DIR__) . '/scripts/bootstrap/dev_instance.php';
+$app = require dirname(__DIR__) . '/scripts/instance.php';
 
 /**
  * When using the CLI we set the router arguments needed for CLI use.

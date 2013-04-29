@@ -2,7 +2,8 @@
 
 // dev tools
 require_once dirname(__DIR__) . '/scripts/bootstrap.php';
-require_once dirname(__DIR__) . '/scripts/bootstrap/dev_instance.php';
+
+$GLOBALS['app'] = require dirname(__DIR__) . '/scripts/instance.php';
 
 // application root
 chdir(dirname(__DIR__));

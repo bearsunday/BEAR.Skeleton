@@ -14,7 +14,7 @@ use Doctrine\Common\Cache\FilesystemCache;
 // Profile
 // require dirname(dirname(dirname(__DIR__))) . '/scripts/profile.php';
 
-require_once __DIR__ . '/bootstrap.php';
+require __DIR__ . '/bootstrap.php';
 
 // mode
 $mode = isset($mode) ? $mode : 'Prod';

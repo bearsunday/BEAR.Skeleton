@@ -6,7 +6,6 @@ use BEAR\Package\Module as PackageModule;
 
 /**
  * Test module
- *
  */
 class TestModule extends ProdModule
 {

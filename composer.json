@@ -10,5 +10,10 @@
     },
     "scripts"   :{
         "post-install-cmd": "Skeleton\\Installer\\Composer::postInstall"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.7.x-dev"
+        }
     }
 }

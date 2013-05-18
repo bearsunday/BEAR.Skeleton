@@ -16,17 +16,12 @@ ini_set('xdebug.var_display_max_depth', 1);
 
 require dirname(__DIR__) . '/bootstrap.php';
 
-// fatal error handler
-Dev::registerFatalErrorHandler();
-
-// syntax error instant edit
-Dev::registerSyntaxErrorEdit();
-
-// exception handler
 $logDir = dirname(dirname(__DIR__)) . '/data/log';
-Dev::registerExceptionHandler($logDir);
-
 $dev = new Dev;
+$dev->loadDevFunctions()
+    ->registerFatalErrorHandler()
+    ->registerExceptionHandler($logDir)
+    ->registerSyntaxErrorEdit();
 
 // direct file for built in web server
 if ($dev->directAccessFile() === false) {

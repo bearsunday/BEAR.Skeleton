@@ -55,9 +55,7 @@ class Composer
         rename($skeletonRoot, $newName);
 
         // rename tests/Skeleton folder
-        $targetTests = "{$skeletonRoot}/tests/Skeleton";
-        $distTests   = "{$skeletonRoot}/tests/{$appName}";
-        rename($targetTests, $distTests);
+        rename("{$skeletonRoot}/tests/Skeleton", "{$skeletonRoot}/tests/{$appName}");
 
         // remove composer.json
         unlink("$skeletonRoot/composer.json");

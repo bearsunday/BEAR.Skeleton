@@ -2,7 +2,6 @@
 /**
  * This file is part of the BEAR.Package package
  *
- * @package BEAR.Package
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
 namespace Skeleton\Installer;
@@ -54,6 +53,9 @@ class Composer
         // rename app folder
         $newName = str_replace($folderName, $appName, $skeletonRoot);
         rename($skeletonRoot, $newName);
+
+        // rename tests/Skeleton folder
+        rename("{$skeletonRoot}/tests/Skeleton", "{$skeletonRoot}/tests/{$appName}");
 
         // remove composer.json
         unlink("$skeletonRoot/composer.json");

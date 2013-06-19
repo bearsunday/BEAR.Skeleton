@@ -14,8 +14,7 @@
  * Built-in web server:
  * $ php -S localhost:8080 web.php
  *
- * @package BEAR.Package
- * @global  $mode string
+ * @global  $mode string application run mode
  */
 
 ob_start();
@@ -24,8 +23,8 @@ ob_start();
  * Here we get an application instance by setting a $mode variable such as (Prod, Dev, Api, Stub, Test)
  * the dev instance provides debugging tools and defaults to help you the development of your application.
  */
-$mode = 'Dev';
-$app = require dirname(__DIR__) . '/scripts/bootstrap/dev_instance.php';
+$mode = 'dev';
+$app = require dirname(__DIR__) . '/scripts/develop/instance.php';
 
 /**
  * The cache is cleared on each request via the following script. We understand that you may want to debug

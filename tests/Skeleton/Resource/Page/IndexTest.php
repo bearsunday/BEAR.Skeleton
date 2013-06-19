@@ -11,12 +11,10 @@ class IndexTest extends \PHPUnit_Framework_TestCase
      */
     private $resource;
 
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
-        if (!$this->resource) {
-            $this->resource = Injector::create([new TestModule])->getInstance('\BEAR\Resource\ResourceInterface');
-        }
+        $this->resource = clone $GLOBALS['RESOURCE'];
     }
 
     /**

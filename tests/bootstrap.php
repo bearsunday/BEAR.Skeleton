@@ -11,11 +11,11 @@ chdir(dirname(__DIR__));
 // dev tools
 $loader = require dirname(__DIR__) . '/vendor/autoload.php';
 /** @var $loader \Composer\Autoload\ClassLoader */
-$loader->add('', [__DIR__]);
+$loader->add('Skeleton', __DIR__ . '/src');
 ini_set('error_log', sys_get_temp_dir() . 'app-test.log');
 
 // init
-require_once 'scripts/bootstrap.php';
+require_once dirname(__DIR__). '/bootstrap/autoload.php';
 
 // set the application path into the globals so we can access
 // it in the tests.

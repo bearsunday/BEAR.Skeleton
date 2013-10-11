@@ -6,8 +6,7 @@ BEAR.Skeleton relies on BEAR.Package which can be downloaded [here](http://githu
 This is a skeleton app which can be used a base for your own BEAR.Sunday applications. You can build the app by entering the following command.
 
     $ cd bear/apps
-    $ curl -s https://getcomposer.org/installer | php
-    $ php composer.phar create-project -s dev --dev bear/skeleton ./{yourAppName}
+    $ composer create-project bear/skeleton ./{yourAppName}
     // Console
     $ php web.php get /
     // Web
@@ -21,9 +20,9 @@ This is an example meaning that you can change any part of it to how you like to
 Where to start
 ----------------------------
 
-First lets try to have a basic understanding of how the bootstrap process works. There are 3 default entry points for development, api usage and production use these are `public/web.php`, `public/api.php` and `public/index.php` respectively.
+First lets try to have a basic understanding of how the bootstrap process works. There are 3 default entry points for development, api usage and production use these are `bootstrap/contexts/prod.php`, `dev.php` and `api.php` respectively.
 
-The app is then booted procedurally, you can manipulate this bootstrap process in anyway you please by either adding or editing scripts in the `scripts` directory and any of the entry point script files you may be using.
+The app is then booted procedurally, you can manipulate this bootstrap process in anyway you please by either adding or editing scripts in the `bootstrap/contexts` directory and any of the entry point script files you may be using.
 
 Modules
 ----------------------------
@@ -41,9 +40,9 @@ The values in here are injected by the relevant module.
 Page and App Resources
 ----------------------------
 
-`Page` and `app` resources are added in the resources directory along with any template views that you may choose to add.
+`page` and `app` resources are added in the resources directory along with any template views that you may choose to add.
 
 Other
 ----------------------------
 
-Other custom classes you may want to add can be added freely, some predefined namespaces such as `Annotation`, and `Interceptor` have been prepared for you. Tests should be added to the tests directory in an appropriate namespace.
+Other custom classes you may want to add can be added freely, some predefined namespaces such as `Annotation`, `Params` and `Interceptor` have been prepared for you. Tests should be added to the tests directory in an appropriate namespace.

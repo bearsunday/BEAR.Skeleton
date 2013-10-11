@@ -9,6 +9,6 @@
         "psr-0": { "Skeleton": "src" }
     },
     "scripts"   :{
-        "post-install-cmd": "Skeleton\\Installer\\Composer::postInstall"
+        "post-autoload-dump": ["BEAR\\Package\\Installer::packageUpdate", "php bin/compiler.php"]
     }
 }

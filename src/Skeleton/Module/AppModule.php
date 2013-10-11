@@ -58,8 +58,6 @@ class AppModule extends AbstractModule
      */
     protected function configure()
     {
-        $this->bind()->annotatedWith('app_name')->toInstance('Skeleton');
-
         // install core package
         $this->install(new PackageModule(new Constant($this->config), 'Skeleton\App', $this->context));
 

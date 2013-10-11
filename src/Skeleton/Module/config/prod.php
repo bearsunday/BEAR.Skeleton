@@ -29,6 +29,7 @@ $config = [
         'charset' => 'UTF8'
     ],
     // constants
+    'app_name' => __NAMESPACE__,
     'tmp_dir' => $appDir . '/var/tmp',
     'log_dir' => $appDir . '/var/log',
     'vendor_dir' => $appDir . '/var/lib',

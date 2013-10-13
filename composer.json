@@ -9,6 +9,6 @@
         "psr-0": { "Skeleton": "src" }
     },
     "scripts"   :{
-        "post-autoload-dump": ["BEAR\\Package\\Installer::packageUpdate", "php bin/compiler.php"]
+        "post-autoload-dump": ["BEAR\\Package\\Installer::packageUpdate"]
     }
 }

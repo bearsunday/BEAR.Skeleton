@@ -2,6 +2,7 @@
     "name": "bear/skeleton",
     "description": "Skeleton application for BEAR.Sunday",
     "license":"BSD-3-Clause",
+    "type": "bearsunday-app",
     "repositories": [
         {
             "type": "vcs",

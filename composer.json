@@ -2,14 +2,20 @@
     "name": "bear/skeleton",
     "description": "Skeleton application for BEAR.Sunday",
     "license":"BSD-3-Clause",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/mackstar/installers"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
-        "composer/installers": "~1.0"
+        "composer/installers": "dev-master"
     },
     "autoload": {
         "psr-0": { "Skeleton": "src" }
     },
-    "scripts"   :{
+    "scripts": {
         "post-autoload-dump": ["BEAR\\Package\\Installer::packageUpdate"]
     }
 }

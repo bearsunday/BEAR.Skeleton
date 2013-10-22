@@ -2,13 +2,6 @@
     "name": "bear/skeleton",
     "description": "Skeleton application for BEAR.Sunday",
     "license":"BSD-3-Clause",
-    "type": "bearsunday-app",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "https://github.com/mackstar/installers"
-        }
-    ],
     "require": {
         "php": ">=5.4.0",
         "composer/installers": "dev-master"

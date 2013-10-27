@@ -33,7 +33,7 @@ $config = [
     'app_dir' => $appDir,
     'tmp_dir' => $appDir . '/var/tmp',
     'log_dir' => $appDir . '/var/log',
-    'vendor_dir' => $appDir . '/var/lib',
+    'lib_dir' => $appDir . '/var/lib',
 ];
 
 return $config;

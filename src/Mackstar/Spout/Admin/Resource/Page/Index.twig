@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>BEAR.Sunday</title>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <script src="//code.jquery.com/jquery-latest.js"></script>
-</head>
-<body>
-<div class="container"><h2>{{greeting}} (twig)</h2></div>
-</body>
-</html>
+{% extends "layout/default.twig" %}
+ {block name=title}Index{/block}
+{% block page %}
+	<h1>{{greeting}} (twig)</h1>
+{% endblock %}

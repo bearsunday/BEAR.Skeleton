@@ -87,6 +87,6 @@ OK: {
 
 ERROR: {
     http_response_code($code);
-    echo $body;
+    echo $body, PHP_EOL;
     exit(1);
 }

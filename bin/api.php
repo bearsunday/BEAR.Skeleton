@@ -19,6 +19,7 @@
  */
 use BEAR\Resource\Exception\Parameter as BadRequest;
 use BEAR\Resource\Exception\ResourceNotFound as NotFound;
+use BEAR\Resource\Exception\BadRequest as BadArgument;
 
 //
 // The cache is cleared on each request via the following script. We understand that you may want to debug
@@ -39,7 +40,12 @@ $app = require dirname(__DIR__) . '/bootstrap/instance.php';
 // Otherwise just get the path directly from the globals.
 //
 if (PHP_SAPI === 'cli') {
-    $app->router->setArgv($argv);
+    try {
+        $app->router->setArgv($argv);
+    } catch (BadArgument $e) {
+        fprintf(STDERR, "%s\n", $e->getMessage());
+        exit(1);
+    }
     $uri = $argv[2];
     parse_str((isset(parse_url($uri)['query']) ? parse_url($uri)['query'] : ''), $get);
 } else {

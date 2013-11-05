@@ -24,14 +24,14 @@ use BEAR\Resource\Exception\ResourceNotFound as NotFound;
 // The cache is cleared on each request via the following script. We understand that you may want to debug
 // your application with caching turned on. When doing so just comment out the following.
 //
-require dirname(dirname(__DIR__)) . '/bin/clear.php';
+require dirname(__DIR__) . '/bin/clear.php';
 
 //
 // Here we get an application instance by setting a $context variable such as (prod, dev, api, stub, test)
 // the dev instance provides debugging tools and defaults to help you the development of your application.
 //
 $context = 'api';
-$app = require dirname(dirname(__DIR__)) . '/bootstrap/instance.php';
+$app = require dirname(__DIR__) . '/bootstrap/instance.php';
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
 
 //

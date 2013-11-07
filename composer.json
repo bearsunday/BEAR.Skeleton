@@ -1,7 +1,7 @@
 {
     "name": "bear/skeleton",
     "description": "Skeleton application for BEAR.Sunday",
-    "minimum-stability": "dev",
+    "license":"BSD-3-Clause",
     "require": {
         "php": ">=5.4.0"
     },
@@ -9,6 +9,6 @@
         "psr-0": { "Skeleton": "src" }
     },
     "scripts"   :{
-        "post-install-cmd": "Skeleton\\Installer\\Composer::postInstall"
+        "post-autoload-dump": ["BEAR\\Package\\Installer::packageUpdate"]
     }
 }

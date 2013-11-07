@@ -43,7 +43,7 @@ if (PHP_SAPI === 'cli') {
     try {
         $app->router->setArgv($argv);
     } catch (BadArgument $e) {
-        fprintf(STDERR, "%s\n", $e->getMessage());
+        error_log($e->getMessage());
         exit(1);
     }
     $uri = $argv[2];

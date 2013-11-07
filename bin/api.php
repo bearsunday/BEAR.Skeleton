@@ -19,19 +19,20 @@
  */
 use BEAR\Resource\Exception\Parameter as BadRequest;
 use BEAR\Resource\Exception\ResourceNotFound as NotFound;
+use BEAR\Resource\Exception\BadRequest as BadArgument;
 
 //
 // The cache is cleared on each request via the following script. We understand that you may want to debug
 // your application with caching turned on. When doing so just comment out the following.
 //
-require dirname(dirname(__DIR__)) . '/bin/clear.php';
+require dirname(__DIR__) . '/bin/clear.php';
 
 //
 // Here we get an application instance by setting a $context variable such as (prod, dev, api, stub, test)
 // the dev instance provides debugging tools and defaults to help you the development of your application.
 //
 $context = 'api';
-$app = require dirname(dirname(__DIR__)) . '/bootstrap/instance.php';
+$app = require dirname(__DIR__) . '/bootstrap/instance.php';
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
 
 //
@@ -39,7 +40,12 @@ $app = require dirname(dirname(__DIR__)) . '/bootstrap/instance.php';
 // Otherwise just get the path directly from the globals.
 //
 if (PHP_SAPI === 'cli') {
-    $app->router->setArgv($argv);
+    try {
+        $app->router->setArgv($argv);
+    } catch (BadArgument $e) {
+        error_log($e->getMessage());
+        exit(1);
+    }
     $uri = $argv[2];
     parse_str((isset(parse_url($uri)['query']) ? parse_url($uri)['query'] : ''), $get);
 } else {
@@ -81,6 +87,6 @@ OK: {
 
 ERROR: {
     http_response_code($code);
-    echo $body;
+    echo $body, PHP_EOL;
     exit(1);
 }

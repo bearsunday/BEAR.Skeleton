@@ -5,10 +5,7 @@
     "require": {
         "php": ">=5.4.0"
     },
-    "autoload": {
-        "psr-0": { "Skeleton": "src" }
-    },
     "scripts"   :{
-        "post-autoload-dump": ["BEAR\\Package\\Installer::packageUpdate"]
+        "post-autoload-dump": ["php installer.php"]
     }
 }

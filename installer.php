@@ -1,28 +1,15 @@
 <?php
 /**
- * This file is part of the BEAR.Package package
+ * This file is part of the BEAR.Skeleton package
  *
  * @license http://opensource.org/licenses/bsd-license.php BSD
  */
-namespace Skeleton;
 
-use Composer\Script\Event;
-use RecursiveIteratorIterator;
-use RecursiveDirectoryIterator;
-
-/**
- * Composer script
- */
 class Installer
 {
-    /**
-     * Composer post install script
-     *
-     * @param Event $event
-     */
-    public static function postInstall(Event $event = null)
+    public static function postInstall()
     {
-        $skeletonRoot = dirname(dirname(__DIR__));
+        $skeletonRoot = __DIR__;
         $folderName = (new \SplFileInfo($skeletonRoot))->getFilename();
         $appName = ucwords($folderName);
         $jobChmod = function (\SplFileInfo $file) {
@@ -45,9 +32,6 @@ class Installer
         // rename file contents
         self::recursiveJob($skeletonRoot, $jobRename);
 
-        // remove self (install script)
-        unlink("{$skeletonRoot}/src/Skeleton/Installer.php");
-
         // rename app folder
         $newName = str_replace($folderName, $appName, $skeletonRoot);
         rename($skeletonRoot, $newName);
@@ -62,6 +46,9 @@ class Installer
 
         // remove composer.json
         unlink("$skeletonRoot/composer.json");
+
+        // remove self (install script)
+        unlink(__FILE__);
     }
 
     /**
@@ -78,3 +65,5 @@ class Installer
         }
     }
 }
+
+Installer::postInstall();

@@ -35,14 +35,14 @@ class Installer
         // rename app folder
         $newName = str_replace($folderName, $appName, $skeletonRoot);
         rename($skeletonRoot, $newName);
-        rename("{$skeletonRoot}/src/Skeleton", "{$skeletonRoot}/src/{$appName}");
+        rename("{$skeletonRoot}/src/BEAR/Skeleton", "{$skeletonRoot}/src/{$folderName}/{$appName}");
 
         // rename tests/Skeleton folder
-        rename("{$skeletonRoot}/tests/Skeleton", "{$skeletonRoot}/tests/{$appName}");
+        rename("{$skeletonRoot}/tests/BEAR/Skeleton", "{$skeletonRoot}/tests/{$folderName}/{$appName}");
 
         // symlink
-        symlink("{$skeletonRoot}/var/lib/smarty/template", "{$skeletonRoot}/src/{$appName}/Resource/template");
-        symlink("{$skeletonRoot}/src/{$appName}/Module/config", "{$skeletonRoot}/config");
+        //symlink("{$skeletonRoot}/var/lib/smarty/template", "{$skeletonRoot}/src/{$appName}/Resource/template");
+        //symlink("{$skeletonRoot}/src/{$appName}/Module/config", "{$skeletonRoot}/config");
 
         // remove composer.json
         unlink("$skeletonRoot/composer.json");

@@ -1,0 +1,8 @@
+{
+    "name": "bear/skeleton",
+    "description": "",
+    "license":"BSD-3-Clause",
+    "require": {
+        "php": ">=5.4.0"
+    }
+}

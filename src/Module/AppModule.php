@@ -13,7 +13,7 @@ use BEAR\Package\Provide\TemplateEngine\Smarty\SmartyModule;
 use BEAR\Sunday\Module as SundayModule;
 use BEAR\Sunday\Module\Constant\NamedModule as Constant;
 use Ray\Di\AbstractModule;
-use Skeleton\Module\Mode\DevModule;
+use BEAR\Skeleton\Module\Mode\DevModule;
 
 /**
  * Application module

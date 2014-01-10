@@ -2,7 +2,7 @@
 namespace BEAR\Skeleton\Resource\Page;
 
 use Ray\Di\Injector;
-use Skeleton\Module\TestModule;
+use BEAR\Skeleton\Module\TestModule;
 
 class IndexTest extends \PHPUnit_Framework_TestCase
 {

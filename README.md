@@ -6,12 +6,12 @@ BEAR.Skeleton relies on BEAR.Package which can be downloaded [here](http://githu
 This is a skeleton app which can be used a base for your own BEAR.Sunday applications. You can build the app by entering the following command.
 
     $ cd bear/apps
-    $ composer create-project bear/skeleton ./{$vendor/$app}
+    $ composer create-project bear/skeleton ./{Vendor.Package}
 
     // Console
-    $ php apps/{$vendor/$app}/bootstrap/contexts/dev.php get /
+    $ php apps/{Vendor.Package}/bootstrap/contexts/dev.php get /
     // Web
-    $ php -S 0.0.0.0:8080 -t apps/{$vendor/$app}/var/www/ apps/{$vendor/$app}/bootstrap/contexts/dev.php
+    $ php -S 0.0.0.0:8080 -t apps/{Vendor.Package}/var/www/ apps/{Vendor.Package}/bootstrap/contexts/dev.php
 
 Structure
 ----------------------------
@@ -33,7 +33,7 @@ Although the procedural bootstrap process offers flexibility in setting up your 
 Configuration
 ----------------------------
 
-Even though there is a `config` folder with several runtime modes catered for, here you can add database settings and the like. But please do not be fooled that a configuration with an idea of state is how a BEAR.Sunday application works. 
+Even though there is a `var/config` folder with several runtime modes catered for, here you can add database settings and the like. But please do not be fooled that a configuration with an idea of state is how a BEAR.Sunday application works.
 
 The values in here are injected by the relevant module.
 

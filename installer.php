@@ -33,11 +33,11 @@ class Installer
 
         // rename file contents
         self::recursiveJob("{$skeletonRoot}", $jobRename);
-//        $jobRename(new \SplFileInfo("{$skeletonRoot}/build.xml"));
-//        $jobRename(new \SplFileInfo("{$skeletonRoot}/phpcs.xml"));
-//        $jobRename(new \SplFileInfo("{$skeletonRoot}/phpdox.xml.dist"));
-//        $jobRename(new \SplFileInfo("{$skeletonRoot}/phpmd.xml"));
-//        $jobRename(new \SplFileInfo("{$skeletonRoot}/phpunit.xml.dist"));
+        $jobRename(new \SplFileInfo("{$skeletonRoot}/build.xml"));
+        $jobRename(new \SplFileInfo("{$skeletonRoot}/build/phpcs.xml"));
+        $jobRename(new \SplFileInfo("{$skeletonRoot}/build/phpdox.xml"));
+        $jobRename(new \SplFileInfo("{$skeletonRoot}/build/phpmd.xml"));
+        $jobRename(new \SplFileInfo("{$skeletonRoot}/phpunit.xml.dist"));
 
         // composer.json
         unlink("{$skeletonRoot}/composer.json");
@@ -46,7 +46,7 @@ class Installer
         $packageNameComposerJson = str_replace('bear/skeleton', strtolower("{$vendorName}/{$packageName}"), $composerJson);
         file_put_contents("{$skeletonRoot}/composer.json", $packageNameComposerJson);
 
-        // delete self
+        unlink(__DIR__ . '/README.md');
         unlink(__FILE__);
     }
 

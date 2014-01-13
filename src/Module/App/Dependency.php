@@ -16,5 +16,6 @@ class Dependency extends AbstractModule
      */
     protected function configure()
     {
+         // $this->bind('BEAR\Skeleton\FooInterface')->to('BEAR\Skeleton\Foo');
     }
 }

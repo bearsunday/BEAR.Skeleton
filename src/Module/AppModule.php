@@ -15,14 +15,9 @@ use BEAR\Sunday\Module\Constant\NamedModule as Constant;
 use Ray\Di\AbstractModule;
 use BEAR\Skeleton\Module\Mode\DevModule;
 
-/**
- * Application module
- */
 class AppModule extends AbstractModule
 {
     /**
-     * Constants
-     *
      * @var array
      */
     private $config;
@@ -45,7 +40,7 @@ class AppModule extends AbstractModule
         $appDir = dirname(dirname(__DIR__));
         $this->context = $context;
         $this->appDir = $appDir;
-        $this->constants = (require "{$appDir}/var/conf/{$context}.php") + (require "{$appDir}/var/conf/prod.php");
+        $this->config = (require "{$appDir}/var/conf/{$context}.php") + (require "{$appDir}/var/conf/prod.php");
         $this->params = (require "{$appDir}/var/lib/params/{$context}.php") + (require "{$appDir}/var/lib/params/prod.php");
         parent::__construct();
         unset($appDir);
@@ -53,10 +48,10 @@ class AppModule extends AbstractModule
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    public function configure()
     {
         // install core package
-        $this->install(new PackageModule('BEAR\Skeleton\App', $this->context, $this->constants));
+        $this->install(new PackageModule('BEAR\Skeleton\App', $this->context, $this->config));
 
         // install view package
         $this->install(new SmartyModule($this));
@@ -66,11 +61,6 @@ class AppModule extends AbstractModule
         $this->install(new SignalParamModule($this, $this->params));
         $this->install(new AuraFormModule);
         $this->install(new ResourceGraphModule($this));
-
-        // install develop module
-        if ($this->context === 'dev') {
-            $this->install(new DevModule($this));
-        }
 
         // install API module
         if ($this->context === 'api') {

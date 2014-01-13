@@ -1,10 +1,7 @@
 {
     "name": "bear/skeleton",
-    "authors": [
-        {
-            "name": ""
-        }
-    ],
+    "description":"n/a",
+    "license": "proprietary",
     "require": {
     }
 }

@@ -2,6 +2,14 @@
     "name": "bear/skeleton",
     "description":"n/a",
     "license": "proprietary",
-    "require": {
-    }
+    "require-dev": {
+        "bear/package": "*"
+    },
+    "require-dev": {
+        "bear/dev-package": "dev-master"
+    },
+
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
+

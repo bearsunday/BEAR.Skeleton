@@ -4,7 +4,6 @@ namespace BEAR\Skeleton\Module;
 
 use BEAR\Package\Module\Form\AuraForm\AuraFormModule;
 use BEAR\Package\Module\Package\PackageModule;
-use BEAR\Package\Module\Resource\ResourceGraphModule;
 use BEAR\Package\Module\Resource\SignalParamModule;
 use BEAR\Package\Provide\ResourceView;
 use BEAR\Package\Provide\ResourceView\HalModule;
@@ -14,6 +13,10 @@ use BEAR\Sunday\Module as SundayModule;
 use BEAR\Sunday\Module\Constant\NamedModule as Constant;
 use Ray\Di\AbstractModule;
 use BEAR\Skeleton\Module\Mode\DevModule;
+use BEAR\Package\Provide\TemplateEngine\Twig\TwigModule;
+
+use BEAR\Package\Module\Di\DiCompilerModule;
+use BEAR\Package\Module\Di\DiModule;
 
 class AppModule extends AbstractModule
 {
@@ -54,13 +57,13 @@ class AppModule extends AbstractModule
         $this->install(new PackageModule('BEAR\Skeleton\App', $this->context, $this->config));
 
         // install view package
-        $this->install(new SmartyModule($this));
-        //$this->install(new TwigModule($this));
+//        $this->install(new SmartyModule($this));
+        $this->install(new TwigModule($this));
+
 
         // install optional package
         $this->install(new SignalParamModule($this, $this->params));
         $this->install(new AuraFormModule);
-        $this->install(new ResourceGraphModule($this));
 
         // install API module
         if ($this->context === 'api') {

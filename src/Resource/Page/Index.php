@@ -5,9 +5,6 @@ namespace BEAR\Skeleton\Resource\Page;
 use BEAR\Resource\ResourceObject;
 use BEAR\Sunday\Inject\ResourceInject;
 
-/**
- * Index page
- */
 class Index extends ResourceObject
 {
     use ResourceInject;
@@ -22,6 +19,7 @@ class Index extends ResourceObject
     public function onGet($name = 'BEAR.Sunday')
     {
         $this['greeting'] = 'Hello ' . $name;
+
         return $this;
     }
 }

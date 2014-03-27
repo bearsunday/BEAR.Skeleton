@@ -2,7 +2,7 @@
     "name": "bear/skeleton",
     "description":"n/a",
     "license": "proprietary",
-    "require-dev": {
+    "require": {
         "bear/package": "*"
     },
     "require-dev": {

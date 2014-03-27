@@ -8,11 +8,14 @@
  */
 namespace BEAR\Skeleton;
 
+use BEAR\Package\Bootstrap\Bootstrap;
+
 require_once __DIR__ . '/autoload.php';
 
-$context = isset($context) ? $context : 'prod';
-return \BEAR\Bootstrap\getApp(
+$app = Bootstrap::getApp(
     __NAMESPACE__,
-    $context,
+    isset($context) ? $context : 'prod',
     dirname(__DIR__) . '/var/tmp'
 );
+
+return $app;

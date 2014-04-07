@@ -46,6 +46,15 @@ class Installer
         $packageNameComposerJson = str_replace('bear/skeleton', strtolower("{$vendorName}/{$packageName}"), $composerJson);
         file_put_contents("{$skeletonRoot}/composer.json", $packageNameComposerJson);
 
+        // remove ./vendor
+        $unlink = function ($dir) use (&$unlink) {
+            foreach(scandir($dir) as $file) {
+                if ('.' === $file || '..' === $file) continue;
+                is_dir("$dir/$file") ? $unlink("$dir/$file") : unlink("$dir/$file");
+            }
+            rmdir($dir);
+        };
+        $unlink(__DIR__ . '/vendor');
         unlink(__DIR__ . '/README.md');
         unlink(__FILE__);
     }
@@ -64,5 +73,4 @@ class Installer
         }
     }
 }
-
 Installer::postInstall();

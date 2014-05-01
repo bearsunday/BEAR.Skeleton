@@ -3,7 +3,7 @@
     "description":"n/a",
     "license": "proprietary",
     "require": {
-        "bear/package": "*"
+        "bear/package": "0.*"
     },
     "require-dev": {
         "bear/dev-package": "dev-master"
@@ -12,4 +12,3 @@
     "minimum-stability": "dev",
     "prefer-stable": true
 }
-

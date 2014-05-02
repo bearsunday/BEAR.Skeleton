@@ -42,6 +42,7 @@ $app = require $appDir . '/bootstrap/instance.php';
 $devHtml = (new Dev)
     ->iniSet()
     ->loadDevFunctions()
+    ->registerErrorHandler()
     ->registerFatalErrorHandler()
     ->registerExceptionHandler("{$appDir}/var/log")
     ->registerSyntaxErrorEdit()
@@ -52,7 +53,6 @@ if ($devHtml) {
     echo $devHtml;
     exit(0);
 }
-
 
 //
 // Calling the match of a BEAR.Sunday compatible router will give us the $method, $pagePath, $query to be used

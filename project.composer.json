@@ -3,10 +3,10 @@
     "description":"n/a",
     "license": "proprietary",
     "require": {
-        "bear/package": "0.*"
+        "bear/package": "dev-develop"
     },
     "require-dev": {
-        "bear/dev-package": "dev-master"
+        "bear/dev-package": "dev-develop"
     },
 
     "minimum-stability": "dev",

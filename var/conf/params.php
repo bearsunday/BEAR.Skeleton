@@ -12,6 +12,5 @@ return [
     'prod' => [],
     'test' => [],
     'dev' => [],
-    'api' => [],
-    'stub' => []
+    'api' => []
 ];

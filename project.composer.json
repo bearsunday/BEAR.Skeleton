@@ -3,12 +3,9 @@
     "description":"n/a",
     "license": "proprietary",
     "require": {
-        "bear/package": "dev-develop"
+        "bear/package": "~0.11"
     },
     "require-dev": {
-        "bear/dev-package": "dev-develop"
-    },
-
-    "minimum-stability": "dev",
-    "prefer-stable": true
+        "bear/dev-package": "~0.1@dev"
+    }
 }

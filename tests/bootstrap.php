@@ -5,6 +5,7 @@ use Ray\Di\Injector;
 use BEAR\Skeleton\Module\AppModule;
 
 error_reporting(E_ALL);
+ini_set('xdebug.max_nesting_level', 300);
 
 // load
 $loader = require dirname(__DIR__) . '/vendor/autoload.php';

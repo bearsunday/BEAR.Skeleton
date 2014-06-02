@@ -73,4 +73,3 @@ class Installer
         }
     }
 }
-Installer::postInstall();

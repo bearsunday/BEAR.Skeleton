@@ -6,6 +6,6 @@
         "php": ">=5.4.0"
     },
     "scripts"   :{
-        "post-autoload-dump": ["php installer.php"]
+        "post-install-cmd": ["BEAR\\Skeleton\\Installer::postInstall"]
     }
 }

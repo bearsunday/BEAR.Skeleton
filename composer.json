@@ -5,7 +5,12 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "autoload": {
+        "psr-4": {
+            "BEAR\\Skeleton\\": "src/"
+        }
+    },
     "scripts"   :{
-        "post-autoload-dump": ["php installer.php"]
+        "post-install-cmd": ["BEAR\\Skeleton\\Installer::postInstall"]
     }
 }

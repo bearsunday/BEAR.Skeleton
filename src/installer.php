@@ -1,5 +1,9 @@
 <?php
 
+namespace BEAR\Skeleton;
+
+use Composer\Script\Event;
+
 /**
  * This file is part of the BEAR.Skeleton package
  *
@@ -9,9 +13,12 @@ class Installer
 {
     public static function postInstall(Event $event = null)
     {
-        $skeletonRoot = __DIR__;
-        $splFile = new \SplFileInfo($skeletonRoot);
-        $folderName = $splFile->getFilename();
+        $skeletonRoot = dirname(__DIR__);
+        $folderName = (new \SplFileInfo($skeletonRoot))->getFilename();
+        $appNameRegex = '/^[A-Z]+[a-z0-9]*\.[A-Z]+[a-z0-9]*$/';
+        if (! preg_match($appNameRegex, $folderName)) {
+            throw new \LogicException('Application name must be in the format "Vendor.Application".');
+        }
         list($vendorName, $packageName) = explode('.', $folderName);
         $jobChmod = function (\SplFileInfo $file) {
             chmod($file, 0777);
@@ -54,8 +61,8 @@ class Installer
             }
             rmdir($dir);
         };
-        $unlink(__DIR__ . '/vendor');
-        unlink(__DIR__ . '/README.md');
+        $unlink($skeletonRoot . '/vendor');
+        unlink($skeletonRoot . '/README.md');
         unlink(__FILE__);
     }
 
@@ -73,4 +80,3 @@ class Installer
         }
     }
 }
-Installer::postInstall();

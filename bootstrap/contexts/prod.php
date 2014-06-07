@@ -22,7 +22,7 @@ use BEAR\Resource\Exception\ResourceNotFound as NotFound;
 //
 /* @var $app \BEAR\Package\Provide\Application\AbstractApp */
 $context = 'prod';
-$app = require dirname(__DIR__) . '/instance.php';
+$app = require dirname(dirname(__DIR__)) . '/bootstrap/instance.php';
 
 //
 // Calling the match of a BEAR.Sunday compatible router will give us the $method, $pagePath, $query to be used

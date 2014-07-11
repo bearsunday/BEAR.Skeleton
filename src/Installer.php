@@ -51,6 +51,7 @@ class Installer
         rename("{$skeletonRoot}/project.composer.json", "{$skeletonRoot}/composer.json");
         $composerJson = file_get_contents("{$skeletonRoot}/composer.json");
         $packageNameComposerJson = str_replace('bear/skeleton', strtolower("{$vendorName}/{$packageName}"), $composerJson);
+        $packageNameComposerJson = str_replace('BEAR\\\\Skeleton\\\\', "{$vendorName}\\\\{$packageName}\\\\", $packageNameComposerJson);
         file_put_contents("{$skeletonRoot}/composer.json", $packageNameComposerJson);
 
         // remove ./vendor

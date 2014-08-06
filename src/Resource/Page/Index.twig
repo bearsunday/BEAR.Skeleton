@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="utf-8">
-    <title>BEAR.Sunday</title>
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/united/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<div class="container">
+{% extends "layout/default.twig" %}
+{% block title %}BEAR.Sunday{% endblock %}
+{% block page %}
     <h2>{{greeting}}</h2>
-    <p>template engine: twig</p>
-</div>
-</body>
-</html>
+    <p>template engine: Twig</p>
+{% endblock %}

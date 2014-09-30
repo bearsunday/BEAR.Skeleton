@@ -5,14 +5,16 @@ BEAR.Skeleton relies on BEAR.Package which can be downloaded [here](http://githu
 
 This is a skeleton app which can be used a base for your own BEAR.Sunday applications. You can build the app by entering the following command.
 
-    $ cd bear/apps
+    $ cd /path/to/your_project
     $ composer create-project bear/skeleton ./{Vendor.Package}
+    $ cd {Vendor.Package}
+    $ composer install
 
     // Console
-    $ php apps/{Vendor.Package}/bootstrap/contexts/dev.php get /
-    // Web
-    $ php -S 0.0.0.0:8080 -t apps/{Vendor.Package}/var/www/ apps/{Vendor.Package}/bootstrap/contexts/dev.php
-
+    $ php bootstrap/contexts/dev.php get /
+    // Buit-in Web
+    $ vendor/bin/bear.server .
+    
 Structure
 ----------------------------
 

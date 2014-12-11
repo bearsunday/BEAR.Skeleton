@@ -1,8 +1,6 @@
 <?php
-namespace BEAR\Skeleton\Resource\Page;
 
-use Ray\Di\Injector;
-use BEAR\Skeleton\Module\TestModule;
+namespace BEAR\Skeleton\Resource\Page;
 
 class IndexTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,56 +15,22 @@ class IndexTest extends \PHPUnit_Framework_TestCase
         $this->resource = clone $GLOBALS['RESOURCE'];
     }
 
-    /**
-     * page resource
-     *
-     * @test
-     */
-    public function resource()
+    public function testOnGet()
     {
         // resource request
-        $page = $this->resource->get->uri('page://self/index')->eager->request();
+        $page = $this->resource->get->uri('page://self/index')->withQuery(['name' => 'koriym'])->eager->request();
         $this->assertSame(200, $page->code);
+        $this->assertSame('Hello koriym', $page['greeting']);
 
         return $page;
     }
 
     /**
-     * @depends resource
+     * @depends testOnGet
      */
-    public function testBody($page)
+    public function testView($page)
     {
-        $this->assertArrayHasKey('greeting', $page->body);
-    }
-
-    /**
-     * Renderable ?
-     *
-     * @depends resource
-     */
-    public function testRenderable($page)
-    {
-        $html = (string)$page;
+        $html = (string) $page;
         $this->assertInternalType('string', $html);
-    }
-
-    /**
-     * Html Rendered ?
-     *
-     * @depends resource
-     */
-    public function testRenderedHtml($page)
-    {
-        $html = (string)$page;
-        $this->assertContains('</html>', $html);
-    }
-
-    /**
-     * @covers BEAR\Skeleton\Resource\Page\Index::onGet
-     */
-    public function testOnGet()
-    {
-        $page = $this->resource->get->uri('page://self/index')->withQuery(['name' => 'koriym'])->eager->request();
-        $this->assertSame('Hello koriym', $page['greeting']);
     }
 }

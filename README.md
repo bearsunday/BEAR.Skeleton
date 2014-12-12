@@ -27,7 +27,7 @@ The app is then booted procedurally, you can manipulate this bootstrap process i
 
 Although the procedural bootstrap process offers flexibility in setting up your application BEAR.Sunday's real power starts to kick in through wiring dependencies together. This all takes place in the `Modules` directory. A number of defaults for the `App` and several runtime *modes* are available to you here. These can also be edited or added to at will.
 
-d## Page and App Resources
+## Page and App Resources
 
 `page` and `app` resources are added in the resources directory along with any template views that you may choose to add.
 

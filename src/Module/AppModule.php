@@ -5,6 +5,7 @@ namespace BEAR\Skeleton\Module;
 use BEAR\Package\AppMeta;
 use BEAR\Package\PackageModule;
 use Ray\Di\AbstractModule;
+use BEAR\Sunday\Extension\Application\AppInterface;
 
 class AppModule extends AbstractModule
 {

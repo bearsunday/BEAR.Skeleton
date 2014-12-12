@@ -15,9 +15,7 @@ $loader->addPsr4('BEAR\Skeleton\\', __DIR__);
 
 // set the application path into the globals so we can access it in the tests.
 $_ENV['TEST_DIR'] = __DIR__;
-
-// clear cache files
-require $_ENV['APP_DIR'] . '/bin/clear.php';
+$_ENV['TMP_DIR'] = __DIR__ . '/tmp';
 
 // set the resource client
 $GLOBALS['RESOURCE'] = (new Injector(new AppModule, __DIR__ . '/tmp'))->getInstance(ResourceInterface::class);

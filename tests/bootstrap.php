@@ -1,10 +1,9 @@
 <?php
 
-use BEAR\Skeleton;
-
-use Ray\Di\Injector;
 use BEAR\Resource\ResourceInterface;
+use BEAR\Skeleton;
 use BEAR\Skeleton\Module\AppModule;
+use Ray\Di\Injector;
 
 error_reporting(E_ALL);
 

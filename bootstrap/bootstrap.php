@@ -1,8 +1,5 @@
 <?php
 
-/**
- * @global $context
- */
 namespace BEAR\Skeleton;
 
 use BEAR\Package\Bootstrap;
@@ -10,8 +7,12 @@ use BEAR\Package\AppMeta;
 use Doctrine\Common\Cache\ApcCache;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
+/**
+ * @global string $context
+ */
+
 loader: {
-    $loader = require dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+    $loader = require dirname(__DIR__) . '/vendor/autoload.php';
     /** @var $loader \Composer\Autoload\ClassLoader */
     AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 }

@@ -31,3 +31,6 @@ Although the procedural bootstrap process offers flexibility in setting up your 
 
 `page` and `app` resources are added in the resources directory along with any template views that you may choose to add.
 
+## Requirements
+
+ * PHP 5.5+

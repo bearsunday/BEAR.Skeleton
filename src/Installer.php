@@ -40,15 +40,10 @@ class Installer
 
         // rename file contents
         self::recursiveJob("{$skeletonRoot}", $jobRename);
-        $jobRename(new \SplFileInfo("{$skeletonRoot}/build.xml"));
-        $jobRename(new \SplFileInfo("{$skeletonRoot}/build/phpcs.xml"));
-        $jobRename(new \SplFileInfo("{$skeletonRoot}/build/phpdox.xml"));
-        $jobRename(new \SplFileInfo("{$skeletonRoot}/build/phpmd.xml"));
-        $jobRename(new \SplFileInfo("{$skeletonRoot}/phpunit.xml.dist"));
 
         // composer.json
         unlink("{$skeletonRoot}/composer.json");
-        rename("{$skeletonRoot}/project.composer.json", "{$skeletonRoot}/composer.json");
+        rename("{$skeletonRoot}/composer.json.dist", "{$skeletonRoot}/composer.json");
         $composerJson = file_get_contents("{$skeletonRoot}/composer.json");
         $packageNameComposerJson = str_replace('bear/skeleton', strtolower("{$vendorName}/{$packageName}"), $composerJson);
         $packageNameComposerJson = str_replace('BEAR\\\\Skeleton\\\\', "{$vendorName}\\\\{$packageName}\\\\", $packageNameComposerJson);

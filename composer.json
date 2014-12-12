@@ -1,10 +1,9 @@
 {
     "name": "bear/skeleton",
-    "description": "an application for BEAR.Sunday",
+    "description": "Skeleton application for BEAR.Sunday",
     "license":"BSD-3-Clause",
     "require": {
-        "php": ">=5.5.0",
-        "bear/package": "~1.0@dev"
+        "php": ">=5.5.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -12,6 +11,9 @@
         "psr-4": {
             "BEAR\\Skeleton\\": "src/"
         }
+    },
+    "scripts" :{
+        "post-install-cmd": ["BEAR\\Skeleton\\Installer::postInstall"]
     },
     "extra": {
         "branch-alias": {

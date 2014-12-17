@@ -15,7 +15,7 @@ class Installer
     {
         $skeletonRoot = dirname(__DIR__);
         $folderName = (new \SplFileInfo($skeletonRoot))->getFilename();
-        $appNameRegex = '/^[A-Z]+[a-z0-9]*\.[A-Z]+[a-z0-9]*$/';
+        $appNameRegex = '/^[A-Za-z0-9]+\.[A-Za-z0-9]+$/';
         if (! preg_match($appNameRegex, $folderName)) {
             throw new \LogicException('Application name must be in the format "Vendor.Application".');
         }

@@ -1,5 +1,8 @@
 <?php
 
+/**
+* @global string $context
+*/
 namespace BEAR\Skeleton;
 
 use BEAR\Package\Bootstrap;
@@ -7,17 +10,16 @@ use BEAR\Package\AppMeta;
 use Doctrine\Common\Cache\ApcCache;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
-/**
- * @global string $context
- */
-
-loader: {
-    $loader = require dirname(__DIR__) . '/vendor/autoload.php';
+load: {
+    $dir = dirname(dirname(dirname(__DIR__)));
+    $loader = require $dir . '/vendor/autoload.php';
     /** @var $loader \Composer\Autoload\ClassLoader */
+    $loader->addPsr4(__NAMESPACE__ . '\\', dirname(__DIR__) . '/src');
     AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 }
 
 route: {
+    $context = isset($context) ? $context : 'app';
     $app = (new Bootstrap)->newApp(new AppMeta(__NAMESPACE__), $context, new ApcCache);
     /** @var $app \BEAR\Sunday\Extension\Application\AbstractApp */
     $_SERVER; // touch for $GLOBALS['_SERVER']
@@ -35,9 +37,9 @@ try {
 
     // representation transfer
     $page()->transfer($app->responder);
+    exit(0);
 } catch (\Exception $e) {
-    $code = $e->getCode() ?: 500;
-    http_response_code($code);
-    echo $code;
-    error_log($e);
+    $errorPage = $app->error->handle($e, $request);
+    $errorPage->transfer($app->responder);
+    exit(1);
 }

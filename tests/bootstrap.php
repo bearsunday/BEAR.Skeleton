@@ -1,6 +1,7 @@
 <?php
 
 use BEAR\Resource\ResourceInterface;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use BEAR\Skeleton;
 use BEAR\Skeleton\Module\AppModule;
 use Ray\Di\Injector;
@@ -11,6 +12,7 @@ error_reporting(E_ALL);
 $loader = require dirname(__DIR__) . '/vendor/autoload.php';
 /** @var $loader \Composer\Autoload\ClassLoader */
 $loader->addPsr4('BEAR\Skeleton\\', __DIR__);
+AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 
 // set the application path into the globals so we can access it in the tests.
 $_ENV['TEST_DIR'] = __DIR__;

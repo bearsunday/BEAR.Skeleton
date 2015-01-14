@@ -21,7 +21,7 @@ route: {
     $app = (new Bootstrap)->newApp(new AppMeta(__NAMESPACE__), $context, new ApcCache);
     /** @var $app \BEAR\Sunday\Extension\Application\AbstractApp */
     $_SERVER; // touch for $GLOBALS['_SERVER']
-    $request = $app->router->match($GLOBALS);
+    $request = $app->router->match($GLOBALS, $_SERVER);
 }
 
 try {
@@ -34,10 +34,10 @@ try {
     /** @var $page \BEAR\Resource\Request */
 
     // representation transfer
-    $page()->transfer($app->responder);
+    $page()->transfer($app->responder, $_SERVER);
     exit(0);
 } catch (\Exception $e) {
     $errorPage = $app->error->handle($e, $request);
-    $errorPage->transfer($app->responder);
+    $errorPage->transfer($app->responder, $_SERVER);
     exit(1);
 }

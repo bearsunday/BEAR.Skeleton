@@ -2,7 +2,7 @@
 
 namespace BEAR\Skeleton\Module;
 
-use BEAR\Package\AppMeta;
+use BEAR\AppMeta\AppMeta;
 use BEAR\Package\PackageModule;
 use Ray\Di\AbstractModule;
 

@@ -1,14 +1,14 @@
 <?php
 
 /**
-* @global string $context
-*/
+ * @global string $context
+ */
 namespace BEAR\Skeleton;
 
+use BEAR\AppMeta\AppMeta;
 use BEAR\Package\Bootstrap;
-use BEAR\Package\AppMeta;
-use Doctrine\Common\Cache\ApcCache;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Cache\ApcCache;
 
 load: {
     $dir = dirname(__DIR__);
@@ -18,19 +18,18 @@ load: {
 
 route: {
     $context = isset($context) ? $context : 'app';
-    $app = (new Bootstrap)->newApp(new AppMeta(__NAMESPACE__), $context, new ApcCache);
     /** @var $app \BEAR\Sunday\Extension\Application\AbstractApp */
+    $app = (new Bootstrap)->newApp(new AppMeta(__NAMESPACE__), $context, new ApcCache);
     $request = $app->router->match($GLOBALS, $_SERVER);
 }
 
 try {
-    // resource request
+    /** @var $page \BEAR\Resource\Request */
     $page = $app->resource
         ->{$request->method}
         ->uri($request->path)
         ->withQuery($request->query)
         ->request();
-    /** @var $page \BEAR\Resource\Request */
 
     // representation transfer
     $page()->transfer($app->responder, $_SERVER);

@@ -1,9 +1,9 @@
 <?php
 
 use BEAR\Resource\ResourceInterface;
-use Doctrine\Common\Annotations\AnnotationRegistry;
 use BEAR\Skeleton;
 use BEAR\Skeleton\Module\AppModule;
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use Ray\Di\Injector;
 
 error_reporting(E_ALL);

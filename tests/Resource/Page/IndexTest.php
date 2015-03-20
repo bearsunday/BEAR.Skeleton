@@ -31,8 +31,6 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     public function testView($page)
     {
         $json = json_decode((string) $page);
-        $this->assertNotTrue(json_last_error());
-        $this->assertInstanceOf('stdClass', $json);
         $this->assertSame('Hello koriym', $json->greeting);
     }
 }

@@ -43,7 +43,6 @@ class Installer
 
         // composer.json
         unlink("{$skeletonRoot}/composer.json");
-        unlink("{$skeletonRoot}/composer.lock");
         rename("{$skeletonRoot}/composer.json.dist", "{$skeletonRoot}/composer.json");
         $composerJson = file_get_contents("{$skeletonRoot}/composer.json");
         $packageNameComposerJson = str_replace('bear/skeleton', strtolower("{$vendorName}/{$packageName}"), $composerJson);

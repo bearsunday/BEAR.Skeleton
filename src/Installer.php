@@ -50,15 +50,6 @@ class Installer
         $packageNameComposerJson = str_replace('BEAR\\\\Skeleton\\\\', "{$vendorName}\\\\{$packageName}\\\\", $packageNameComposerJson);
         file_put_contents("{$skeletonRoot}/composer.json", $packageNameComposerJson);
 
-        // remove ./vendor
-        $unlink = function ($dir) use (&$unlink) {
-            foreach(scandir($dir) as $file) {
-                if ('.' === $file || '..' === $file) continue;
-                is_dir("$dir/$file") ? $unlink("$dir/$file") : unlink("$dir/$file");
-            }
-            rmdir($dir);
-        };
-        $unlink($skeletonRoot . '/vendor');
         unlink($skeletonRoot . '/README.md');
         unlink(__FILE__);
     }

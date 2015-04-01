@@ -8,7 +8,6 @@ namespace BEAR\Skeleton;
 use BEAR\AppMeta\AppMeta;
 use BEAR\Package\Bootstrap;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\Common\Cache\ApcCache;
 
 load: {
     $dir = dirname(__DIR__);

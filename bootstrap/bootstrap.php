@@ -8,6 +8,7 @@ namespace BEAR\Skeleton;
 use BEAR\AppMeta\AppMeta;
 use BEAR\Package\Bootstrap;
 use Doctrine\Common\Annotations\AnnotationRegistry;
+use Doctrine\Common\Cache\ArrayCache;
 
 load: {
     $dir = dirname(__DIR__);
@@ -17,7 +18,7 @@ load: {
 
 route: {
     /** @var $app \BEAR\Sunday\Extension\Application\AbstractApp */
-    $app = (new Bootstrap)->newApp(new AppMeta(__NAMESPACE__), $context);
+    $app = (new Bootstrap)->newApp(new AppMeta(__NAMESPACE__), $context, new ArrayCache);
     $request = $app->router->match($GLOBALS, $_SERVER);
 }
 

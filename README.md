@@ -6,7 +6,7 @@ This is a skeleton app which can be used a base for your own BEAR.Sunday applica
 
     $ composer create-project bear/skeleton:~1.0@dev ./{Vendor.Package} 
     $ cd {Vendor.Package}
-    $ composer update
+    $ composer install
 
     // test
     $ phpunit

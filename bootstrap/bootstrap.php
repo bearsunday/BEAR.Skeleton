@@ -5,30 +5,30 @@
  */
 namespace BEAR\Skeleton;
 
-use BEAR\AppMeta\AppMeta;
 use BEAR\Package\Bootstrap;
 use Doctrine\Common\Annotations\AnnotationRegistry;
-use Doctrine\Common\Cache\ArrayCache;
 
 load: {
-    $dir = dirname(__DIR__);
-    $loader = require $dir . '/vendor/autoload.php';
+    $loader = require dirname(dirname(dirname(__DIR__))) . '/vendor/autoload.php';
+    /* @var $loader \Composer\Autoload\ClassLoader */
+    $loader->addPsr4(__NAMESPACE__ . '\\', dirname(__DIR__) . '/src');
     AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 }
 
 route: {
-    /** @var $app \BEAR\Sunday\Extension\Application\AbstractApp */
-    $app = (new Bootstrap)->newApp(new AppMeta(__NAMESPACE__), $context, new ArrayCache);
+    $app = (new Bootstrap)->getApp(__NAMESPACE__, $context);
+    /* @var $app AbstractApp \BEAR\Sunday\Extension\Application\AbstractApp */
     $request = $app->router->match($GLOBALS, $_SERVER);
 }
 
 try {
-    /** @var $page \BEAR\Resource\Request */
+    // resource request
     $page = $app->resource
         ->{$request->method}
         ->uri($request->path)
         ->withQuery($request->query)
         ->request();
+    /* @var $page \BEAR\Resource\Request */
 
     // representation transfer
     $page()->transfer($app->responder, $_SERVER);

@@ -1,7 +1,7 @@
 {
     "name": "bear/skeleton",
     "description": "Skeleton application for BEAR.Sunday",
-    "license":"BSD-3-Clause",
+    "license":"MIT",
     "require": {
         "php": ">=5.5.0"
     },

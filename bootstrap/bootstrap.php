@@ -9,9 +9,8 @@ use BEAR\Package\Bootstrap;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
 load: {
-    $loader = require dirname(__DIR__) . '/vendor/autoload.php';
     /* @var $loader \Composer\Autoload\ClassLoader */
-    $loader->addPsr4(__NAMESPACE__ . '\\', dirname(__DIR__) . '/src');
+    $loader = require dirname(__DIR__) . '/vendor/autoload.php';
     AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 }
 

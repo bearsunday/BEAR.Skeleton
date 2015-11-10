@@ -3,7 +3,13 @@
     "description": "Skeleton application for BEAR.Sunday",
     "license":"MIT",
     "require": {
-        "php": ">=5.5.0"
+        "php": ">=5.5.0",
+        "bear/package": "~1.0"
+    },
+    "require-dev": {
+        "composer/composer": ">=1.0.0-alpha10",
+        "phpunit/phpunit": "~5.0",
+        "squizlabs/php_codesniffer": "~2.3"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -13,6 +19,10 @@
         }
     },
     "scripts" :{
-        "post-install-cmd": ["BEAR\\Skeleton\\Installer::postInstall"]
+        "pre-install-cmd": ["BEAR\\Skeleton\\Installer::preInstall"],
+        "post-install-cmd": [
+            "BEAR\\Skeleton\\Installer::postInstall",
+            "./vendor/bin/composer dump-autoload"
+        ]
     }
 }

@@ -12,8 +12,8 @@ class Installer
     public static function preInstall(Event $event)
     {
         $io = $event->getIO();
-        $vendor = self::ask($io, 'What is the vendor name ?', 'Vendor');
-        $package = self::ask($io, 'What is the pacakge name ?', 'Package');
+        $vendor = self::ask($io, 'What is the vendor name ?', 'MyVendor');
+        $package = self::ask($io, 'What is the pacakge name ?', 'MyPackage');
 
         $composerFile = Factory::getComposerFile();
         $json = new JsonFile($composerFile);
@@ -70,13 +70,12 @@ class Installer
         $event->getIO()->write("<info>Thank you for using BEAR.Sunday !\n</info>");
     }
 
-    private static function ask(IOInterface $io, $question, $item)
+    private static function ask(IOInterface $io, $question, $default)
     {
         $ask = [
             sprintf("\n<question>%s</question>\n", $question)
         ];
-        $answer = $io->ask($ask, []);
-        $io->write("<info>{$item}:{$answer}</info>");
+        $answer = $io->ask($ask, $default);
 
         return $answer;
     }

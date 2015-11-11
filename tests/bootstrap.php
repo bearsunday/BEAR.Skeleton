@@ -1,6 +1,5 @@
 <?php
 
-use BEAR\Skeleton;
 use BEAR\Package\Bootstrap;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 

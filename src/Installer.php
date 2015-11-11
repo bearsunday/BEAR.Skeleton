@@ -22,7 +22,7 @@ class Installer
         $packageName = sprintf('%s/%s', self::camel2dashed($vendorClass), self::camel2dashed($packageClass));
         $json = new JsonFile(Factory::getComposerFile());
         $composerDefinition = self::getDefinition($vendorClass, $packageClass, $packageName, $json);
-        self::$packageName = [$packageClass, $packageClass];
+        self::$packageName = [$vendorClass, $packageClass];
         // Update composer definition
         $json->write($composerDefinition);
         $io->write("<info>comoser.json for {$composerDefinition['name']} is created.\n</info>");

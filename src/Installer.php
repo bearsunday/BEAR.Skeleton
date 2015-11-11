@@ -14,19 +14,8 @@ class Installer
         $io = $event->getIO();
         $vendor = self::ask($io, 'What is the vendor name ?', 'MyVendor');
         $package = self::ask($io, 'What is the project name ?', 'MyProject');
-
-        $composerFile = Factory::getComposerFile();
-        $json = new JsonFile($composerFile);
-        $composerDefinition = $json->read();
-        $composerDefinition['extra']['package'] = [$vendor, $package];
-        $composerDefinition['license'] = 'proprietary';
-        unset($composerDefinition['autoload']['files']);
-        unset($composerDefinition['scripts']);
-        unset($composerDefinition['require-dev']['composer/composer']);
-        $composerDefinition['name'] = sprintf('%s/%s', strtolower($vendor), strtolower($package));
-        $composerDefinition['description'] = '';
-        $composerDefinition['license'] = 'proprietary';
-        $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => "src/"];
+        $json = new JsonFile(Factory::getComposerFile());
+        $composerDefinition = self::getDefinition($vendor, $package, $json);
         // Update composer definition
         $json->write($composerDefinition);
         $io->write("<info>comoser.json for {$composerDefinition['name']} is created.\n</info>");
@@ -34,36 +23,14 @@ class Installer
 
     public static function postInstall(Event $event = null)
     {
-        $composerFile = Factory::getComposerFile();
-        $json = new JsonFile($composerFile);
+        $json = new JsonFile(Factory::getComposerFile());
         $composerDefinition = $json->read();
         list($vendorName, $packageName) = $composerDefinition['extra']['package'];
         $skeletonRoot = dirname(__DIR__);
-        $jobChmod = function (\SplFileInfo $file) {
-            chmod($file, 0777);
-        };
-        $jobRename = function (\SplFileInfo $file) use ($vendorName, $packageName) {
-            $fineName = $file->getFilename();
-            if ($file->isDir() || strpos($fineName, '.') === 0 || !is_writable($file)) {
-                return;
-            }
-            $contents = file_get_contents($file);
-            $contents = str_replace('BEAR.Skeleton', "{$vendorName}.{$packageName}", $contents);
-            $contents = str_replace('BEAR\Skeleton', "{$vendorName}\\{$packageName}", $contents);
-            $contents = str_replace('bear/greeting', strtolower("{$vendorName}/{$packageName}"), $contents);
-            file_put_contents($file, $contents);
-        };
-        // chmod
-        self::recursiveJob("{$skeletonRoot}/var/tmp", $jobChmod);
-        self::recursiveJob("{$skeletonRoot}/var/log", $jobChmod);
-        // rename file contents
-        self::recursiveJob("{$skeletonRoot}", $jobRename);
-        // renew composer.json
-        $composerFile = Factory::getComposerFile();
-        $json = new JsonFile($composerFile);
-        $composerDefinition = $json->read();
-        unset($composerDefinition['extra']);
-        $json->write($composerDefinition);
+        self::recursiveJob("{$skeletonRoot}/var/tmp", self::chmod());
+        self::recursiveJob("{$skeletonRoot}/var/log", self::chmod());
+        self::recursiveJob("{$skeletonRoot}", self::rename($vendorName, $packageName));
+        self::updateDefinition();
         // remove installer files
         unlink($skeletonRoot . '/README.md');
         unlink(__FILE__);
@@ -100,5 +67,71 @@ class Installer
         foreach ($iterator as $file) {
             $job($file);
         }
+    }
+
+    /**
+     * @param string   $vendor
+     * @param string   $package
+     * @param JsonFile $json
+     *
+     * @return array
+     */
+    private static function getDefinition($vendor, $package, JsonFile $json)
+    {
+        $composerDefinition = $json->read();
+        $composerDefinition['extra']['package'] = [$vendor, $package];
+        $composerDefinition['license'] = 'proprietary';
+        unset($composerDefinition['autoload']['files']);
+        unset($composerDefinition['scripts']);
+        unset($composerDefinition['require-dev']['composer/composer']);
+        $composerDefinition['name'] = sprintf('%s/%s', strtolower($vendor), strtolower($package));
+        $composerDefinition['description'] = '';
+        $composerDefinition['license'] = 'proprietary';
+        $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => "src/"];
+
+        return $composerDefinition;
+    }
+
+    /**
+     * @param string $vendor
+     * @param string $package
+     *
+     * @return \Closure
+     */
+    private static function rename($vendor, $package)
+    {
+        $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
+            $fineName = $file->getFilename();
+            if ($file->isDir() || strpos($fineName, '.') === 0 || !is_writable($file)) {
+                return;
+            }
+            $contents = file_get_contents($file);
+            $contents = str_replace('BEAR.Skeleton', "{$vendor}.{$package}", $contents);
+            $contents = str_replace('BEAR\Skeleton', "{$vendor}\\{$package}", $contents);
+            $contents = str_replace('bear/skeleton', strtolower("{$vendor}/{$package}"), $contents);
+            file_put_contents($file, $contents);
+        };
+
+        return $jobRename;
+    }
+
+    /**
+     * @return \Closure
+     */
+    private static function chmod()
+    {
+        $jobChmod = function (\SplFileInfo $file) {
+            chmod($file, 0777);
+        };
+
+        return $jobChmod;
+    }
+
+    private static function updateDefinition()
+    {
+        $json = new JsonFile(Factory::getComposerFile());
+        $composerDefinition = $json->read();
+        unset($composerDefinition['extra']);
+        $json->write($composerDefinition);
     }
 }

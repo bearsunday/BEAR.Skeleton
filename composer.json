@@ -1,5 +1,6 @@
 {
     "name": "bear/skeleton",
+    "type": "project",
     "description": "Skeleton application for BEAR.Sunday",
     "license":"MIT",
     "require": {

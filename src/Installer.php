@@ -13,7 +13,7 @@ class Installer
     {
         $io = $event->getIO();
         $vendor = self::ask($io, 'What is the vendor name ?', 'MyVendor');
-        $package = self::ask($io, 'What is the pacakge name ?', 'MyPackage');
+        $package = self::ask($io, 'What is the project name ?', 'MyProject');
 
         $composerFile = Factory::getComposerFile();
         $json = new JsonFile($composerFile);
@@ -29,7 +29,7 @@ class Installer
         $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => "src/"];
         // Update composer definition
         $json->write($composerDefinition);
-        $io->write("<info>comoser.json is created.\n</info>");
+        $io->write("<info>comoser.json for {$composerDefinition['name']} is created.\n</info>");
     }
 
     public static function postInstall(Event $event = null)
@@ -70,10 +70,18 @@ class Installer
         $event->getIO()->write("<info>Thank you for using BEAR.Sunday !\n</info>");
     }
 
+    /**
+     * @param IOInterface $io
+     * @param string $question
+     * @param string $default
+     *
+     * @return string
+     */
     private static function ask(IOInterface $io, $question, $default)
     {
         $ask = [
-            sprintf("\n<question>%s</question>\n", $question)
+            sprintf("\n<question>%s</question>\n", $question),
+            sprintf("\n(<comment>%s</comment>):", $default)
         ];
         $answer = $io->ask($ask, $default);
 

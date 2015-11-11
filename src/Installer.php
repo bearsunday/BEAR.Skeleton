@@ -19,7 +19,7 @@ class Installer
         $io = $event->getIO();
         $vendorClass = self::ask($io, 'What is the vendor name ?', 'MyVendor');
         $packageClass = self::ask($io, 'What is the project name ?', 'MyProject');
-        $packageName = sprintf('%s/%s', self::camel2dashed($vendorClass),  self::camel2dashed($packageClass));
+        $packageName = sprintf('%s/%s', self::camel2dashed($vendorClass), self::camel2dashed($packageClass));
         $json = new JsonFile(Factory::getComposerFile());
         $composerDefinition = self::getDefinition($vendorClass, $packageClass, $packageName, $json);
         self::$packageName = [$packageClass, $packageClass];
@@ -43,8 +43,8 @@ class Installer
 
     /**
      * @param IOInterface $io
-     * @param string $question
-     * @param string $default
+     * @param string      $question
+     * @param string      $default
      *
      * @return string
      */
@@ -60,7 +60,7 @@ class Installer
     }
 
     /**
-     * @param string $path
+     * @param string   $path
      * @param Callable $job
      *
      * @return void
@@ -137,7 +137,8 @@ class Installer
      *
      * @return string
      */
-    private static function camel2dashed($name) {
+    private static function camel2dashed($name)
+    {
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 }

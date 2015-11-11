@@ -1,15 +1,22 @@
 # BEAR.Skeleton
 
-BEAR.Skeleton relies on BEAR.Package which can be downloaded [here](http://github.com/koriym/BEAR.Package).
-
 This is a skeleton app which can be used a base for your own BEAR.Sunday applications. You can build the app by entering the following command.
 
-    $ composer create-project -n bear/skeleton:~1.0 ./{Vendor.Package} 
-    $ cd {Vendor.Package}
-    $ composer install
+    $ composer create-project bear/skeleton:~1.0 {project-path}
+    Created project in my-project
+    > BEAR\Skeleton\Installer::preInstall
 
-    // test
-    $ phpunit
+    What is the vendor name ?
+
+    (MyVendor):Koriym
+
+    What is the project name ?
+
+    (MyProject):AwesomeWebProject
+    
+    $ cd {project-path}
+    // test (phpmd, phpcs and phpunit)
+    $ composer run-script test
     // console
     $ php bootstrap/web.php get /
     // built-in web
@@ -30,6 +37,8 @@ Although the procedural bootstrap process offers flexibility in setting up your 
 ## Page and App Resources
 
 `page` and `app` resources are added in the resources directory along with any template views that you may choose to add.
+
+More ducumentation is available at http://bearsunday.github.io/ .
 
 ## Requirements
 

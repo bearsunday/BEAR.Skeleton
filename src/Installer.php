@@ -12,10 +12,11 @@ class Installer
     public static function preInstall(Event $event)
     {
         $io = $event->getIO();
-        $vendor = self::ask($io, 'What is the vendor name ?', 'MyVendor');
-        $package = self::ask($io, 'What is the project name ?', 'MyProject');
+        $vendorClass = self::ask($io, 'What is the vendor name ?', 'MyVendor');
+        $packageClass = self::ask($io, 'What is the project name ?', 'MyProject');
+        $packageName = sprintf('%s/%s', self::camel2dashed($vendorClass),  self::camel2dashed($packageClass));
         $json = new JsonFile(Factory::getComposerFile());
-        $composerDefinition = self::getDefinition($vendor, $package, $json);
+        $composerDefinition = self::getDefinition($vendorClass, $packageClass, $packageName, $json);
         // Update composer definition
         $json->write($composerDefinition);
         $io->write("<info>comoser.json for {$composerDefinition['name']} is created.\n</info>");
@@ -72,11 +73,12 @@ class Installer
     /**
      * @param string   $vendor
      * @param string   $package
+     * @param string   $packageName
      * @param JsonFile $json
      *
      * @return array
      */
-    private static function getDefinition($vendor, $package, JsonFile $json)
+    private static function getDefinition($vendor, $package, $packageName, JsonFile $json)
     {
         $composerDefinition = $json->read();
         $composerDefinition['extra']['package'] = [$vendor, $package];
@@ -84,7 +86,7 @@ class Installer
         unset($composerDefinition['autoload']['files']);
         unset($composerDefinition['scripts']);
         unset($composerDefinition['require-dev']['composer/composer']);
-        $composerDefinition['name'] = sprintf('%s/%s', strtolower($vendor), strtolower($package));
+        $composerDefinition['name'] = $packageName;
         $composerDefinition['description'] = '';
         $composerDefinition['license'] = 'proprietary';
         $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => "src/"];
@@ -133,5 +135,14 @@ class Installer
         $composerDefinition = $json->read();
         unset($composerDefinition['extra']);
         $json->write($composerDefinition);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return string
+     */
+    private static function camel2dashed($name) {
+        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 }

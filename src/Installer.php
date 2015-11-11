@@ -25,7 +25,7 @@ class Installer
         self::$packageName = [$vendorClass, $packageClass];
         // Update composer definition
         $json->write($composerDefinition);
-        $io->write("<info>comoser.json for {$composerDefinition['name']} is created.\n</info>");
+        $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
     }
 
     public static function postInstall(Event $event = null)

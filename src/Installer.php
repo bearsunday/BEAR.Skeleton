@@ -84,10 +84,10 @@ class Installer
     private static function getDefinition($vendor, $package, $packageName, JsonFile $json)
     {
         $composerDefinition = $json->read();
-        $composerDefinition['extra']['package'] = [$vendor, $package];
         $composerDefinition['license'] = 'proprietary';
         unset($composerDefinition['autoload']['files']);
-        unset($composerDefinition['scripts']);
+        unset($composerDefinition['scripts']['pre-install-cmd']);
+        unset($composerDefinition['scripts']['post-install-cmd']);
         unset($composerDefinition['require-dev']['composer/composer']);
         $composerDefinition['name'] = $packageName;
         $composerDefinition['description'] = '';

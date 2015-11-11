@@ -9,6 +9,11 @@ use Composer\Script\Event;
 
 class Installer
 {
+    /**
+     * @var array
+     */
+    private static $packageName;
+
     public static function preInstall(Event $event)
     {
         $io = $event->getIO();
@@ -17,6 +22,7 @@ class Installer
         $packageName = sprintf('%s/%s', self::camel2dashed($vendorClass),  self::camel2dashed($packageClass));
         $json = new JsonFile(Factory::getComposerFile());
         $composerDefinition = self::getDefinition($vendorClass, $packageClass, $packageName, $json);
+        self::$packageName = [$packageClass, $packageName];
         // Update composer definition
         $json->write($composerDefinition);
         $io->write("<info>comoser.json for {$composerDefinition['name']} is created.\n</info>");
@@ -24,14 +30,11 @@ class Installer
 
     public static function postInstall(Event $event = null)
     {
-        $json = new JsonFile(Factory::getComposerFile());
-        $composerDefinition = $json->read();
-        list($vendorName, $packageName) = $composerDefinition['extra']['package'];
+        list($vendorName, $packageName) = self::$packageName;
         $skeletonRoot = dirname(__DIR__);
         self::recursiveJob("{$skeletonRoot}/var/tmp", self::chmod());
         self::recursiveJob("{$skeletonRoot}/var/log", self::chmod());
         self::recursiveJob("{$skeletonRoot}", self::rename($vendorName, $packageName));
-        self::updateDefinition();
         // remove installer files
         unlink($skeletonRoot . '/README.md');
         unlink(__FILE__);
@@ -127,14 +130,6 @@ class Installer
         };
 
         return $jobChmod;
-    }
-
-    private static function updateDefinition()
-    {
-        $json = new JsonFile(Factory::getComposerFile());
-        $composerDefinition = $json->read();
-        unset($composerDefinition['extra']);
-        $json->write($composerDefinition);
     }
 
     /**

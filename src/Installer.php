@@ -88,7 +88,7 @@ class Installer
         unset($composerDefinition['autoload']['files']);
         unset($composerDefinition['scripts']['pre-install-cmd']);
         unset($composerDefinition['scripts']['post-install-cmd']);
-        unset($composerDefinition['require-dev']['composer/composer']);
+        unset($composerDefinition['require']['composer/composer']);
         $composerDefinition['name'] = $packageName;
         $composerDefinition['description'] = '';
         $composerDefinition['license'] = 'proprietary';

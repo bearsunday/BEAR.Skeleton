@@ -5,6 +5,7 @@
 .settings/
 .*.sw*
 .*.un~
+.env
 build/
 nbproject
 vendor

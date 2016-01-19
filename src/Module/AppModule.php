@@ -4,6 +4,7 @@ namespace BEAR\Skeleton\Module;
 
 use BEAR\Package\PackageModule;
 use Ray\Di\AbstractModule;
+use josegonzalez\Dotenv\Loader as Dotenv;
 
 class AppModule extends AbstractModule
 {
@@ -12,6 +13,10 @@ class AppModule extends AbstractModule
      */
     protected function configure()
     {
+        Dotenv::load([
+            'filepath' => dirname(dirname(__DIR__)) . '/.env',
+            'toEnv' => true
+        ]);
         $this->install(new PackageModule);
     }
 }

@@ -40,6 +40,11 @@ Although the procedural bootstrap process offers flexibility in setting up your 
 
 More ducumentation is available at http://bearsunday.github.io/ .
 
+## Environment Variables
+
+You can place environment-specific values in the .env file at the project root.
+See more at [josegonzalez/dotenv](https://github.com/josegonzalez/php-dotenv#static-environment-definition).
+
 ## Requirements
 
  * PHP 5.5+

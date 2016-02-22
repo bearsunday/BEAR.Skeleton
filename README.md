@@ -1,50 +1,60 @@
-# BEAR.Skeleton
+# An API Application Skeleton
 
-This is a skeleton app which can be used a base for your own BEAR.Sunday applications. You can build the app by entering the following command.
+This package contains the following libraries and tool.
 
-    $ composer create-project bear/skeleton:~1.0 {project-path}
-    Created project in my-project
-    > BEAR\Skeleton\Installer::preInstall
+* [Aura.Router v2](https://github.com/auraphp/Aura.Router/tree/2.x) A web router implementation for PHP. 
+* [Aura.Sql v2](https://github.com/auraphp/Aura.Sql) Adapters for SQL database access 
+* [Aura.SqlQuery v2](https://github.com/auraphp/Aura.SqlQuery) Independent query builders for MySQL, PostgreSQL, SQLite, and Microsoft SQL Server.
+* [Koriym.QueryLocator](https://github.com/koriym/Koriym.QueryLocator) SQL locator
+* [Phinx](https://phinx.org/) Database migrations 
+
+# Installation
+
+```
+composer create-project bear/skeleton {project-path} dev-api
+```
 
     What is the vendor name ?
 
-    (MyVendor):Koriym
+    (MyVendor):
 
     What is the project name ?
 
-    (MyProject):AwesomeWebProject
+    (MyProject):
     
-    $ cd {project-path}
-    // test (phpmd, phpcs and phpunit)
-    $ composer run-script test
-    // console
-    $ php bootstrap/web.php get /
-    // built-in web
-    $ php -S 127.0.0.1:8080 -t var/www/
-    
-## Structure
 
-This is an example meaning that you can change any part of it to how you like to for your application. But this bear bones example is a good place to start.
+# Configuration
 
-## Where to start
+## Database connection
 
-The app is then booted procedurally, you can manipulate this bootstrap process in anyway you please by either adding or editing scripts in the `bootstrap/bootstrap.php` directory and any of the entry point script files you may be using.
+`.env`
 
-## Modules
+    DB_DSN=mysql:host=localhost;dbname=task
+    DB_USER=root
+    DB_PASS=
+    DB_READ=
 
-Although the procedural bootstrap process offers flexibility in setting up your application BEAR.Sunday's real power starts to kick in through wiring dependencies together. This all takes place in the `Modules` directory. A number of defaults for the `App` and several runtime *modes* are available to you here. These can also be edited or added to at will.
+## Create databse
 
-## Page and App Resources
+    php bin/create_db.php 
 
-`page` and `app` resources are added in the resources directory along with any template views that you may choose to add.
+## Database migrations
 
-More ducumentation is available at http://bearsunday.github.io/ .
+Create migration.
 
-## Environment Variables
+    php vendor/bin/phinx create -c var/db/phinx.php MyNewMigration  
 
-You can place environment-specific values in the .env file at the project root.
-See more at [josegonzalez/dotenv](https://github.com/josegonzalez/php-dotenv#static-environment-definition).
 
-## Requirements
+Perform migration.
 
- * PHP 5.5+
+    php vendor/bin/phinx migrate -c var/db/phinx.php
+
+# Route
+
+`var/conf/aura.route.php`
+
+```php
+<?php
+/** @var $router \BEAR\Package\Provide\Router\AuraRoute */
+$router->route('/task', '/task/{id}');
+```

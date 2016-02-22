@@ -6,7 +6,8 @@
     "require": {
         "php": ">=5.5.0",
         "bear/package": "~1.0",
-        "josegonzalez/dotenv": "~2.0"
+        "josegonzalez/dotenv": "~2.0",
+        "koriym/db-app-package": "1.x-dev"
     },
     "require-dev": {
         "composer/composer": ">=1.0.0-alpha10",
@@ -23,12 +24,12 @@
     },
     "scripts" :{
         "pre-install-cmd": [
-            "BEAR\\Skeleton\\Installer::preInstall",
-            "php --run \"touch('.env');\""
+            "BEAR\\Skeleton\\Installer::preInstall"
         ],
         "post-install-cmd": [
             "BEAR\\Skeleton\\Installer::postInstall",
-            "./vendor/bin/composer dump-autoload"
+            "./vendor/bin/composer dump-autoload",
+            "php vendor/koriym/db-app-package/bin/install.php"
         ],
         "test": [
             "php vendor/phpmd/phpmd/src/bin/phpmd src text ./phpmd.xml",

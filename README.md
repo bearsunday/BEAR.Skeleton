@@ -1,6 +1,6 @@
 # An API Application Skeleton
 
-This package contains the following libraries and tool.
+This package contains the following libraries and tools.
 
 * [Aura.Router v2](https://github.com/auraphp/Aura.Router/tree/2.x) A web router implementation for PHP. 
 * [Aura.Sql v2](https://github.com/auraphp/Aura.Sql) Adapters for SQL database access 

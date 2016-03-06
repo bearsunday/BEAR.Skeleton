@@ -14,15 +14,6 @@ This package contains the following libraries and tools.
 composer create-project bear/skeleton {project-path} dev-api
 ```
 
-    What is the vendor name ?
-
-    (MyVendor):
-
-    What is the project name ?
-
-    (MyProject):
-    
-
 # Configuration
 
 ## Database connection
@@ -58,3 +49,7 @@ Perform migration.
 /** @var $router \BEAR\Package\Provide\Router\AuraRoute */
 $router->route('/task', '/task/{id}');
 ```
+
+# Tutorial 
+
+http://bearsunday.github.io/manuals/1.0/ja/quick-api.html

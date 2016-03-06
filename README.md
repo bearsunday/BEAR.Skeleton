@@ -2,7 +2,9 @@
 
 This is a skeleton app which can be used a base for your own BEAR.Sunday applications. You can build the app by entering the following command.
 
-    $ composer create-project bear/skeleton:~1.0 {project-path}
+##  Create project
+
+    $ composer create-project bear/skeleton {project-path}
     Created project in my-project
     > BEAR\Skeleton\Installer::preInstall
 
@@ -13,15 +15,29 @@ This is a skeleton app which can be used a base for your own BEAR.Sunday applica
     What is the project name ?
 
     (MyProject):AwesomeWebProject
-    
-    $ cd {project-path}
-    // test (phpmd, phpcs and phpunit)
-    $ composer run-script test
-    // console
-    $ php bootstrap/web.php get /
-    // built-in web
-    $ php -S 127.0.0.1:8080 -t var/www/
-    
+
+##  Commands
+
+###  start built-in web server
+    composer serve-web
+    composer serve-api
+
+### console api access
+    composer get /?name=bear
+    ...
+
+### console web access
+    composer web get /?name=bear
+    ...
+
+### run qa tools
+    composer test
+
+
+### run coding standaard fixer
+    composer cs-fix
+
+
 ## Structure
 
 This is an example meaning that you can change any part of it to how you like to for your application. But this bear bones example is a good place to start.

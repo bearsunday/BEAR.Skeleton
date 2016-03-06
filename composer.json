@@ -9,9 +9,9 @@
         "josegonzalez/dotenv": "~2.0"
     },
     "require-dev": {
-        "composer/composer": ">=1.0.0-alpha10",
-        "phpunit/phpunit": "~4.8",
-        "squizlabs/php_codesniffer": "~2.3",
+        "composer/composer": ">=1.0.0-beta1",
+        "phpunit/phpunit": "~4.8 || ~5.2",
+        "squizlabs/php_codesniffer": "~2.5",
         "phpmd/phpmd": "~2.3"
     },
     "minimum-stability": "dev",
@@ -28,7 +28,7 @@
         ],
         "post-install-cmd": [
             "BEAR\\Skeleton\\Installer::postInstall",
-            "./vendor/bin/composer dump-autoload"
+            "composer dump-autoload"
         ],
         "test": [
             "phpmd src text ./phpmd.xml",
@@ -51,4 +51,3 @@
         "web": "php bootstrap/web.php"
     }
 }
-

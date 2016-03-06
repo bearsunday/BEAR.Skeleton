@@ -31,9 +31,24 @@
             "./vendor/bin/composer dump-autoload"
         ],
         "test": [
-            "php vendor/phpmd/phpmd/src/bin/phpmd src text ./phpmd.xml",
-            "php vendor/squizlabs/php_codesniffer/scripts/phpcs",
-            "php vendor/phpunit/phpunit/phpunit"
-        ]
+            "phpmd src text ./phpmd.xml",
+            "phpcs src tests",
+            "phpunit"
+        ],
+        "cs-fix": [
+            "php-cs-fixer fix --config-file=./.php_cs",
+            "phpcbf src"
+        ],
+        "clear": "rm -rf var/tmp/* var/log/*",
+        "serve-api": "php -S 127.0.0.1:8080 bootsrap/api.php",
+        "serve-web": "php -S 127.0.0.1:8080 -t var/www var/www/index.php",
+        "get": "php bootstrap/api.php get",
+        "post": "php bootstrap/api.php post",
+        "put": "php bootstrap/api.php put",
+        "patch": "php bootstrap/api.php patch",
+        "delete": "php bootstrap/api.php delete",
+        "options": "php bootstrap/api.php options",
+        "web": "php bootstrap/web.php"
     }
 }
+

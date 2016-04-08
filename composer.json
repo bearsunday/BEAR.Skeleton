@@ -10,7 +10,7 @@
         "josegonzalez/dotenv": "~2.0"
     },
     "require-dev": {
-        "composer/composer": ">=1.0.0-beta1",
+        "composer/composer": "~1.0",
         "phpunit/phpunit": "~4.8 || ~5.2",
         "squizlabs/php_codesniffer": "~2.5",
         "phpmd/phpmd": "~2.3"
@@ -40,7 +40,7 @@
             "php-cs-fixer fix --config-file=./.php_cs",
             "phpcbf src"
         ],
-        "clear": "rm -rf var/tmp/* var/log/*",
+        "clean": "rm -rf var/tmp/* var/log/*",
         "serve-api": "php -S 127.0.0.1:8080 bootsrap/api.php",
         "serve-web": "php -S 127.0.0.1:8080 -t var/www var/www/index.php",
         "get": "php bootstrap/api.php get",

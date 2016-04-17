@@ -24,12 +24,13 @@
     },
     "scripts" :{
         "pre-install-cmd": [
-            "BEAR\\Skeleton\\Installer::preInstall",
-            "php --run \"touch('.env');\""
+            "BEAR\\Skeleton\\Installer::preInstall"
         ],
-        "post-install-cmd": [
+        "pre-update-cmd": ["BEAR\\Skeleton\\Installer::preInstall"],
+        "post-create-project-cmd": [
             "BEAR\\Skeleton\\Installer::postInstall",
-            "composer dump-autoload"
+            "composer dump-autoload",
+            "php --run \"touch('.env');\""
         ],
         "test": [
             "phpmd src text ./phpmd.xml",

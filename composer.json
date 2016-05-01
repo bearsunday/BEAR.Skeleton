@@ -13,7 +13,8 @@
         "composer/composer": "~1.0",
         "phpunit/phpunit": "~4.8 || ~5.2",
         "squizlabs/php_codesniffer": "~2.5",
-        "phpmd/phpmd": "~2.3"
+        "phpmd/phpmd": "~2.3",
+        "fabpot/php-cs-fixer": "~1.11"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

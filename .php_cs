@@ -1,5 +1,6 @@
 <?php
 $finder = Symfony\CS\Finder\DefaultFinder::create()
+->exclude(['var/tmp', 'tests/tmp'])
 ->in(__DIR__);
 
 $config = Symfony\CS\Config\Config::create()

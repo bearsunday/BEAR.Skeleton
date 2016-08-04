@@ -4,7 +4,7 @@ This is a skeleton app which can be used a base for your own BEAR.Sunday applica
 
 ##  Create project
 
-    $ composer create-project bear/skeleton {project-path}
+    $ composer create-project bear/skeleton {project-path} dev-php7
     Created project in my-project
     > BEAR\Skeleton\Installer::preInstall
 
@@ -63,4 +63,4 @@ See more at [josegonzalez/dotenv](https://github.com/josegonzalez/php-dotenv#sta
 
 ## Requirements
 
- * PHP 5.5+
+ * PHP 7.0+

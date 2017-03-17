@@ -2,6 +2,9 @@
 
 namespace BEAR\Skeleton\Resource\Page;
 
+use BEAR\Package\AppInjector;
+use BEAR\Resource\ResourceInterface;
+
 class IndexTest extends \PHPUnit_Framework_TestCase
 {
     /**
@@ -12,13 +15,12 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->resource = clone $GLOBALS['RESOURCE'];
+        $this->resource = (new AppInjector('BEAR\Skeleton', 'app'))->getInstance(ResourceInterface::class);
     }
 
     public function testOnGet()
     {
-        // resource request
-        $page = $this->resource->get->uri('page://self/index')->withQuery(['name' => 'koriym'])->eager->request();
+        $page = $this->resource->get->uri('page://self/index')(['name' => 'koriym']);
         $this->assertSame(200, $page->code);
         $this->assertSame('Hello koriym', $page['greeting']);
 

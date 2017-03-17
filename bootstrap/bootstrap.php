@@ -1,36 +1,22 @@
 <?php
-
-/**
- * @global string $context
- */
-namespace BEAR\Skeleton;
-
 use BEAR\Package\Bootstrap;
-use Doctrine\Common\Annotations\AnnotationRegistry;
+use BEAR\Resource\ResourceObject;
 
-load: {
-    /* @var $loader \Composer\Autoload\ClassLoader */
-    $loader = require dirname(__DIR__) . '/vendor/autoload.php';
-    AnnotationRegistry::registerLoader([$loader, 'loadClass']);
-}
+require dirname(__DIR__) . '/bin/autoload.php';
 
-route: {
-    $app = (new Bootstrap)->getApp(__NAMESPACE__, $context);
-    /* @var $app AbstractApp \BEAR\Sunday\Extension\Application\AbstractApp */
-    $request = $app->router->match($GLOBALS, $_SERVER);
-}
+/* @global string $context */
+$app = (new Bootstrap)->getApp('BEAR\Skeleton', $context, dirname(__DIR__));
+$request = $app->router->match($GLOBALS, $_SERVER);
 
 try {
-    // resource request
     $page = $app->resource
         ->{$request->method}
         ->uri($request->path)
         ->withQuery($request->query)
+        ->eager
         ->request();
-    /* @var $page \BEAR\Resource\Request */
-
-    // representation transfer
-    $page()->transfer($app->responder, $_SERVER);
+    /* @var $page ResourceObject */
+    $page->transfer($app->responder, $_SERVER);
     exit(0);
 } catch (\Exception $e) {
     $app->error->handle($e, $request)->transfer();

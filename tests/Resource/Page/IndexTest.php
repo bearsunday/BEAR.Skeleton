@@ -20,9 +20,9 @@ class IndexTest extends \PHPUnit_Framework_TestCase
 
     public function testOnGet()
     {
-        $page = $this->resource->get->uri('page://self/index')(['name' => 'koriym']);
+        $page = $this->resource->get->uri('page://self/index')(['name' => 'BEAR.Sunday']);
         $this->assertSame(200, $page->code);
-        $this->assertSame('Hello koriym', $page['greeting']);
+        $this->assertSame('Hello BEAR.Sunday', $page['greeting']);
 
         return $page;
     }
@@ -33,6 +33,6 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     public function testView($page)
     {
         $json = json_decode((string) $page);
-        $this->assertSame('Hello koriym', $json->greeting);
+        $this->assertSame('Hello BEAR.Sunday', $json->greeting);
     }
 }

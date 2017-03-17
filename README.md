@@ -14,31 +14,25 @@ This is a skeleton app which can be used a base for your own BEAR.Sunday applica
 
     What is the project name ?
 
-    (MyProject):AwesomeWebProject
+    (MyProject):AwesomeProject
 
-##  Commands
+##  Start built-in web server
 
-###  start built-in web server
-    composer serve-web
-    composer serve-api
+    composer serve
 
-### console api access
-    composer get /?name=bear
-    ...
+## Console access
 
-### console web access
-    composer web get /?name=bear
-    ...
+    composer api get /?name=bear  // web access
+    composer web get /?name=bear  // api access
 
-### run qa tools
-    composer test
+## Run QA tools
 
+    phpunit
+    phptest         // phpunit + phpmd + phpcs + php-cs-fixer
+    phpbuild        // phptest + pdepend + phploc + apigen
+    composer cs-fix // run cs fixer
 
-### run coding standaard fixer
-    composer cs-fix
-
-
-## Structure
+# Structure
 
 This is an example meaning that you can change any part of it to how you like to for your application. But this bear bones example is a good place to start.
 
@@ -61,6 +55,8 @@ More ducumentation is available at http://bearsunday.github.io/ .
 You can place environment-specific values in the .env file at the project root.
 See more at [josegonzalez/dotenv](https://github.com/josegonzalez/php-dotenv#static-environment-definition).
 
-## Requirements
+More documentation available at http://bearsunday.github.io/
+
+# Requirements
 
  * PHP 7.0+

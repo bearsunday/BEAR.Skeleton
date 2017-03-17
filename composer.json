@@ -4,20 +4,15 @@
     "description": "Skeleton application for BEAR.Sunday",
     "license":"MIT",
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=7.0.0",
         "roave/security-advisories": "dev-master",
-        "bear/package": "~1.0",
-        "josegonzalez/dotenv": "~2.0"
+        "bear/package": "^1.2.2",
+        "josegonzalez/dotenv": "^2.1"
     },
     "require-dev": {
-        "composer/composer": "~1.0",
-        "phpunit/phpunit": "~4.8 || ~5.2",
-        "squizlabs/php_codesniffer": "~2.5",
-        "phpmd/phpmd": "~2.3",
-        "fabpot/php-cs-fixer": "~1.11"
+        "composer/composer": "^1.4",
+        "bear/qatools": "^1.3"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "BEAR\\Skeleton\\": "src/"
@@ -34,23 +29,15 @@
             "php --run \"touch('.env');\""
         ],
         "test": [
-            "phpmd src text ./phpmd.xml",
-            "phpcs src tests",
-            "phpunit"
+            "phptest"
         ],
         "cs-fix": [
-            "php-cs-fixer fix --config-file=./.php_cs",
+            "php-cs-fixer fix -v",
             "phpcbf src"
         ],
-        "clean": "rm -rf var/tmp/* var/log/*",
-        "serve-api": "php -S 127.0.0.1:8080 bootsrap/api.php",
-        "serve-web": "php -S 127.0.0.1:8080 -t var/www var/www/index.php",
-        "get": "php bootstrap/api.php get",
-        "post": "php bootstrap/api.php post",
-        "put": "php bootstrap/api.php put",
-        "patch": "php bootstrap/api.php patch",
-        "delete": "php bootstrap/api.php delete",
-        "options": "php bootstrap/api.php options",
-        "web": "php bootstrap/web.php"
+        "clean": "rm -rf var/tmp/* var/log/* tests/tmp/*",
+        "serve": "php -S 127.0.0.1:8080 -t public",
+        "api": "php bootstrap/api",
+        "web": "php bootstrap/web"
     }
 }

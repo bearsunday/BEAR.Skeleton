@@ -1,5 +1,4 @@
 <?php
-
 namespace BEAR\Skeleton;
 
 use Composer\Factory;
@@ -61,9 +60,7 @@ class Installer
 
     /**
      * @param string   $path
-     * @param Callable $job
-     *
-     * @return void
+     * @param callable $job
      */
     private static function recursiveJob($path, $job)
     {
@@ -85,15 +82,12 @@ class Installer
     {
         $composerDefinition = $json->read();
         $composerDefinition['license'] = 'proprietary';
-        unset($composerDefinition['autoload']['files']);
-        unset($composerDefinition['scripts']['pre-install-cmd']);
-        unset($composerDefinition['scripts']['pre-update-cmd']);
-        unset($composerDefinition['scripts']['post-create-project-cmd']);
-        unset($composerDefinition['require']['composer/composer']);
+        unset($composerDefinition['autoload']['files'], $composerDefinition['scripts']['pre-install-cmd'], $composerDefinition['scripts']['pre-update-cmd'], $composerDefinition['scripts']['post-create-project-cmd'], $composerDefinition['require']['composer/composer']);
+
         $composerDefinition['name'] = $packageName;
         $composerDefinition['description'] = '';
         $composerDefinition['license'] = 'proprietary';
-        $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => "src/"];
+        $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
 
         return $composerDefinition;
     }
@@ -108,7 +102,7 @@ class Installer
     {
         $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
             $fineName = $file->getFilename();
-            if ($file->isDir() || strpos($fineName, '.') === 0 || !is_writable($file)) {
+            if ($file->isDir() || strpos($fineName, '.') === 0 || ! is_writable($file)) {
                 return;
             }
             $contents = file_get_contents($file);

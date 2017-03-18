@@ -3,6 +3,7 @@ namespace BEAR\Skeleton\Resource\Page;
 
 use BEAR\Package\AppInjector;
 use BEAR\Resource\ResourceInterface;
+use BEAR\Resource\ResourceObject;
 
 class IndexTest extends \PHPUnit_Framework_TestCase
 {
@@ -29,7 +30,7 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     /**
      * @depends testOnGet
      */
-    public function testView($page)
+    public function testView(ResourceObject $page)
     {
         $json = json_decode((string) $page);
         $this->assertSame('Hello BEAR.Sunday', $json->greeting);

@@ -19,7 +19,7 @@ class AppModuleTest extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider contextsProvider
      */
-    public function testNewApp($contexts)
+    public function testNewApp(string $contexts)
     {
         $app = (new Bootstrap())->getApp(__NAMESPACE__, $contexts);
         $this->assertInstanceOf(AbstractApp::class, $app);

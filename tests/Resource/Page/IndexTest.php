@@ -1,5 +1,4 @@
 <?php
-
 namespace BEAR\Skeleton\Resource\Page;
 
 use BEAR\Package\AppInjector;

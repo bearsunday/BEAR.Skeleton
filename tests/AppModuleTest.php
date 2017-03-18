@@ -1,5 +1,4 @@
 <?php
-
 namespace BEAR\Skeleton;
 
 use BEAR\Package\Bootstrap;

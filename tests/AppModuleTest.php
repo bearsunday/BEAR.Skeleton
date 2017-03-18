@@ -13,7 +13,6 @@ class AppModuleTest extends \PHPUnit_Framework_TestCase
     public function contextsProvider()
     {
         return [
-            ['app'],
             ['prod-hal-api-app'],
         ];
     }

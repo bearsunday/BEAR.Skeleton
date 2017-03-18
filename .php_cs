@@ -121,6 +121,6 @@ return \PhpCsFixer\Config::create()
     ))
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->in('src')
+            ->in(__DIR__)
     )->setLineEnding("\n")
     ->setUsingCache(false);

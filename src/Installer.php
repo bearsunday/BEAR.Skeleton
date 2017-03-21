@@ -36,6 +36,7 @@ class Installer
         self::recursiveJob("{$skeletonRoot}", self::rename($vendorName, $packageName));
         // remove installer files
         unlink($skeletonRoot . '/README.md');
+        rename($skeletonRoot . '/README.proj.md', $skeletonRoot . '/README.md');
         unlink(__FILE__);
         $event->getIO()->write("<info>Thank you for using BEAR.Sunday !\n</info>");
     }

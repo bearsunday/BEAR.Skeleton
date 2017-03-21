@@ -1,9 +1,5 @@
 # BEAR.Skeleton
 
-## Requirement
-
- * PHP 7.0.0+
-
 ## Installation
 
     composer install
@@ -17,4 +13,8 @@
 ##  Testing
 
     phpunit 
-    phptest // phpunit + phpmd + php-cs-fixer
+    phptest
+
+## Requirements
+
+ * PHP 7.0+

@@ -50,7 +50,7 @@ class Installer
     private static function recursiveJob(string $path, callable $job)
     {
         $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($path. \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST
+            new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST
         );
         foreach ($iterator as $file) {
             $job($file);
@@ -80,7 +80,7 @@ class Installer
     {
         $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
             $fineName = $file->getFilename();
-            if ($file->isDir() || strpos($fineName, '.') === 0 || ! is_writable($file)) {
+            if (! is_writable($file)) {
                 return;
             }
             $contents = file_get_contents($file);

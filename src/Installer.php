@@ -31,9 +31,9 @@ class Installer
         // remove installer files
         unlink($skeletonRoot . '/README.md');
         rename($skeletonRoot . '/README.proj.md', $skeletonRoot . '/README.md');
-        unlink(__FILE__);
         $json->write($composerDefinition);
         $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
+        unlink(__FILE__);
     }
 
     private static function ask(IOInterface $io, string $question, string $default) : string

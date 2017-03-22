@@ -49,10 +49,11 @@ class Installer
 
     private static function recursiveJob(string $path, callable $job)
     {
-        $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST
-        );
+        $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
+            if (! in_array($file->getExtension(), ['php', 'md'])) {
+                continue;
+            }
             $job($file);
         }
     }

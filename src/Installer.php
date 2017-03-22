@@ -80,7 +80,7 @@ class Installer
     {
         $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
             $fineName = $file->getFilename();
-            if (! is_writable($file)) {
+            if (is_dir($file) || ! is_writable($file)) {
                 return;
             }
             $contents = file_get_contents($file);

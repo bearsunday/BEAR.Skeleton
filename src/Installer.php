@@ -51,7 +51,7 @@ class Installer
     {
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
-            if (! in_array($file->getExtension(), ['php', 'md'])) {
+            if (! in_array($file->getExtension(), ['php', 'md'], true)) {
                 continue;
             }
             $job($file);

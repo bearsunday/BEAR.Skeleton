@@ -2,9 +2,9 @@
 
 require __DIR__ . '/autoload.php';
 
-use Ray\Di\Exception\Unbound;
-use BEAR\Sunday\Extension\Application\AppInterface;
 use BEAR\Package\AppInjector;
+use BEAR\Sunday\Extension\Application\AppInterface;
+use Ray\Di\Exception\Unbound;
 
 try {
     (new AppInjector('BEAR\Skeleton', 'prod-app'))->getInstance(AppInterface::class);

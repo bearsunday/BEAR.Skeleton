@@ -25,8 +25,8 @@ class Installer
         // Update composer definition
         list($vendorName, $packageName) = self::$packageName;
         $skeletonRoot = dirname(__DIR__);
-        self::recursiveJob("{$skeletonRoot}/var/tmp", self::chmod());
-        self::recursiveJob("{$skeletonRoot}/var/log", self::chmod());
+        chmod($skeletonRoot . '/var/tmp', 0775);
+        chmod($skeletonRoot . '/var/log', 0775);
         self::recursiveJob("{$skeletonRoot}", self::rename($vendorName, $packageName));
         // remove installer files
         unlink($skeletonRoot . '/README.md');
@@ -116,18 +116,6 @@ class Installer
         };
 
         return $jobRename;
-    }
-
-    /**
-     * @return \Closure
-     */
-    private static function chmod()
-    {
-        $jobChmod = function (\SplFileInfo $file) {
-            chmod($file, 0777);
-        };
-
-        return $jobChmod;
     }
 
     /**

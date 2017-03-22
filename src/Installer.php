@@ -36,14 +36,7 @@ class Installer
         $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
     }
 
-    /**
-     * @param IOInterface $io
-     * @param string      $question
-     * @param string      $default
-     *
-     * @return string
-     */
-    private static function ask(IOInterface $io, $question, $default)
+    private static function ask(IOInterface $io, string $question, string $default) : string
     {
         $ask = [
             sprintf("\n<question>%s</question>\n", $question),
@@ -54,11 +47,7 @@ class Installer
         return $answer;
     }
 
-    /**
-     * @param string   $path
-     * @param callable $job
-     */
-    private static function recursiveJob($path, $job)
+    private static function recursiveJob(string $path, callable $job)
     {
         $iterator = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator($path. \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST
@@ -68,15 +57,7 @@ class Installer
         }
     }
 
-    /**
-     * @param string   $vendor
-     * @param string   $package
-     * @param string   $packageName
-     * @param JsonFile $json
-     *
-     * @return array
-     */
-    private static function getDefinition($vendor, $package, $packageName, JsonFile $json)
+    private static function getDefinition(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
         $composerDefinition = $json->read();
         $composerDefinition['license'] = 'proprietary';
@@ -95,13 +76,7 @@ class Installer
         return $composerDefinition;
     }
 
-    /**
-     * @param string $vendor
-     * @param string $package
-     *
-     * @return \Closure
-     */
-    private static function rename($vendor, $package)
+    private static function rename(string $vendor, string $package) : callable
     {
         $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
             $fineName = $file->getFilename();
@@ -118,12 +93,7 @@ class Installer
         return $jobRename;
     }
 
-    /**
-     * @param string $name
-     *
-     * @return string
-     */
-    private static function camel2dashed($name)
+    private static function camel2dashed(string $name) : string
     {
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }

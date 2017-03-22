@@ -60,7 +60,9 @@ class Installer
      */
     private static function recursiveJob($path, $job)
     {
-        $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($path. \RecursiveDirectoryIterator::SKIP_DOTS), \RecursiveIteratorIterator::SELF_FIRST
+        );
         foreach ($iterator as $file) {
             $job($file);
         }

@@ -84,9 +84,11 @@ class Installer
                 return;
             }
             $contents = file_get_contents($file);
-            $contents = str_replace('BEAR.Skeleton', "{$vendor}.{$package}", $contents);
-            $contents = str_replace('BEAR\Skeleton', "{$vendor}\\{$package}", $contents);
-            $contents = str_replace('bear/skeleton', strtolower("{$vendor}/{$package}"), $contents);
+            $contents = str_replace(
+                ['BEAR.Skeleton', 'BEAR\Skeleton', 'bear/skeleton'],
+                ["{$vendor}.{$package}", "{$vendor}\\{$package}", strtolower("{$vendor}/{$package}")],
+                $contents
+            );
             file_put_contents($file, $contents);
         };
 

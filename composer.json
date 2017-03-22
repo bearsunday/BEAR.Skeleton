@@ -19,15 +19,9 @@
         }
     },
     "scripts" :{
-        "pre-install-cmd": [
-            "BEAR\\Skeleton\\Installer::preInstall"
-        ],
-        "pre-update-cmd": ["BEAR\\Skeleton\\Installer::preInstall"],
-        "post-create-project-cmd": [
-            "BEAR\\Skeleton\\Installer::postInstall",
-            "composer dump-autoload",
-            "php --run \"touch('.env');\""
-        ],
+        "pre-install-cmd": "BEAR\\Skeleton\\Installer::preInstall",
+        "pre-update-cmd": "BEAR\\Skeleton\\Installer::preInstall",
+        "post-create-project-cmd": "php --run \"touch('.env');\"",
         "test": [
             "phptest"
         ],

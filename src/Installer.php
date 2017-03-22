@@ -23,12 +23,6 @@ class Installer
         $composerDefinition = self::getDefinition($vendorClass, $packageClass, $packageName, $json);
         self::$packageName = [$vendorClass, $packageClass];
         // Update composer definition
-        $json->write($composerDefinition);
-        $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
-    }
-
-    public static function postInstall(Event $event = null)
-    {
         list($vendorName, $packageName) = self::$packageName;
         $skeletonRoot = dirname(__DIR__);
         self::recursiveJob("{$skeletonRoot}/var/tmp", self::chmod());
@@ -38,7 +32,8 @@ class Installer
         unlink($skeletonRoot . '/README.md');
         rename($skeletonRoot . '/README.proj.md', $skeletonRoot . '/README.md');
         unlink(__FILE__);
-        $event->getIO()->write("<info>Thank you for using BEAR.Sunday !\n</info>");
+        $json->write($composerDefinition);
+        $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
     }
 
     /**
@@ -83,12 +78,17 @@ class Installer
     {
         $composerDefinition = $json->read();
         $composerDefinition['license'] = 'proprietary';
-        unset($composerDefinition['autoload']['files'], $composerDefinition['scripts']['pre-install-cmd'], $composerDefinition['scripts']['pre-update-cmd'], $composerDefinition['scripts']['post-create-project-cmd'], $composerDefinition['require']['composer/composer']);
-
         $composerDefinition['name'] = $packageName;
         $composerDefinition['description'] = '';
         $composerDefinition['license'] = 'proprietary';
         $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
+        unset(
+            $composerDefinition['autoload']['files'],
+            $composerDefinition['scripts']['pre-install-cmd'],
+            $composerDefinition['scripts']['pre-update-cmd'],
+            $composerDefinition['scripts']['post-create-project-cmd'],
+            $composerDefinition['require-dev']['composer/composer']
+        );
 
         return $composerDefinition;
     }

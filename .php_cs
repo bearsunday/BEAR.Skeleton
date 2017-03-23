@@ -84,7 +84,7 @@ return \PhpCsFixer\Config::create()
         'phpdoc_no_alias_tag' => ['property-read' => 'property', 'property-write' => 'property', 'type' => 'var'],
         'phpdoc_no_empty_return' => true,
         'phpdoc_no_package' => true,
-//        'phpdoc_no_useless_inheritdoc' => true,
+        'phpdoc_no_useless_inheritdoc' => true,
         'phpdoc_order' => true,
         'phpdoc_return_self_reference' => true,
         'phpdoc_scalar' => true,
@@ -104,7 +104,7 @@ return \PhpCsFixer\Config::create()
         'return_type_declaration' =>  ['space_before' => 'one'],
         'self_accessor' => true,
         'short_scalar_cast' => true,
-//        'silenced_deprecation_error' => true,
+        'silenced_deprecation_error' => true,
 //        'simplified_null_return' => true,
 //        'single_blank_line_before_namespace' => true,
         'single_quote' => true,
@@ -119,8 +119,9 @@ return \PhpCsFixer\Config::create()
         'unary_operator_spaces' => true,
         'whitespace_after_comma_in_array' => true
     ))
+    ->setLineEnding("\n")
+    ->setUsingCache(false)
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->in(__DIR__)
-    )->setLineEnding("\n")
-    ->setUsingCache(false);
+    );

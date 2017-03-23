@@ -6,37 +6,23 @@ use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use Composer\Script\Event;
 
-class Installer
+final class Install
 {
-    /**
-     * @var array
-     */
-    private static $packageName;
-
-    public static function preInstall(Event $event)
+    public function __invoke(Event $event)
     {
         $io = $event->getIO();
-        $vendorClass = self::ask($io, 'What is the vendor name ?', 'MyVendor');
-        $packageClass = self::ask($io, 'What is the project name ?', 'MyProject');
-        $packageName = sprintf('%s/%s', self::camel2dashed($vendorClass), self::camel2dashed($packageClass));
+        $vendor = $this->ask($io, 'What is the vendor name ?', 'MyVendor');
+        $project = $this->ask($io, 'What is the project name ?', 'MyProject');
+        $packageName = sprintf('%s/%s', $this->camel2dashed($vendor), $this->camel2dashed($project));
         $json = new JsonFile(Factory::getComposerFile());
-        $composerDefinition = self::getDefinition($vendorClass, $packageClass, $packageName, $json);
-        self::$packageName = [$vendorClass, $packageClass];
-        // Update composer definition
-        list($vendorName, $packageName) = self::$packageName;
-        $skeletonRoot = dirname(__DIR__);
-        chmod($skeletonRoot . '/var/tmp', 0775);
-        chmod($skeletonRoot . '/var/log', 0775);
-        self::recursiveJob("{$skeletonRoot}", self::rename($vendorName, $packageName));
-        // remove installer files
-        unlink($skeletonRoot . '/README.md');
-        rename($skeletonRoot . '/README.proj.md', $skeletonRoot . '/README.md');
-        $json->write($composerDefinition);
+        $composerDefinition = $this->getDefinition($vendor, $project, $packageName, $json);
+        $this->modifyFiles($vendor, $project);
         $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
+        $json->write($composerDefinition);
         unlink(__FILE__);
     }
 
-    private static function ask(IOInterface $io, string $question, string $default) : string
+    private function ask(IOInterface $io, string $question, string $default) : string
     {
         $ask = [
             sprintf("\n<question>%s</question>\n", $question),
@@ -47,7 +33,7 @@ class Installer
         return $answer;
     }
 
-    private static function recursiveJob(string $path, callable $job)
+    private function recursiveJob(string $path, callable $job)
     {
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
@@ -58,7 +44,7 @@ class Installer
         }
     }
 
-    private static function getDefinition(string $vendor, string $package, string $packageName, JsonFile $json) : array
+    private function getDefinition(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
         $composerDefinition = $json->read();
         $composerDefinition['license'] = 'proprietary';
@@ -77,10 +63,9 @@ class Installer
         return $composerDefinition;
     }
 
-    private static function rename(string $vendor, string $package) : callable
+    private function rename(string $vendor, string $package) : callable
     {
         $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
-            $fineName = $file->getFilename();
             if (is_dir($file) || ! is_writable($file)) {
                 return;
             }
@@ -96,8 +81,18 @@ class Installer
         return $jobRename;
     }
 
-    private static function camel2dashed(string $name) : string
+    private function camel2dashed(string $name) : string
     {
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
+    }
+
+    private function modifyFiles(string $vendor, string $project) : void
+    {
+        $projectRoot = dirname(__DIR__);
+        chmod($projectRoot . '/var/tmp', 0775);
+        chmod($projectRoot . '/var/log', 0775);
+        $this->recursiveJob("{$projectRoot}", $this->rename($vendor, $project));
+        unlink($projectRoot . '/README.md');
+        rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
     }
 }

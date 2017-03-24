@@ -3,8 +3,9 @@ namespace BEAR\Skeleton;
 
 use BEAR\Package\Bootstrap;
 use BEAR\Sunday\Extension\Application\AbstractApp;
+use PHPUnit\Framework\TestCase;
 
-class AppModuleTest extends \PHPUnit_Framework_TestCase
+class AppModuleTest extends TestCase
 {
     /**
      * @dataProvider

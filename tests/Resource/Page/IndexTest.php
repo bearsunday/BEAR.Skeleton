@@ -4,8 +4,9 @@ namespace BEAR\Skeleton\Resource\Page;
 use BEAR\Package\AppInjector;
 use BEAR\Resource\ResourceInterface;
 use BEAR\Resource\ResourceObject;
+use PHPUnit\Framework\TestCase;
 
-class IndexTest extends \PHPUnit_Framework_TestCase
+class IndexTest extends TestCase
 {
     /**
      * @var \BEAR\Resource\ResourceInterface

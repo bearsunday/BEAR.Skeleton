@@ -21,19 +21,20 @@ class IndexTest extends TestCase
 
     public function testOnGet()
     {
-        $page = $this->resource->get->uri('page://self/index')(['name' => 'BEAR.Sunday']);
-        $this->assertSame(200, $page->code);
-        $this->assertSame('Hello BEAR.Sunday', $page['greeting']);
+        $index = $this->resource->uri('page://self/index')(['name' => 'BEAR.Sunday']);
+        /* @var $index Index */
+        $this->assertSame(200, $index->code);
+        $this->assertSame('Hello BEAR.Sunday', $index['greeting']);
 
-        return $page;
+        return $index;
     }
 
     /**
      * @depends testOnGet
      */
-    public function testView(ResourceObject $page)
+    public function testView(ResourceObject $ro)
     {
-        $json = json_decode((string) $page);
+        $json = json_decode((string) $ro);
         $this->assertSame('Hello BEAR.Sunday', $json->greeting);
     }
 }

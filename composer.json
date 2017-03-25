@@ -28,7 +28,7 @@
         "test-coverage": ["php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/api"],
         "cs-fix": ["php-cs-fixer fix -v", "phpcbf src"],
         "compile": "php bin/compile.php",
-        "clean": "rm -rf var/tmp/* var/log/* tests/tmp/*",
+        "clean": "rm -rf var/tmp/* var/log/*",
         "serve": "php -S 127.0.0.1:8080 -t public",
         "api": "php bootstrap/api",
         "web": "php bootstrap/web"

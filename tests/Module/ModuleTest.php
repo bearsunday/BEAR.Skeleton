@@ -5,7 +5,7 @@ use BEAR\Package\Bootstrap;
 use BEAR\Sunday\Extension\Application\AbstractApp;
 use PHPUnit\Framework\TestCase;
 
-class AppModuleTest extends TestCase
+class ModuleTest extends TestCase
 {
     /**
      * @dataProvider

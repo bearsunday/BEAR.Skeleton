@@ -10,10 +10,10 @@
 
     composer serve
 
-##  Testing
+### Console
 
-    phpunit 
-    phptest
+    composer web get /
+    composer api get /
 
 ## Requirements
 

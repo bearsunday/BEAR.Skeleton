@@ -25,12 +25,9 @@
             "php --run \"touch('.env');\""
         ],
         "test": ["phpunit"],
-        "test-all": ["phptest"],
         "coverage": ["php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/api"],
         "cs": ["php-cs-fixer fix -v --dry-run", "phpcs --standard=./phpcs.xml src"],
         "cs-fix": ["php-cs-fixer fix -v", "phpcbf src"],
-        "compile": "php bin/compile.php",
-        "clean": "rm -rf var/tmp/* var/log/*",
         "serve": "php -S 127.0.0.1:8080 -t public",
         "api": "php bootstrap/api.php",
         "web": "php bootstrap/web.php"

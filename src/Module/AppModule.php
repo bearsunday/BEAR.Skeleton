@@ -1,10 +1,9 @@
 <?php
-
 namespace BEAR\Skeleton\Module;
 
 use BEAR\Package\PackageModule;
-use Ray\Di\AbstractModule;
 use josegonzalez\Dotenv\Loader as Dotenv;
+use Ray\Di\AbstractModule;
 
 class AppModule extends AbstractModule
 {

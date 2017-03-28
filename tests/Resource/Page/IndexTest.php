@@ -1,8 +1,12 @@
 <?php
-
 namespace BEAR\Skeleton\Resource\Page;
 
-class IndexTest extends \PHPUnit_Framework_TestCase
+use BEAR\Package\AppInjector;
+use BEAR\Resource\ResourceInterface;
+use BEAR\Resource\ResourceObject;
+use PHPUnit\Framework\TestCase;
+
+class IndexTest extends TestCase
 {
     /**
      * @var \BEAR\Resource\ResourceInterface
@@ -12,25 +16,25 @@ class IndexTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->resource = clone $GLOBALS['RESOURCE'];
+        $this->resource = (new AppInjector('BEAR\Skeleton', 'app'))->getInstance(ResourceInterface::class);
     }
 
     public function testOnGet()
     {
-        // resource request
-        $page = $this->resource->get->uri('page://self/index')->withQuery(['name' => 'koriym'])->eager->request();
-        $this->assertSame(200, $page->code);
-        $this->assertSame('Hello koriym', $page['greeting']);
+        $index = $this->resource->uri('page://self/index')(['name' => 'BEAR.Sunday']);
+        /* @var $index Index */
+        $this->assertSame(200, $index->code);
+        $this->assertSame('Hello BEAR.Sunday', $index['greeting']);
 
-        return $page;
+        return $index;
     }
 
     /**
      * @depends testOnGet
      */
-    public function testView($page)
+    public function testView(ResourceObject $ro)
     {
-        $json = json_decode((string) $page);
-        $this->assertSame('Hello koriym', $json->greeting);
+        $json = json_decode((string) $ro);
+        $this->assertSame('Hello BEAR.Sunday', $json->greeting);
     }
 }

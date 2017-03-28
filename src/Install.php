@@ -19,6 +19,7 @@ final class Install
         $this->modifyFiles($vendor, $project);
         $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
         $json->write($composerDefinition);
+        unlink(dirname(__DIR__) . '.travis.yml');
         unlink(__FILE__);
     }
 

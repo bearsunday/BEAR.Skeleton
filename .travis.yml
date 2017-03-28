@@ -22,6 +22,7 @@ matrix:
     - php: 7.1
       env: dependencies=lowest
 before_script:
+  - touch .env
   - composer self-update
   - if [ -z "$dependencies" ]; then composer install --no-scripts; fi;
   - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --no-scripts; fi;

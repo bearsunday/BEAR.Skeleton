@@ -10,4 +10,9 @@ final class Composer
         (new Install)($event);
         unlink(__FILE__);
     }
+
+    public static function postInstall(Event $event)
+    {
+        unlink(dirname(__DIR__) . '.travis.yml');
+    }
 }

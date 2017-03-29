@@ -1,5 +1,7 @@
 language: php
 php:
+  - 5.5
+  - 5.6
   - 7
   - 7.1
 sudo: false
@@ -8,6 +10,8 @@ cache:
     - $HOME/.composer/cache
 matrix:
   include:
+    - php: 5.5
+    - php: 5.6
     - php: 7
       env: dependencies=lowest
     - php: 7.1
@@ -18,7 +22,8 @@ before_script:
   - if [ -z "$dependencies" ]; then composer install --no-scripts; fi;
   - if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --no-scripts; fi;
 script:
- - if [ "$TRAVIS_PHP_VERSION" != "7.1" ]; then phpunit; fi
+ - if [ "$TRAVIS_PHP_VERSION" == "5.5" || "$TRAVIS_PHP_VERSION" == "5.6" ]; composer create-project bear/skeleton app; cd app; phpunit; fi
+ - if [ "$TRAVIS_PHP_VERSION" != "7" ]; then phpunit; fi
  - if [ "$TRAVIS_PHP_VERSION" == "7.1" ]; then phpunit --coverage-text --coverage-clover=coverage.clover; fi
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

@@ -16,21 +16,15 @@ This is a skeleton app which can be used a base for your own BEAR.Sunday applica
 
     (MyProject):AwesomeProject
 
-##  Start built-in web server
+
+## Run server
 
     composer serve
 
-## Console access
+## Console
 
-    composer api get /?name=bear  // web access
-    composer web get /?name=bear  // api access
-
-## Run QA tools
-
-    phpunit
-    phptest         // phpunit + phpmd + phpcs + php-cs-fixer
-    phpbuild        // phptest + pdepend + phploc + apigen
-    composer cs-fix // run cs fixer
+    composer web get /
+    composer api get /
 
 # Structure
 

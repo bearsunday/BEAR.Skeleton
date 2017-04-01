@@ -123,5 +123,6 @@ return \PhpCsFixer\Config::create()
     ->setUsingCache(false)
     ->setFinder(
         PhpCsFixer\Finder::create()
+            ->exclude('var')
             ->in(__DIR__)
     );

@@ -86,7 +86,7 @@ final class Install
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 
-    private function modifyFiles(string $vendor, string $project) : void
+    private function modifyFiles(string $vendor, string $project)
     {
         $projectRoot = dirname(__DIR__);
         chmod($projectRoot . '/var/tmp', 0775);

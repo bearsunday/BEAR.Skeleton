@@ -25,6 +25,7 @@
             "composer dump-autoload",
             "php --run \"touch('.env');\""
         ],
+        "post-package-install": "BEAR\\Skeleton\\Composer::postInstall",
         "test": ["phpunit"],
         "coverage": ["php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"],
         "cs": ["php-cs-fixer fix -v --dry-run", "phpcs --standard=./phpcs.xml src"],

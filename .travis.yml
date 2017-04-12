@@ -1,0 +1,30 @@
+language: php
+php:
+  - 5.5
+  - 5.6
+  - 7
+  - 7.1
+sudo: false
+cache:
+  directories:
+    - $HOME/.composer/cache
+matrix:
+  include:
+    - php: 5.5
+    - php: 5.6
+    - php: 7
+      env: dependencies=lowest
+    - php: 7.1
+      env: dependencies=lowest
+before_script:
+  - touch .env
+  - composer self-update
+  - if [ "$TRAVIS_PHP_VERSION" == "7" || "$TRAVIS_PHP_VERSION" == "7.1" ]; if [ -z "$dependencies" ]; then composer install --no-scripts; fi; fi;
+  - if [ "$TRAVIS_PHP_VERSION" == "7" || "$TRAVIS_PHP_VERSION" == "7.1" ]; if [ "$dependencies" = "lowest" ]; then composer update --prefer-lowest --no-scripts; fi; fi;
+script:
+ - if [ "$TRAVIS_PHP_VERSION" != "7" ]; then phpunit; fi
+ - if [ "$TRAVIS_PHP_VERSION" == "7.1" ]; then phpunit --coverage-text --coverage-clover=coverage.clover; fi
+ - if [ "$TRAVIS_PHP_VERSION" == "5.5" || "$TRAVIS_PHP_VERSION" == "5.6" ]; composer create-project bear/skeleton app; cd app; phpunit; fi
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - if [ "$TRAVIS_PHP_VERSION" == "7.1" ]; then php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi

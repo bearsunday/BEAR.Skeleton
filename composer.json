@@ -10,7 +10,6 @@
         "josegonzalez/dotenv": "^2.1"
     },
     "require-dev": {
-        "composer/composer": "^1.4",
         "bear/qatools": "^1.4.2",
         "phpunit/phpunit": "^6.0"
     },

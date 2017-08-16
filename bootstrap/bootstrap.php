@@ -10,12 +10,7 @@ $app = (new Bootstrap)->getApp('BEAR\Skeleton', $context, dirname(__DIR__));
 $request = $app->router->match($GLOBALS, $_SERVER);
 
 try {
-    $page = $app->resource
-        ->{$request->method}
-        ->uri($request->path)
-        ->withQuery($request->query)
-        ->eager
-        ->request();
+    $page = $app->resource->{$request->method}->uri($request->path)($request->query);
     /* @var $page ResourceObject */
     $page->transfer($app->responder, $_SERVER);
     exit(0);

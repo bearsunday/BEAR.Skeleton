@@ -12,6 +12,7 @@ class AppModule extends AbstractModule
      */
     protected function configure()
     {
+        $appDir = dirname(dirname(__DIR__));
         Dotenv::load([
             'filepath' => dirname(dirname(__DIR__)) . '/.env',
             'toEnv' => true

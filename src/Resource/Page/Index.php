@@ -7,7 +7,9 @@ class Index extends ResourceObject
 {
     public function onGet(string $name = 'BEAR.Sunday') : ResourceObject
     {
-        $this['greeting'] = 'Hello ' . $name;
+        $this->body = [
+            'greeting' => 'Hello ' . $name
+        ];
 
         return $this;
     }

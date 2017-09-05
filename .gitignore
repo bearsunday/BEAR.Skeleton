@@ -5,7 +5,4 @@
 /.idea/
 /vendor/
 /build/
-/var/log/
-/var/tmp/
-composer.lock
 phpunit.xml

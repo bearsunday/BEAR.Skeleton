@@ -2,4 +2,4 @@
 
 error_reporting(E_ALL);
 
-require dirname(__DIR__) . '/bin/autoload.php';
+require dirname(__DIR__) . '/autoload.php';

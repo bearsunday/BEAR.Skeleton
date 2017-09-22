@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 class IndexTest extends TestCase
 {
     /**
-     * @var \BEAR\Resource\ResourceInterface
+     * @var ResourceInterface
      */
     private $resource;
 

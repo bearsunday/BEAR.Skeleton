@@ -1,21 +1,25 @@
 {
     "name": "bear/skeleton",
     "type": "project",
-    "description": "Skeleton application for BEAR.Sunday",
     "license":"MIT",
+    "description": "Skeleton application for BEAR.Sunday",
     "require": {
-        "php": ">=7.0.0",
+        "php": "^7.0",
         "roave/security-advisories": "dev-master",
         "bear/package": "^1.5",
         "josegonzalez/dotenv": "^2.1"
     },
     "require-dev": {
-        "bear/qatools": "^1.4.2",
-        "phpunit/phpunit": "^6.2"
+        "bear/qatools": "^1.4.9"
     },
     "autoload": {
         "psr-4": {
             "BEAR\\Skeleton\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BEAR\\Skeleton\\": "tests/"
         }
     },
     "scripts" :{
@@ -27,7 +31,7 @@
         "coverage": ["php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"],
         "cs": ["php-cs-fixer fix -v --dry-run", "phpcs --standard=./phpcs.xml src"],
         "cs-fix": ["php-cs-fixer fix -v", "phpcbf src"],
-        "serve": "php -S 127.0.0.1:8080 -t public",
+        "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "api": "php bootstrap/api.php",
         "web": "php bootstrap/web.php"
     }

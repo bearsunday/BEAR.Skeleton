@@ -15,7 +15,6 @@ class IndexTest extends TestCase
 
     protected function setUp()
     {
-        parent::setUp();
         $this->resource = (new AppInjector('BEAR\Skeleton', 'app'))->getInstance(ResourceInterface::class);
     }
 

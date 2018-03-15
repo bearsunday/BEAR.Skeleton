@@ -1,7 +1,8 @@
 <?php
 use BEAR\Package\Bootstrap;
 
-require dirname(__DIR__) . '/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
+
 /* @global string $context */
 $app = (new Bootstrap)->getApp('BEAR\Skeleton', $context, dirname(__DIR__));
 $request = $app->router->match($GLOBALS, $_SERVER);

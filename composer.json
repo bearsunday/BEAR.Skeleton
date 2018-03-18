@@ -4,10 +4,10 @@
     "license":"MIT",
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
-        "php": "^7.0",
-        "roave/security-advisories": "dev-master",
-        "bear/package": "^1.5",
-        "josegonzalez/dotenv": "^2.1"
+      "php": ">=7.0.0",
+      "roave/security-advisories": "dev-master",
+        "bear/package": "^1.7.2",
+        "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
         "bear/qatools": "^1.4.9"
@@ -27,7 +27,7 @@
         "post-create-project-cmd": [
             "composer dump-autoload"
         ],
-        "test": ["phpunit"],
+        "test": ["phpunit", "@cs"],
         "coverage": ["php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"],
         "cs": ["php-cs-fixer fix -v --dry-run", "phpcs --standard=./phpcs.xml src"],
         "cs-fix": ["php-cs-fixer fix -v", "phpcbf src"],

@@ -14,7 +14,7 @@ env:
     - DEPENDENCIES='--prefer-lowest --prefer-stable'
 before_script:
   - composer self-update
-  - composer update $DEPENDENCIES
+  - composer update --no-interaction $DEPENDENCIES
   - if [[ $TRAVIS_PHP_VERSION = '7.1' && DEPENDENCIES = '' ]]; then COVERAGE="--coverage-clover=coverage.clover"; else phpenv config-rm xdebug.ini; fi
   - if [[ $TRAVIS_PHP_VERSION = '7.1' && DEPENDENCIES = '' ]]; then composer require --dev phpstan/phpstan-shim friendsofphp/php-cs-fixer; fi
 script:

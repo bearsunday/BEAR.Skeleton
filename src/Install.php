@@ -52,6 +52,7 @@ final class Install
         $composerDefinition['description'] = '';
         $composerDefinition['license'] = 'proprietary';
         $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
+        $composerDefinition['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
         unset(
             $composerDefinition['autoload']['files'],
             $composerDefinition['scripts']['pre-install-cmd'],

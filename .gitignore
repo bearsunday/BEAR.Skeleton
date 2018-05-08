@@ -5,4 +5,9 @@
 /.idea/
 /vendor/
 /build/
+/var/log/
+/var/tmp/
 phpunit.xml
+!var/log/.gitkeep
+!var/tmp/cache/.gitkeep
+!var/tmp/di/.gitkeep

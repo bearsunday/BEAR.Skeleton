@@ -27,12 +27,24 @@
         "post-create-project-cmd": [
             "composer dump-autoload"
         ],
-        "test": ["phpunit", "@cs"],
-        "coverage": ["php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"],
-        "cs": ["php-cs-fixer fix -v --dry-run", "phpcs --standard=./phpcs.xml src"],
-        "cs-fix": ["php-cs-fixer fix -v", "phpcbf src"],
-        "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
-        "api": "php bootstrap/api.php",
-        "web": "php bootstrap/web.php"
+      "test": ["vendor/bin/phpunit"],
+      "tests": [
+          "@cs",
+          "vendor/bin/phpmd src,tests text ./phpmd.xml",
+          "vendor/bin/phpstan analyse -l max src tests -c phpstan.neon --no-progress",
+          "@test"
+      ],
+      "coverage": ["php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"],
+      "cs": [
+          "vendor/bin/php-cs-fixer fix -v --dry-run",
+          "vendor/bin/phpcs --standard=phpcs.xml src;"
+      ],
+      "cs-fix": [
+          "vendor/bin/php-cs-fixer fix -v",
+          "vendor/bin/phpcbf src tests"
+      ],
+          "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
+          "api": "php bootstrap/api.php",
+          "web": "php bootstrap/web.php"
     }
 }

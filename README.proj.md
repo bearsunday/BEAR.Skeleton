@@ -3,6 +3,7 @@
 ## Installation
 
     composer install
+    composer setup
 
 ## Usage
 
@@ -12,7 +13,7 @@
 
 ### Console
 
-    php bootstrap/web.php get /
+    php bootstrap/web.php get '/'
 
 ### QA
 

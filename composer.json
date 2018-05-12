@@ -6,7 +6,7 @@
     "require": {
         "php": ">=7.0.0",
         "roave/security-advisories": "dev-master",
-        "bear/package": "^1.7.5",
+        "bear/package": "^1.7.6",
         "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
@@ -24,6 +24,7 @@
     },
     "scripts" :{
         "setup": ["php bin/setup.php"],
+        "compile": ["php bin/compile.php"],
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
         "post-create-project-cmd": [
             "composer dump-autoload"

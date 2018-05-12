@@ -24,6 +24,7 @@
     },
     "scripts" :{
         "setup": ["php bin/setup.php"],
+        "compile": ["php bin/compile.php"],
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
         "post-create-project-cmd": [
             "composer dump-autoload"

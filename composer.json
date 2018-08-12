@@ -48,5 +48,17 @@
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "api": "php bootstrap/api.php",
         "web": "php bootstrap/web.php"
+    },
+    "scripts-descriptions": {
+        "setup": "Setup application",
+        "compile": "Compile autoload and DI scripts",
+        "test": "Run unit tests",
+        "tests": "Run tests and quality checks",
+        "coverage": "Generate test coverage report",
+        "cs": "Checks the coding standard",
+        "cs-fix": "Fix the coding standard",
+        "serve": "Start php built-in server",
+        "api": "Request app resource",
+        "web": "Request page resource"
     }
 }

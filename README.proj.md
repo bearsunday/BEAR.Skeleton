@@ -9,7 +9,7 @@
 
 ### Run server
 
-    COMPOSER_PROCESS_TIMEOUT=0 composer serve
+    composer serve
 
 ### Console
 

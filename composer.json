@@ -60,5 +60,8 @@
         "serve": "Start php built-in server",
         "api": "Request app resource",
         "web": "Request page resource"
+    },
+    "config": {
+        "process-timeout":0
     }
 }

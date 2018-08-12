@@ -2,7 +2,7 @@
 use BEAR\Package\Bootstrap;
 use BEAR\Resource\ResourceObject;
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+require dirname(__DIR__) . '/autoload.php';
 
 /* @global string $context */
 $app = (new Bootstrap)->getApp('BEAR\Skeleton', $context, dirname(__DIR__));

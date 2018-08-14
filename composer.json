@@ -5,12 +5,12 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": ">=7.0.0",
-        "roave/security-advisories": "dev-master",
         "bear/package": "^1.7.12",
         "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
-        "bear/qatools": "^1.5"
+        "bear/qatools": "^1.5",
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-4": {
@@ -24,7 +24,7 @@
     },
     "scripts" :{
         "setup": ["php bin/setup.php"],
-        "compile": ["php bin/compile.php"],
+        "compile": ["bear.compile 'BEAR\\Skeleton' prod-app ./"],
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
         "post-create-project-cmd": [
             "composer dump-autoload"
@@ -48,5 +48,20 @@
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "api": "php bootstrap/api.php",
         "web": "php bootstrap/web.php"
+    },
+    "scripts-descriptions": {
+        "setup": "Setup project",
+        "compile": "Compile autoload and DI scripts",
+        "test": "Run unit tests",
+        "tests": "Run tests and quality checks",
+        "coverage": "Generate test coverage report",
+        "cs": "Checks the coding standard",
+        "cs-fix": "Fix the coding standard",
+        "serve": "Start php built-in server",
+        "api": "Request app resource",
+        "web": "Request page resource"
+    },
+    "config": {
+        "process-timeout":0
     }
 }

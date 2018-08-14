@@ -9,15 +9,12 @@
 
 ### Run server
 
-    COMPOSER_PROCESS_TIMEOUT=0 composer serve
-
-### Console
-
-    php bootstrap/web.php get '/'
+    composer serve
 
 ### QA
 
-    composer test     // phpunit
-    composer tests    // phpunit + cs + qa
-    composer coverage // test coverate
-    composer cs-fix   // lint fix
+    composer test     // run unit test
+    composer tests    // run test and quality checks
+    composer coverage // test coverage
+    composer cs-fix   // fix the coding standard
+

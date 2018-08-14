@@ -53,6 +53,7 @@ final class Install
         $composerDefinition['license'] = 'proprietary';
         $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
         $composerDefinition['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
+        $composerDefinition['scripts']['compile'] = "bear.compile '{$vendor}\\{$package}' prod-app ./";
         unset(
             $composerDefinition['autoload']['files'],
             $composerDefinition['scripts']['pre-install-cmd'],

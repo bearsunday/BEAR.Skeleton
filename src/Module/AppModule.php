@@ -11,7 +11,6 @@ class AppModule extends AbstractModule
      */
     protected function configure()
     {
-        $appDir = dirname(__DIR__, 2);
         $this->install(new PackageModule);
     }
 }

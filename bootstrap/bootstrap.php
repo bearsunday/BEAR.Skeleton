@@ -16,4 +16,4 @@ return function (string $context) {
         $app->error->handle($e, $request)->transfer();
         exit(1);
     }
-}
+};

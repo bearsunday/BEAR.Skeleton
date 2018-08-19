@@ -1,9 +1,9 @@
-<?php declare(strict_types=1);
+<?php
 use BEAR\Package\Bootstrap;
 use BEAR\Resource\ResourceObject;
 
-return function (string $context) : int {
-    $app = (new Bootstrap)->getApp('BEAR\Skeleton', $context, dirname(__DIR__));
+return function (string $context, string $name = 'BEAR\Skeleton') : int {
+    $app = (new Bootstrap)->getApp($name, $context, dirname(__DIR__));
     $request = $app->router->match($GLOBALS, $_SERVER);
     try {
         $response = $app->resource->{$request->method}->uri($request->path)($request->query);

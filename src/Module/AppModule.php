@@ -13,7 +13,10 @@ class AppModule extends AbstractModule
     protected function configure()
     {
         $appDir = dirname(__DIR__, 2);
-        (new Loader($appDir . '/.env'))->parse()->toEnv(true);
+        $env = $appDir . '/.env';
+        if (file_exists($env)) {
+            (new Loader($env))->parse()->toEnv(true);
+        }
         $this->install(new PackageModule);
     }
 }

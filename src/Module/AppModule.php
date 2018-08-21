@@ -14,7 +14,7 @@ class AppModule extends AbstractAppModule
     {
         $env = $this->appMeta->appDir . '/.env';
         if (file_exists($env)) {
-            (new Loader($env))->parse()->toEnv(true);
+            (new Loader($env))->parse()->putenv(true);
         }
         $this->install(new PackageModule);
     }

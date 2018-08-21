@@ -5,7 +5,7 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": ">=7.0.0",
-        "bear/package": "^1.7.12",
+        "bear/package": "^1.x-dev",
         "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {

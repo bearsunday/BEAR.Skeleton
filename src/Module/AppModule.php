@@ -1,19 +1,18 @@
 <?php
 namespace BEAR\Skeleton\Module;
 
+use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
 use josegonzalez\Dotenv\Loader;
-use Ray\Di\AbstractModule;
 
-class AppModule extends AbstractModule
+class AppModule extends AbstractAppModule
 {
     /**
      * {@inheritdoc}
      */
     protected function configure()
     {
-        $appDir = dirname(__DIR__, 2);
-        $env = $appDir . '/.env';
+        $env = $this->appMeta->appDir . '/.env';
         if (file_exists($env)) {
             (new Loader($env))->parse()->toEnv(true);
         }

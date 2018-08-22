@@ -12,7 +12,7 @@ class AppModule extends AbstractAppModule
     protected function configure()
     {
         $appDir = $this->appMeta->appDir;
-        require_once $appDir . '/.env';
+        require_once $appDir . '/env.php';
         $this->install(new PackageModule);
     }
 }

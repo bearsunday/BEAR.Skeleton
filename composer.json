@@ -50,7 +50,7 @@
         "web": "php bootstrap/web.php"
     },
     "scripts-descriptions": {
-        "setup": "Setup project",
+        "setup": "Setup the project",
         "compile": "Compile autoload and DI scripts",
         "test": "Run unit tests",
         "tests": "Run tests and quality checks",

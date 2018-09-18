@@ -3,7 +3,6 @@ namespace BEAR\Skeleton\Resource\Page;
 
 use BEAR\Package\AppInjector;
 use BEAR\Resource\ResourceInterface;
-use BEAR\Resource\ResourceObject;
 use PHPUnit\Framework\TestCase;
 
 class IndexTest extends TestCase

@@ -15,10 +15,10 @@ final class Install
         $project = $this->ask($io, 'What is the project name ?', 'MyProject');
         $packageName = sprintf('%s/%s', $this->camel2dashed($vendor), $this->camel2dashed($project));
         $json = new JsonFile(Factory::getComposerFile());
-        $composerDefinition = $this->getDefinition($vendor, $project, $packageName, $json);
+        $composerJson = $this->getComposerJson($vendor, $project, $packageName, $json);
         $this->modifyFiles($vendor, $project);
-        $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
-        $json->write($composerDefinition);
+        $io->write("<info>composer.json for {$composerJson['name']} is created.\n</info>");
+        $json->write($composerJson);
         unlink(__FILE__);
     }
 
@@ -44,25 +44,25 @@ final class Install
         }
     }
 
-    private function getDefinition(string $vendor, string $package, string $packageName, JsonFile $json) : array
+    private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
-        $composerDefinition = $json->read();
-        $composerDefinition['license'] = 'proprietary';
-        $composerDefinition['name'] = $packageName;
-        $composerDefinition['description'] = '';
-        $composerDefinition['license'] = 'proprietary';
-        $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
-        $composerDefinition['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
-        $composerDefinition['scripts']['compile'] = "bear.compile '{$vendor}\\{$package}' prod-app ./";
+        $composerJson = $json->read();
+        $composerJson['license'] = 'proprietary';
+        $composerJson['name'] = $packageName;
+        $composerJson['description'] = '';
+        $composerJson['license'] = 'proprietary';
+        $composerJson['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
+        $composerJson['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
+        $composerJson['scripts']['compile'] = "bear.compile '{$vendor}\\{$package}' prod-app ./";
         unset(
-            $composerDefinition['autoload']['files'],
-            $composerDefinition['scripts']['pre-install-cmd'],
-            $composerDefinition['scripts']['pre-update-cmd'],
-            $composerDefinition['scripts']['post-create-project-cmd'],
-            $composerDefinition['require-dev']['composer/composer']
+            $composerJson['autoload']['files'],
+            $composerJson['scripts']['pre-install-cmd'],
+            $composerJson['scripts']['pre-update-cmd'],
+            $composerJson['scripts']['post-create-project-cmd'],
+            $composerJson['require-dev']['composer/composer']
         );
 
-        return $composerDefinition;
+        return $composerJson;
     }
 
     private function rename(string $vendor, string $package) : callable

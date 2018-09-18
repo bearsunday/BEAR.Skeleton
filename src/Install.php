@@ -8,6 +8,9 @@ use Composer\Script\Event;
 
 final class Install
 {
+    /**
+     * @throws \Exception
+     */
     public function __invoke(Event $event)
     {
         $io = $event->getIO();
@@ -24,13 +27,9 @@ final class Install
 
     private function ask(IOInterface $io, string $question, string $default) : string
     {
-        $ask = [
-            sprintf("\n<question>%s</question>\n", $question),
-            sprintf("\n(<comment>%s</comment>):", $default)
-        ];
-        $answer = $io->ask($ask, $default);
+        $ask = sprintf("\n<question>%s</question>\n\n(<comment>%s</comment>):", $question, $default);
 
-        return $answer;
+        return $io->ask($ask, $default);
     }
 
     private function recursiveJob(string $path, callable $job)
@@ -93,7 +92,7 @@ final class Install
         $projectRoot = dirname(__DIR__);
         chmod($projectRoot . '/var/tmp', 0775);
         chmod($projectRoot . '/var/log', 0775);
-        $this->recursiveJob("{$projectRoot}", $this->rename($vendor, $project));
+        $this->recursiveJob((string) $projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
     }

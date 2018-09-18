@@ -46,8 +46,8 @@
             "phpcbf src tests"
         ],
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
-        "api": "php bootstrap/api.php",
-        "web": "php bootstrap/web.php"
+        "api": "php bin/api.php",
+        "web": "php bin/web.php"
     },
     "scripts-descriptions": {
         "setup": "Setup the project",

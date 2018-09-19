@@ -8,6 +8,9 @@ use Composer\Script\Event;
 
 final class Install
 {
+    /**
+     * @throws \Exception
+     */
     public function __invoke(Event $event)
     {
         $io = $event->getIO();
@@ -15,22 +18,18 @@ final class Install
         $project = $this->ask($io, 'What is the project name ?', 'MyProject');
         $packageName = sprintf('%s/%s', $this->camel2dashed($vendor), $this->camel2dashed($project));
         $json = new JsonFile(Factory::getComposerFile());
-        $composerDefinition = $this->getDefinition($vendor, $project, $packageName, $json);
+        $composerJson = $this->getComposerJson($vendor, $project, $packageName, $json);
         $this->modifyFiles($vendor, $project);
-        $io->write("<info>composer.json for {$composerDefinition['name']} is created.\n</info>");
-        $json->write($composerDefinition);
+        $io->write("<info>composer.json for {$composerJson['name']} is created.\n</info>");
+        $json->write($composerJson);
         unlink(__FILE__);
     }
 
     private function ask(IOInterface $io, string $question, string $default) : string
     {
-        $ask = [
-            sprintf("\n<question>%s</question>\n", $question),
-            sprintf("\n(<comment>%s</comment>):", $default)
-        ];
-        $answer = $io->ask($ask, $default);
+        $ask = sprintf("\n<question>%s</question>\n\n(<comment>%s</comment>):", $question, $default);
 
-        return $answer;
+        return $io->ask($ask, $default);
     }
 
     private function recursiveJob(string $path, callable $job)
@@ -44,25 +43,25 @@ final class Install
         }
     }
 
-    private function getDefinition(string $vendor, string $package, string $packageName, JsonFile $json) : array
+    private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
-        $composerDefinition = $json->read();
-        $composerDefinition['license'] = 'proprietary';
-        $composerDefinition['name'] = $packageName;
-        $composerDefinition['description'] = '';
-        $composerDefinition['license'] = 'proprietary';
-        $composerDefinition['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
-        $composerDefinition['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
-        $composerDefinition['scripts']['compile'] = "bear.compile '{$vendor}\\{$package}' prod-app ./";
+        $composerJson = $json->read();
+        $composerJson['license'] = 'proprietary';
+        $composerJson['name'] = $packageName;
+        $composerJson['description'] = '';
+        $composerJson['license'] = 'proprietary';
+        $composerJson['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
+        $composerJson['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
+        $composerJson['scripts']['compile'] = "bear.compile '{$vendor}\\{$package}' prod-app ./";
         unset(
-            $composerDefinition['autoload']['files'],
-            $composerDefinition['scripts']['pre-install-cmd'],
-            $composerDefinition['scripts']['pre-update-cmd'],
-            $composerDefinition['scripts']['post-create-project-cmd'],
-            $composerDefinition['require-dev']['composer/composer']
+            $composerJson['autoload']['files'],
+            $composerJson['scripts']['pre-install-cmd'],
+            $composerJson['scripts']['pre-update-cmd'],
+            $composerJson['scripts']['post-create-project-cmd'],
+            $composerJson['require-dev']['composer/composer']
         );
 
-        return $composerDefinition;
+        return $composerJson;
     }
 
     private function rename(string $vendor, string $package) : callable
@@ -93,7 +92,7 @@ final class Install
         $projectRoot = dirname(__DIR__);
         chmod($projectRoot . '/var/tmp', 0775);
         chmod($projectRoot . '/var/log', 0775);
-        $this->recursiveJob("{$projectRoot}", $this->rename($vendor, $project));
+        $this->recursiveJob((string) $projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
     }

@@ -3,7 +3,6 @@ namespace BEAR\Skeleton\Resource\Page;
 
 use BEAR\Package\AppInjector;
 use BEAR\Resource\ResourceInterface;
-use BEAR\Resource\ResourceObject;
 use PHPUnit\Framework\TestCase;
 
 class IndexTest extends TestCase
@@ -20,8 +19,7 @@ class IndexTest extends TestCase
 
     public function testOnGet()
     {
-        $ro = $this->resource->uri('page://self/index')(['name' => 'BEAR.Sunday']);
-        /* @var ResourceObject $ro  */
+        $ro = $this->resource->get('page://self/index', ['name' => 'BEAR.Sunday']);
         $this->assertSame(200, $ro->code);
         $this->assertSame('Hello BEAR.Sunday', $ro->body['greeting']);
     }

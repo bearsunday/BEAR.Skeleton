@@ -5,12 +5,13 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": ">=7.0.0",
-        "bear/package": "^1.8",
+        "bear/package": "^1.8.2",
         "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
         "bear/qatools": "^1.5",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "composer/composer": "^1.7"
     },
     "autoload": {
         "psr-4": {
@@ -46,8 +47,8 @@
             "phpcbf src tests"
         ],
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
-        "api": "php bootstrap/api.php",
-        "web": "php bootstrap/web.php"
+        "app": "php bin/app.php",
+        "page": "php bin/page.php"
     },
     "scripts-descriptions": {
         "setup": "Setup the project",
@@ -58,8 +59,8 @@
         "cs": "Checks the coding standard",
         "cs-fix": "Fix the coding standard",
         "serve": "Start php built-in server",
-        "api": "Request app resource",
-        "web": "Request page resource"
+        "app": "Request app resource",
+        "page": "Request page resource"
     },
     "config": {
         "process-timeout":0

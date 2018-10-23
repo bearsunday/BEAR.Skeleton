@@ -5,7 +5,6 @@ use BEAR\Skeleton\Module\App;
 
 return function (string $context, string $name = 'BEAR\Skeleton') : int {
     $app = (new Bootstrap)->getApp($name, $context, __DIR__);
-    /* @var App $app */
     if ($app->httpCache->isNotModified($_SERVER)) {
         $app->httpCache->transfer();
 
@@ -24,3 +23,4 @@ return function (string $context, string $name = 'BEAR\Skeleton') : int {
         return 1;
     }
 };
+

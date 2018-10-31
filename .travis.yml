@@ -15,7 +15,7 @@ env:
     - DEPENDENCIES='--prefer-lowest --prefer-stable'
 before_script:
   - composer self-update
-  - composer update --no-scripts $DEPENDENCIES
+  - if [[ $TRAVIS_PHP_VERSION = '7.3' ]]; then composer update --no-scripts --ignore-platform-reqs $DEPENDENCIES; else composer update --no-scripts $DEPENDENCIES; fi
   - composer dump-autoload
 script:
   - php bin/page.php get /

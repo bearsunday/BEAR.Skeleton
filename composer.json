@@ -11,7 +11,7 @@
     "require-dev": {
         "bear/qatools": "dev-master",
         "roave/security-advisories": "dev-master",
-        "composer/composer": "^1.7"
+        "composer/composer": "^1.7.1"
     },
     "autoload": {
         "psr-4": {

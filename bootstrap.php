@@ -1,7 +1,6 @@
 <?php
 use BEAR\Package\Bootstrap;
 use BEAR\Resource\ResourceObject;
-use BEAR\Skeleton\Module\App;
 
 return function (string $context, string $name = 'BEAR\Skeleton') : int {
     $app = (new Bootstrap)->getApp($name, $context, __DIR__);
@@ -23,4 +22,3 @@ return function (string $context, string $name = 'BEAR\Skeleton') : int {
         return 1;
     }
 };
-

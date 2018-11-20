@@ -6,8 +6,7 @@
     "require": {
         "php": ">=7.0.0",
         "bear/package": "^1.9",
-        "josegonzalez/dotenv": "^3.2",
-        "bear/swoole": "^0.2.0"
+        "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
         "bear/qatools": "dev-master",

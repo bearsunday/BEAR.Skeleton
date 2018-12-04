@@ -8,10 +8,7 @@ use Composer\Script\Event;
 
 final class Install
 {
-    /**
-     * @throws \Exception
-     */
-    public function __invoke(Event $event)
+    public function __invoke(Event $event) : void
     {
         $io = $event->getIO();
         $vendor = $this->ask($io, 'What is the vendor name ?', 'MyVendor');
@@ -32,7 +29,7 @@ final class Install
         return $io->ask($ask, $default);
     }
 
-    private function recursiveJob(string $path, callable $job)
+    private function recursiveJob(string $path, callable $job) : void
     {
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
@@ -87,7 +84,7 @@ final class Install
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 
-    private function modifyFiles(string $vendor, string $project)
+    private function modifyFiles(string $vendor, string $project) : void
     {
         $projectRoot = dirname(__DIR__);
         chmod($projectRoot . '/var/tmp', 0775);

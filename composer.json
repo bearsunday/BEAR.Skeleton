@@ -9,7 +9,7 @@
         "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
-        "bear/qatools": "dev-master",
+        "bear/qatools": "^1.7",
         "roave/security-advisories": "dev-master",
         "composer/composer": "^1.7.1"
     },

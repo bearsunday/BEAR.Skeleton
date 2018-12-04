@@ -49,7 +49,7 @@ final class Install
             'description' => '',
             'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
-            'scripts' => $composerJson['scripts'] + ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"]
+            'scripts' =>  \array_merge($composerJson['scripts'], ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"])
         ]);
         unset(
             $composerJson['autoload']['files'],

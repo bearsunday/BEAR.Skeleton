@@ -51,6 +51,6 @@
         "page": "Request page resource"
     },
     "config": {
-        "process-timeout":0
+        "process-timeout": 0
     }
 }

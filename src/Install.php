@@ -8,10 +8,7 @@ use Composer\Script\Event;
 
 final class Install
 {
-    /**
-     * @throws \Exception
-     */
-    public function __invoke(Event $event)
+    public function __invoke(Event $event) : void
     {
         $io = $event->getIO();
         $vendor = $this->ask($io, 'What is the vendor name ?', 'MyVendor');
@@ -32,7 +29,7 @@ final class Install
         return $io->ask($ask, $default);
     }
 
-    private function recursiveJob(string $path, callable $job)
+    private function recursiveJob(string $path, callable $job) : void
     {
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
@@ -46,13 +43,14 @@ final class Install
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
         $composerJson = $json->read();
-        $composerJson['license'] = 'proprietary';
-        $composerJson['name'] = $packageName;
-        $composerJson['description'] = '';
-        $composerJson['license'] = 'proprietary';
-        $composerJson['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
-        $composerJson['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
-        $composerJson['scripts']['compile'] = "bear.compile '{$vendor}\\{$package}' prod-app ./";
+        $composerJson = \array_merge($composerJson, [
+            'license' => 'proprietary',
+            'name' => $packageName,
+            'description' => '',
+            'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
+            'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
+            'scripts' => $composerJson['scripts'] + ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"]
+        ]);
         unset(
             $composerJson['autoload']['files'],
             $composerJson['scripts']['pre-install-cmd'],
@@ -87,7 +85,7 @@ final class Install
         return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 
-    private function modifyFiles(string $vendor, string $project)
+    private function modifyFiles(string $vendor, string $project) : void
     {
         $projectRoot = dirname(__DIR__);
         chmod($projectRoot . '/var/tmp', 0775);

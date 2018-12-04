@@ -43,13 +43,14 @@ final class Install
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
         $composerJson = $json->read();
-        $composerJson['license'] = 'proprietary';
-        $composerJson['name'] = $packageName;
-        $composerJson['description'] = '';
-        $composerJson['license'] = 'proprietary';
-        $composerJson['autoload']['psr-4'] = ["{$vendor}\\{$package}\\" => 'src/'];
-        $composerJson['autoload-dev']['psr-4'] = ["{$vendor}\\{$package}\\" => 'tests/'];
-        $composerJson['scripts']['compile'] = "bear.compile '{$vendor}\\{$package}' prod-app ./";
+        $composerJson = \array_merge($composerJson, [
+            'license' => 'proprietary',
+            'name' => $packageName,
+            'description' => '',
+            'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
+            'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
+            'scripts' => $composerJson['scripts'] + ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"]
+        ]);
         unset(
             $composerJson['autoload']['files'],
             $composerJson['scripts']['pre-install-cmd'],

@@ -1,20 +1,14 @@
 language: php
 sudo: false
 php:
-  - 7.1
-  - 7.2
-  - 7.3
+  - 7
 cache:
   directories:
     - vendor
     - $HOME/.composer/cache
 before_script:
   - composer self-update
-  - if [[ $TRAVIS_PHP_VERSION = '7.3' ]]; then composer update --no-scripts --ignore-platform-reqs; else composer update --no-scripts; fi
+  - composer update --no-scripts
   - composer dump-autoload
 script:
   - php bin/page.php get /
-  - if [[ $TRAVIS_PHP_VERSION = '7.2' ]]; then ./vendor/bin/php-cs-fixer --dry-run -vvv fix; fi
-  - if [[ $TRAVIS_PHP_VERSION = '7.2' ]]; then ./vendor/bin/phpunit --coverage-clover=coverage.clover; else ./vendor/bin/phpunit; fi
-after_script:
-  - if [[ $TRAVIS_PHP_VERSION = '7.2' ]]; then wget https://scrutinizer-ci.com/ocular.phar && php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi

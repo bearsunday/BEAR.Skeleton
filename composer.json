@@ -4,12 +4,12 @@
     "license":"MIT",
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
-        "php": ">=7.0.0",
+        "php": "7.0.*",
         "bear/package": "^1.9",
         "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
-        "bear/qatools": "dev-master",
+        "bear/qatools": "^1.7",
         "roave/security-advisories": "dev-master",
         "composer/composer": "^1.7.1"
     },

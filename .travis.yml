@@ -1,14 +1,24 @@
 language: php
 sudo: false
+
 php:
-  - 7
+  - 7.1
+  - 7.2
+
 cache:
   directories:
     - vendor
     - $HOME/.composer/cache
-before_script:
+
+matrix:
+  fast_finish: true
+
+before_install:
   - composer self-update
+
+install:
   - composer update --no-scripts
   - composer dump-autoload
+
 script:
   - php bin/page.php get /

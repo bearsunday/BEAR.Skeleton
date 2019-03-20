@@ -5,10 +5,14 @@
 /.idea/
 /vendor/
 /build/
-/var/log/
-/var/tmp/
-phpunit.xml
+/var/log/*
 !var/log/.gitkeep
+/var/tmp/*
+!/var/tmp/cache/
+/var/tmp/cache/*
 !var/tmp/cache/.gitkeep
+!/var/tmp/di/
+/var/tmp/di/*
 !var/tmp/di/.gitkeep
+phpunit.xml
 /docs/api/

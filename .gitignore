@@ -12,3 +12,4 @@ phpunit.xml
 !var/tmp/cache/.gitkeep
 !var/tmp/di/.gitkeep
 /docs/api/
+/autoload.php

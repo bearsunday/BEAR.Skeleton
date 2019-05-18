@@ -9,9 +9,9 @@
         "josegonzalez/dotenv": "^3.2"
     },
     "require-dev": {
-        "bear/qatools": "^1.7",
+        "bear/qatools": "^1.9",
         "roave/security-advisories": "dev-master",
-        "composer/composer": "^1.7.1"
+        "composer/composer": "^1.8.4"
     },
     "autoload": {
         "psr-4": {

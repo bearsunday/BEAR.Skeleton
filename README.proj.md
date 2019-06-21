@@ -3,7 +3,6 @@
 ## Installation
 
     composer install
-    composer setup
 
 ## Usage
 

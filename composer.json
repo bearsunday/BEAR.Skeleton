@@ -5,11 +5,11 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": ">=7.1.0",
-        "bear/package": "^1.9",
-        "josegonzalez/dotenv": "^3.2"
+        "bear/package": "^1.9"
     },
     "require-dev": {
         "bear/qatools": "^1.9",
+        "josegonzalez/dotenv": "^3.2",
         "roave/security-advisories": "dev-master"
     },
     "autoload": {

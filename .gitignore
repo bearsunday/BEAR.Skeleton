@@ -16,4 +16,4 @@
 !var/tmp/di/.gitkeep
 phpunit.xml
 /docs/api/
-/autoload.php
+autoload.php

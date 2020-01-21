@@ -9,7 +9,7 @@ class AppModule extends AbstractAppModule
     /**
      * {@inheritdoc}
      */
-    protected function configure()
+    protected function configure() : void
     {
         $appDir = $this->appMeta->appDir;
         require_once $appDir . '/env.php';

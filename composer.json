@@ -30,7 +30,7 @@
         "setup": ["php bin/setup.php"],
         "compile": ["bear.compile 'BEAR\\Skeleton' prod-app ./"],
         "test": ["phpunit"],
-        "tests": ["@cs", "phpmd src text ./phpmd.xml", "phpstan analyse -l max src tests -c phpstan.neon --no-progress", "psalm", "@test"],
+        "tests": ["@cs", "phpmd src text ./phpmd.xml", "phpstan analyse -c phpstan.neon --no-progress", "psalm", "@test"],
         "coverage": ["php -dzend_extension=xdebug.so phpunit --coverage-text --coverage-html=build/coverage"],
         "cs": ["php-cs-fixer fix -v --dry-run", "phpcs --standard=phpcs.xml src;"],
         "cs-fix": ["php-cs-fixer fix -v", "phpcbf src tests"],

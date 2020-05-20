@@ -5,7 +5,8 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": ">=7.2.0",
-        "bear/package": "^1.9"
+        "bear/package": "1.x-dev",
+        "ray/compiler": "1.x-dev"
     },
     "require-dev": {
         "bear/qatools": "^1.9",

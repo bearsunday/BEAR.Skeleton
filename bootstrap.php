@@ -1,5 +1,6 @@
 <?php
-use BEAR\Skeleton\Injector;
+namespace BEAR\Skeleton;
+
 use BEAR\Sunday\Extension\Application\AppInterface;
 
 return function (string $context) : int {
@@ -15,7 +16,7 @@ return function (string $context) : int {
         $response->transfer($app->responder, $_SERVER);
 
         return 0;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         $app->error->handle($e, $request)->transfer();
 
         return 1;

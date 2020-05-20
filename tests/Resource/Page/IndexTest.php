@@ -1,8 +1,8 @@
 <?php
 namespace BEAR\Skeleton\Resource\Page;
 
-use BEAR\Package\AppInjector;
 use BEAR\Resource\ResourceInterface;
+use BEAR\Skeleton\Injector;
 use PHPUnit\Framework\TestCase;
 
 class IndexTest extends TestCase
@@ -14,10 +14,11 @@ class IndexTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->resource = (new AppInjector('BEAR\Skeleton', 'app'))->getInstance(ResourceInterface::class);
+        $injector = Injector::getInstance('app');
+        $this->resource = $injector->getInstance(ResourceInterface::class);
     }
 
-    public function testOnGet()
+    public function testOnGet() : void
     {
         $ro = $this->resource->get('page://self/index', ['name' => 'BEAR.Sunday']);
         $this->assertSame(200, $ro->code);

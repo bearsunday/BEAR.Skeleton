@@ -25,7 +25,7 @@
     },
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-create-project-cmd": ["composer dump-autoload", "psalm --init"],
+        "post-create-project-cmd": ["composer dump-autoload"],
         "post-install-cmd": ["@setup"],
         "post-update-cmd": ["@setup"],
         "setup": ["php bin/setup.php"],

@@ -14,6 +14,7 @@ class AppModule extends AbstractAppModule
     {
         $env = dirname(__DIR__) . '/.env';
         if (file_exists($env)) {
+            /** @psalm-suppress MixedMethodCall */
             (new Loader($env))->parse()->putenv(true);
         }
         $this->install(new PackageModule);

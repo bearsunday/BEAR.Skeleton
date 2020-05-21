@@ -52,6 +52,7 @@
         "page": "Request page resource"
     },
     "config": {
+        "sort-packages": true,
         "process-timeout": 0
     }
 }

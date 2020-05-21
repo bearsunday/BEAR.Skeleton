@@ -1,17 +1,19 @@
 <?php
 namespace BEAR\Skeleton;
 
+use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
 
 return function (string $context) : int {
     $app = (Injector::getInstance($context))->getInstance(AppInterface::class);
-    if ($app->httpCache->isNotModified($_SERVER)) {
-        $app->httpCache->transfer();
-
-        return 0;
-    }
-    $request = $app->router->match($GLOBALS, $_SERVER);
+    assert($app instanceof App);
     try {
+        if ($app->httpCache->isNotModified($_SERVER)) {
+            $app->httpCache->transfer();
+
+            return 0;
+        }
+        $request = $app->router->match($GLOBALS, $_SERVER);
         $response = $app->resource->{$request->method}->uri($request->path)($request->query);
         $response->transfer($app->responder, $_SERVER);
 

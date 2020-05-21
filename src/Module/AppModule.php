@@ -3,7 +3,7 @@ namespace BEAR\Skeleton\Module;
 
 use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
-use josegonzalez\Dotenv\Loader;
+use Symfony\Component\Dotenv\Dotenv;
 
 class AppModule extends AbstractAppModule
 {
@@ -12,11 +12,7 @@ class AppModule extends AbstractAppModule
      */
     protected function configure() : void
     {
-        $env = dirname(__DIR__) . '/.env';
-        if (file_exists($env)) {
-            /** @psalm-suppress MixedMethodCall */
-            (new Loader($env))->parse()->putenv(true);
-        }
+        (new Dotenv)->loadEnv(dirname(__DIR__) . '/.env');
         $this->install(new PackageModule);
     }
 }

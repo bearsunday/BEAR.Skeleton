@@ -40,6 +40,9 @@ final class Install
         }
     }
 
+    /**
+     * @return array<string, array>
+     */
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
         $composerJson = $json->read();
@@ -62,9 +65,12 @@ final class Install
         return $composerJson;
     }
 
-    private function rename(string $vendor, string $package) : callable
+    /**
+     * @psalm-return \Closure(\SplFileInfo):void
+     */
+    private function rename(string $vendor, string $package) : \Closure
     {
-        $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
+        $jobRename = function (\SplFileInfo $file) use ($vendor, $package) : void {
             if (is_dir($file) || ! is_writable($file)) {
                 return;
             }

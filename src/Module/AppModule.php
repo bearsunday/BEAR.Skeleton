@@ -12,7 +12,7 @@ class AppModule extends AbstractAppModule
      */
     protected function configure() : void
     {
-        (new Dotenv)->loadEnv(dirname(__DIR__) . '/.env');
+        (new Dotenv)->loadEnv(dirname(__DIR__, 2) . '/.env');
         $this->install(new PackageModule);
     }
 }

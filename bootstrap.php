@@ -1,8 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 namespace BEAR\Skeleton;
 
 use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
+use BEAR\Sunday\Extension\Router\NullMatch;
 
 return
     /**
@@ -15,16 +19,16 @@ return
         if ($app->httpCache->isNotModified($server)) {
             $app->httpCache->transfer();
 
-            return 1;
+            return 0;
         }
-        $request = $app->router->match($globals, $server);
         try {
+            $request = $app->router->match($globals, $server);
             $response = $app->resource->{$request->method}->uri($request->path)($request->query);
             $response->transfer($app->responder, $server);
 
             return 0;
         } catch (\Exception $e) {
-            $app->error->handle($e, $request)->transfer();
+            $app->error->handle($e, $request ?? new NullMatch)->transfer();
 
             return 1;
         }

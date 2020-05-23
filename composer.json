@@ -11,7 +11,7 @@
         "ray/compiler": "1.x-dev"
     },
     "require-dev": {
-        "bear/qatools": "^1.9",
+        "bear/qatools": "^1.9.6",
         "josegonzalez/dotenv": "^3.2",
         "roave/security-advisories": "dev-master",
         "symfony/dotenv": "^5.0"
@@ -28,7 +28,7 @@
     },
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-create-project-cmd": ["composer dump-autoload"],
+        "post-create-project-cmd": ["composer cs-fix", "composer dump-autoload"],
         "post-install-cmd": ["@setup"],
         "post-update-cmd": ["@setup"],
         "setup": ["php bin/setup.php"],

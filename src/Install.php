@@ -17,7 +17,7 @@ final class Install
         $json = new JsonFile(Factory::getComposerFile());
         $composerJson = $this->getComposerJson($vendor, $project, $packageName, $json);
         $this->modifyFiles($vendor, $project);
-        $io->write("<info>composer.json for {$composerJson['name']} is created.\n</info>");
+        $io->write("<info>composer.json for {$packageName} is created.\n</info>");
         $json->write($composerJson);
         unlink(__FILE__);
     }
@@ -71,10 +71,11 @@ final class Install
     private function rename(string $vendor, string $package) : \Closure
     {
         $jobRename = function (\SplFileInfo $file) use ($vendor, $package) : void {
+            $file = (string) $file;
             if (is_dir($file) || ! is_writable($file)) {
                 return;
             }
-            $contents = file_get_contents($file);
+            $contents = (string) file_get_contents($file);
             $contents = str_replace(
                 ['BEAR.Skeleton', 'BEAR\Skeleton', 'bear/skeleton'],
                 ["{$vendor}.{$package}", "{$vendor}\\{$package}", strtolower("{$vendor}/{$package}")],
@@ -88,7 +89,7 @@ final class Install
 
     private function camel2dashed(string $name) : string
     {
-        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
+        return strtolower((string) preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 
     private function modifyFiles(string $vendor, string $project) : void

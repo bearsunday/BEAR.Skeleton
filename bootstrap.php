@@ -7,8 +7,8 @@ use BEAR\Sunday\Extension\Router\NullMatch;
 
 return
     /**
-     * @param array{_GET: array<string, string>, _POST: array<string, string>}               $globals $GLOBALS
-     * @param array{REQUEST_URI: string, REQUEST_METHOD: string, HTTP_CONTENT_TYPE?: string} $server  $_SERVER
+     * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals $GLOBALS
+     * @param array<string, mixed>                                                         $server  $_SERVER
      */
     function (string $context, array $globals, array $server) : int {
         $app = (Injector::getInstance($context))->getInstance(AppInterface::class);

@@ -10,12 +10,12 @@
         "bear/package": "1.x-dev",
         "ray/aop": "2.x-dev",
         "ray/di": "2.x-dev",
-        "ray/compiler": "1.x-dev"
+        "ray/compiler": "1.x-dev",
+        "symfony/dotenv": "^5.0"
     },
     "require-dev": {
         "bear/qatools": "^1.9.6",
-        "roave/security-advisories": "dev-master",
-        "symfony/dotenv": "^5.0"
+        "roave/security-advisories": "dev-master"
     },
     "autoload": {
         "psr-4": {

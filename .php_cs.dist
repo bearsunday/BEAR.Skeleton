@@ -9,7 +9,7 @@ EOF;
 
 $finder = PhpCsFixer\Finder::create()
     ->exclude(['tests/Fake', 'tests/tmp'])
-    ->in(__DIR__);
+    ->in(['src', 'tests']);
 
 return \PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)

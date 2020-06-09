@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace BEAR\Skeleton;
 
 use BEAR\Package\Injector as PackageInjector;

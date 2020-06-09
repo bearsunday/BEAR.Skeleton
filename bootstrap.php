@@ -4,6 +4,7 @@ namespace BEAR\Skeleton;
 use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
 use BEAR\Sunday\Extension\Router\NullMatch;
+use Exception;
 
 return
     /**
@@ -26,7 +27,7 @@ return
             $response->transfer($app->responder, $server);
 
             return 0;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $app->error->handle($e, $request ?? new NullMatch)->transfer();
 
             return 1;

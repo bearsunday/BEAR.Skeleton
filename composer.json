@@ -8,9 +8,7 @@
         "bear/resource": "1.x-dev",
         "bear/sunday": "1.x-dev",
         "bear/package": "1.x-dev",
-        "ray/aop": "2.x-dev",
         "ray/di": "2.x-dev",
-        "ray/compiler": "1.x-dev",
         "symfony/dotenv": "^5.0"
     },
     "require-dev": {

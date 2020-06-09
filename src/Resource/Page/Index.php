@@ -10,9 +10,6 @@ class Index extends ResourceObject
      */
     public $body;
 
-    /**
-     * @return static
-     */
     public function onGet(string $name = 'BEAR.Sunday') : ResourceObject
     {
         $this->body = [

@@ -9,6 +9,8 @@ return
     /**
      * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals $GLOBALS
      * @param array<string, mixed>                                                         $server  $_SERVER
+     *
+     * @return 0|1
      */
     function (string $context, array $globals, array $server) : int {
         $app = (Injector::getInstance($context))->getInstance(AppInterface::class);

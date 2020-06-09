@@ -5,10 +5,10 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": ">=7.2.0",
-        "bear/resource": "1.x-dev",
+        "bear/resource": "^1.14",
         "bear/sunday": "1.x-dev",
         "bear/package": "1.x-dev",
-        "ray/di": "2.x-dev",
+        "ray/di": "^2.10",
         "symfony/dotenv": "^5.0"
     },
     "require-dev": {

@@ -15,6 +15,6 @@ final class Injector
 
     public static function getInstance(string $context) : InjectorInterface
     {
-        return PackageInjector::getInstance(__NAMESPACE__, $context, dirname(__DIR__), '');
+        return PackageInjector::getInstance(__NAMESPACE__, $context, dirname(__DIR__));
     }
 }

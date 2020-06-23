@@ -1,10 +1,18 @@
 <?php
+
+declare(strict_types=1);
+
 namespace BEAR\Skeleton;
 
+use function array_merge;
+use Closure;
 use Composer\Factory;
 use Composer\IO\IOInterface;
 use Composer\Json\JsonFile;
 use Composer\Script\Event;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use SplFileInfo;
 
 final class Install
 {
@@ -17,7 +25,7 @@ final class Install
         $json = new JsonFile(Factory::getComposerFile());
         $composerJson = $this->getComposerJson($vendor, $project, $packageName, $json);
         $this->modifyFiles($vendor, $project);
-        $io->write("<info>composer.json for {$composerJson['name']} is created.\n</info>");
+        $io->write("<info>composer.json for {$packageName} is created.\n</info>");
         $json->write($composerJson);
         unlink(__FILE__);
     }
@@ -31,7 +39,7 @@ final class Install
 
     private function recursiveJob(string $path, callable $job) : void
     {
-        $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
+        $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
             if (! in_array($file->getExtension(), ['php', 'md'], true)) {
                 continue;
@@ -40,16 +48,19 @@ final class Install
         }
     }
 
+    /**
+     * @return array<string, array>
+     */
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json) : array
     {
         $composerJson = $json->read();
-        $composerJson = \array_merge($composerJson, [
+        $composerJson = array_merge($composerJson, [
             'license' => 'proprietary',
             'name' => $packageName,
             'description' => '',
             'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
-            'scripts' => \array_merge($composerJson['scripts'], ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"])
+            'scripts' => array_merge($composerJson['scripts'], ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"])
         ]);
         unset(
             $composerJson['autoload']['files'],
@@ -62,13 +73,17 @@ final class Install
         return $composerJson;
     }
 
-    private function rename(string $vendor, string $package) : callable
+    /**
+     * @psalm-return \Closure(\SplFileInfo):void
+     */
+    private function rename(string $vendor, string $package) : Closure
     {
-        $jobRename = function (\SplFileInfo $file) use ($vendor, $package) {
+        $jobRename = function (SplFileInfo $file) use ($vendor, $package) : void {
+            $file = (string) $file;
             if (is_dir($file) || ! is_writable($file)) {
                 return;
             }
-            $contents = file_get_contents($file);
+            $contents = (string) file_get_contents($file);
             $contents = str_replace(
                 ['BEAR.Skeleton', 'BEAR\Skeleton', 'bear/skeleton'],
                 ["{$vendor}.{$package}", "{$vendor}\\{$package}", strtolower("{$vendor}/{$package}")],
@@ -82,7 +97,7 @@ final class Install
 
     private function camel2dashed(string $name) : string
     {
-        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
+        return strtolower((string) preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 
     private function modifyFiles(string $vendor, string $project) : void

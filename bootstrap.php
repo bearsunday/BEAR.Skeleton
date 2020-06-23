@@ -1,24 +1,35 @@
 <?php
-use BEAR\Package\Bootstrap;
-use BEAR\Resource\ResourceObject;
+namespace BEAR\Skeleton;
 
-return function (string $context, string $name = 'BEAR\Skeleton') : int {
-    $app = (new Bootstrap)->getApp($name, $context, __DIR__);
-    if ($app->httpCache->isNotModified($_SERVER)) {
-        $app->httpCache->transfer();
+use BEAR\Skeleton\Module\App;
+use BEAR\Sunday\Extension\Application\AppInterface;
+use BEAR\Sunday\Extension\Router\NullMatch;
+use Exception;
 
-        return 0;
-    }
-    $request = $app->router->match($GLOBALS, $_SERVER);
-    try {
-        $response = $app->resource->{$request->method}->uri($request->path)($request->query);
-        /* @var ResourceObject $response */
-        $response->transfer($app->responder, $_SERVER);
+return
+    /**
+     * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals $GLOBALS
+     * @param array<string, mixed>                                                         $server  $_SERVER
+     *
+     * @return 0|1
+     */
+    function (string $context, array $globals, array $server) : int {
+        $app = (Injector::getInstance($context))->getInstance(AppInterface::class);
+        assert($app instanceof App);
+        if ($app->httpCache->isNotModified($server)) {
+            $app->httpCache->transfer();
 
-        return 0;
-    } catch (\Exception $e) {
-        $app->error->handle($e, $request)->transfer();
+            return 0;
+        }
+        try {
+            $request = $app->router->match($globals, $server);
+            $response = $app->resource->{$request->method}->uri($request->path)($request->query);
+            $response->transfer($app->responder, $server);
 
-        return 1;
-    }
-};
+            return 0;
+        } catch (Exception $e) {
+            $app->error->handle($e, $request ?? new NullMatch)->transfer();
+
+            return 1;
+        }
+    };

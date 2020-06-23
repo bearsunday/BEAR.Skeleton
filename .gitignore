@@ -2,6 +2,7 @@
 .php_cs
 .php_cs.cache
 .DS_Store
+.phpunit.result.cache
 /.idea/
 /vendor/
 /build/

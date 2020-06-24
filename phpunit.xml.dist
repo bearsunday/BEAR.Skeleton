@@ -1,15 +1,19 @@
-<phpunit bootstrap="./vendor/autoload.php">
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="Resource Tests">
-            <directory suffix="Test.php">tests</directory>
+        <testsuite name="Resource Test Suite">
+            <directory suffix="Test.php">tests/Resource</directory>
+        </testsuite>
+        <testsuite name="Hypermedia Test Suite">
+            <directory suffix="Test.php">tests/Hypermedia</directory>
+        </testsuite>
+        <testsuite name="HTTP Test Suite">
+            <directory suffix="Test.php">tests/Http</directory>
         </testsuite>
     </testsuites>
     <php>
         <ini name="error_reporting" value="-1" />
     </php>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
 </phpunit>

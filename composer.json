@@ -9,6 +9,7 @@
         "symfony/dotenv": "^5.0"
     },
     "require-dev": {
+        "bear/devtools": "0.1.0",
         "bear/qatools": "^1.9.6",
         "roave/security-advisories": "dev-master"
     },

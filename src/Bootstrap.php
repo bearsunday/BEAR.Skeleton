@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BEAR\Skeleton;
 
 use BEAR\Skeleton\Module\App;
@@ -11,11 +13,11 @@ final class Bootstrap
 {
     /**
      * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals $GLOBALS
-     * @param array<string, mixed> $server $_SERVER
+     * @param array<string, mixed>                                                         $server  $_SERVER
      *
      * @return 0|1
      */
-    public function __invoke(string $context, array $globals, array $server): int
+    public function __invoke(string $context, array $globals, array $server) : int
     {
         $app = (Injector::getInstance($context))->getInstance(AppInterface::class);
         assert($app instanceof App);

@@ -13,7 +13,7 @@ final class Bootstrap
 {
     /**
      * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals $GLOBALS
-     * @param array<string, mixed>                                                         $server  $_SERVER
+     * @param array{HTTP_IF_NONE_MATCH?: string}                                           $server  $_SERVER
      *
      * @return 0|1
      */

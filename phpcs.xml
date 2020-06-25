@@ -18,6 +18,7 @@
         <exclude name="PEAR.Commenting.FunctionComment.MissingReturn"/>
         <exclude name="PEAR.Commenting.FunctionComment.ParameterCommentsNotAligned"/>
         <exclude name="PEAR.Commenting.FileComment.Missing"/>
+        <exclude name="PEAR.Commenting.FunctionComment.ParamNameNoMatch"/>
     </rule>
     <file>src</file>
     <file>tests</file>

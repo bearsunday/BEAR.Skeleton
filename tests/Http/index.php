@@ -1,6 +1,8 @@
 <?php
-/**
- * HTTP test server script
- */
+
+declare(strict_types=1);
+
+use BEAR\Skeleton\Bootstrap;
+
 require dirname(__DIR__, 2) . '/vendor/autoload.php';
-exit((require dirname(__DIR__, 2) . '/bootstrap.php')('prod-hal-app', $GLOBALS, $_SERVER));
+exit((new Bootstrap)('hal-app', $GLOBALS, $_SERVER));

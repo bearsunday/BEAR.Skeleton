@@ -18,5 +18,10 @@
                 <directory name="src/Resource"/>
             </errorLevel>
         </MissingConstructor>
+        <DocblockTypeContradiction>
+            <errorLevel type="suppress">
+                <file name="src/Bootstrap.php"/>
+            </errorLevel>
+        </DocblockTypeContradiction>
     </issueHandlers>
 </psalm>

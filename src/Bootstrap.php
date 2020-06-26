@@ -12,8 +12,8 @@ use Exception;
 final class Bootstrap
 {
     /**
-     * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals $GLOBALS
-     * @param array{HTTP_IF_NONE_MATCH?: string}                                           $server  $_SERVER
+     * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals
+     * @param array{HTTP_IF_NONE_MATCH?: string}                                           $server
      *
      * @return 0|1
      */

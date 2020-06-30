@@ -15,8 +15,10 @@
     </testsuites>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true" addUncoveredFilesFromWhitelist="false">
-            <directory suffix=".php">src/Module</directory>
-            <directory suffix=".php">src/Resource</directory>
+            <directory suffix=".php">src</directory>
+            <exclude>
+                <file>src/Bootstrap.php</file>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

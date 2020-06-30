@@ -3,16 +3,19 @@
          xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php">
     <testsuites>
-        <testsuite name="Resource Test Suite">
+        <testsuite name="Resource">
             <directory suffix="Test.php">tests/Resource</directory>
         </testsuite>
-        <testsuite name="Hypermedia Test Suite">
+        <testsuite name="Hypermedia">
             <directory suffix="Test.php">tests/Hypermedia</directory>
         </testsuite>
-        <testsuite name="HTTP Test Suite">
+        <testsuite name="HTTP">
             <directory suffix="Test.php">tests/Http</directory>
         </testsuite>
     </testsuites>
+    <logging>
+        <log/>
+    </logging>
     <php>
         <ini name="error_reporting" value="-1" />
     </php>

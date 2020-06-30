@@ -6,14 +6,20 @@ namespace BEAR\Skeleton;
 
 use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
-use BEAR\Sunday\Extension\Router\NullMatch;
+use BEAR\Sunday\Extension\Router\RouterInterface;
 use Exception;
 
+/**
+ * @psalm-import-type Globals from RouterInterface
+ * @psalm-import-type Server from RouterInterface
+ */
 final class Bootstrap
 {
     /**
-     * @param array{_GET: array<string, string|array>, _POST: array<string, string|array>} $globals $GLOBALS
-     * @param array{HTTP_IF_NONE_MATCH?: string}                                           $server  $_SERVER
+     * @psalm-param Globals $globals
+     * @psalm-param Server  $server
+     * @phpstan-param array<string, mixed> $globals
+     * @phpstan-param array<string, mixed> $server
      *
      * @return 0|1
      */
@@ -26,14 +32,14 @@ final class Bootstrap
 
             return 0;
         }
+        $request = $app->router->match($globals, $server);
         try {
-            $request = $app->router->match($globals, $server);
             $response = $app->resource->{$request->method}->uri($request->path)($request->query);
             $response->transfer($app->responder, $server);
 
             return 0;
         } catch (Exception $e) {
-            $app->error->handle($e, $request ?? new NullMatch)->transfer();
+            $app->error->handle($e, $request)->transfer();
 
             return 1;
         }

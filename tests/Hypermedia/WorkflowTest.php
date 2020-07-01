@@ -28,13 +28,13 @@ class WorkflowTest extends TestCase
      */
     private $dbProfile;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $this->injector = Injector::getInstance('app');
         $this->resource = $this->injector->getInstance(ResourceInterface::class);
     }
 
-    public function testIndex() : ResourceObject
+    public function testIndex(): ResourceObject
     {
         $index = $this->resource->get('/index');
         $this->assertSame(200, $index->code);

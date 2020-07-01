@@ -18,3 +18,4 @@
 phpunit.xml
 /docs/api/
 autoload.php
+.phpcs-cache

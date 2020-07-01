@@ -9,6 +9,9 @@ use Ray\Di\InjectorInterface;
 
 final class Injector
 {
+    /**
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }

@@ -12,6 +12,7 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <!-- suppress -->
     <issueHandlers>
         <MissingConstructor>
             <errorLevel type="suppress">
@@ -20,3 +21,4 @@
         </MissingConstructor>
     </issueHandlers>
 </psalm>
+

@@ -1,6 +1,4 @@
 .env
-.php_cs
-.php_cs.cache
 .DS_Store
 .phpunit.result.cache
 /.idea/
@@ -18,4 +16,5 @@
 phpunit.xml
 /docs/api/
 autoload.php
+.phpcs.xml
 .phpcs-cache

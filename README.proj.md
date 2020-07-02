@@ -6,6 +6,10 @@
 
 ## Usage
 
+### Run Request
+
+    composer page get /
+
 ### Run server
 
     composer serve
@@ -17,3 +21,6 @@
     composer coverage // test coverage
     composer cs-fix   // fix the coding standard
 
+### List more commands
+
+    composer run-script --list

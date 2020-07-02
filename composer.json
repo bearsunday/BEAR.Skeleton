@@ -44,15 +44,15 @@
     },
     "scripts-descriptions": {
         "setup": "Setup the project",
-        "compile": "Compile autoload and DI scripts",
+        "compile": "Compile scripts for the production. See http://bearsunday.github.io/manuals/1.0/en/production.html",
         "test": "Run unit tests",
         "tests": "Run tests and quality checks",
         "coverage": "Generate test coverage report",
         "pcov": "Generate test coverage report (pcov)",
         "cs": "Checks the coding standard",
         "cs-fix": "Fix the coding standard",
-        "qa": "Analyse code quality",
-        "serve": "Start php built-in server",
+        "qa": "Run quality checks",
+        "serve": "Start built-in server",
         "app": "Request app resource",
         "page": "Request page resource"
     },

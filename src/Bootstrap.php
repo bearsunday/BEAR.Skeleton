@@ -6,6 +6,8 @@ namespace BEAR\Skeleton;
 
 use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
+use Error;
+use ErrorException;
 use Exception;
 
 use function assert;
@@ -42,6 +44,11 @@ final class Bootstrap
             return 0;
         } catch (Exception $e) {
             $app->error->handle($e, $request)->transfer();
+
+            return 1;
+        } catch (Error $e) {
+            $error = new ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
+            $app->error->handle($error, $request)->transfer();
 
             return 1;
         }

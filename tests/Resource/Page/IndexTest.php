@@ -10,18 +10,16 @@ use PHPUnit\Framework\TestCase;
 
 class IndexTest extends TestCase
 {
-    /**
-     * @var ResourceInterface
-     */
+    /** @var ResourceInterface */
     private $resource;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         $injector = Injector::getInstance('app');
         $this->resource = $injector->getInstance(ResourceInterface::class);
     }
 
-    public function testOnGet() : void
+    public function testOnGet(): void
     {
         $ro = $this->resource->get('page://self/index', ['name' => 'BEAR.Sunday']);
         $this->assertSame(200, $ro->code);

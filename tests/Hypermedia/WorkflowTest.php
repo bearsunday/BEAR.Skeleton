@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BEAR\Skeleton\Hypermedia;
 
-use BEAR\Dev\Db\DbProfile;
 use BEAR\Resource\ResourceInterface;
 use BEAR\Resource\ResourceObject;
 use BEAR\Skeleton\Injector;
@@ -13,20 +12,11 @@ use Ray\Di\InjectorInterface;
 
 class WorkflowTest extends TestCase
 {
-    /**
-     * @var ResourceInterface
-     */
+    /** @var ResourceInterface */
     protected $resource;
 
-    /**
-     * @var InjectorInterface
-     */
+    /** @var InjectorInterface */
     protected $injector;
-
-    /**
-     * @var DbProfile
-     */
-    private $dbProfile;
 
     protected function setUp(): void
     {

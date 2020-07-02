@@ -6,7 +6,7 @@
 
 ## Usage
 
-### Run Request
+### Run request
 
     composer page get /
 

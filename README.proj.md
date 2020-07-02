@@ -21,6 +21,6 @@
     composer coverage // test coverage
     composer cs-fix   // fix the coding standard
 
-### List more commands
+### List all commands
 
     composer run-script --list

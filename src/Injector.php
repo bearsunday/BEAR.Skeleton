@@ -7,6 +7,8 @@ namespace BEAR\Skeleton;
 use BEAR\Package\Injector as PackageInjector;
 use Ray\Di\InjectorInterface;
 
+use function dirname;
+
 final class Injector
 {
     /**
@@ -16,7 +18,7 @@ final class Injector
     {
     }
 
-    public static function getInstance(string $context) : InjectorInterface
+    public static function getInstance(string $context): InjectorInterface
     {
         return PackageInjector::getInstance(__NAMESPACE__, $context, dirname(__DIR__));
     }

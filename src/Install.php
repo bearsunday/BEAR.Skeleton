@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace BEAR\Skeleton;
 
-use function array_merge;
 use Closure;
 use Composer\Factory;
 use Composer\IO\IOInterface;
@@ -14,9 +13,24 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
 
+use function array_merge;
+use function chmod;
+use function dirname;
+use function file_get_contents;
+use function file_put_contents;
+use function in_array;
+use function is_dir;
+use function is_writable;
+use function preg_replace;
+use function rename;
+use function sprintf;
+use function str_replace;
+use function strtolower;
+use function unlink;
+
 final class Install
 {
-    public function __invoke(Event $event) : void
+    public function __invoke(Event $event): void
     {
         $io = $event->getIO();
         $vendor = $this->ask($io, 'What is the vendor name ?', 'MyVendor');
@@ -30,28 +44,29 @@ final class Install
         unlink(__FILE__);
     }
 
-    private function ask(IOInterface $io, string $question, string $default) : string
+    private function ask(IOInterface $io, string $question, string $default): string
     {
         $ask = sprintf("\n<question>%s</question>\n\n(<comment>%s</comment>):", $question, $default);
 
         return $io->ask($ask, $default);
     }
 
-    private function recursiveJob(string $path, callable $job) : void
+    private function recursiveJob(string $path, callable $job): void
     {
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
             if (! in_array($file->getExtension(), ['php', 'md'], true)) {
                 continue;
             }
+
             $job($file);
         }
     }
 
     /**
-     * @return array<string, array>
+     * @return array<string, string|array>
      */
-    private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json) : array
+    private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json): array
     {
         $composerJson = $json->read();
         $composerJson = array_merge($composerJson, [
@@ -60,29 +75,30 @@ final class Install
             'description' => '',
             'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
-            'scripts' => array_merge($composerJson['scripts'], ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"])
+            'scripts' => array_merge($composerJson['scripts'], ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"]),
         ]);
         unset(
             $composerJson['autoload']['files'],
             $composerJson['scripts']['pre-install-cmd'],
             $composerJson['scripts']['pre-update-cmd'],
             $composerJson['scripts']['post-create-project-cmd'],
-            $composerJson['require-dev']['composer/composer']
+            $composerJson['require-dev']['composer/composer'],
         );
 
         return $composerJson;
     }
 
     /**
-     * @psalm-return \Closure(\SplFileInfo):void
+     * @psalm-return Closure(SplFileInfo ): void
      */
-    private function rename(string $vendor, string $package) : Closure
+    private function rename(string $vendor, string $package): Closure
     {
-        $jobRename = function (SplFileInfo $file) use ($vendor, $package) : void {
+        return static function (SplFileInfo $file) use ($vendor, $package): void {
             $file = (string) $file;
             if (is_dir($file) || ! is_writable($file)) {
                 return;
             }
+
             $contents = (string) file_get_contents($file);
             $contents = str_replace(
                 ['BEAR.Skeleton', 'BEAR\Skeleton', 'bear/skeleton'],
@@ -91,16 +107,14 @@ final class Install
             );
             file_put_contents($file, $contents);
         };
-
-        return $jobRename;
     }
 
-    private function camel2dashed(string $name) : string
+    private function camel2dashed(string $name): string
     {
         return strtolower((string) preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 
-    private function modifyFiles(string $vendor, string $project) : void
+    private function modifyFiles(string $vendor, string $project): void
     {
         $projectRoot = dirname(__DIR__);
         chmod($projectRoot . '/var/tmp', 0775);

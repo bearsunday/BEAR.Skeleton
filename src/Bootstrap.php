@@ -42,13 +42,13 @@ final class Bootstrap
             $response->transfer($app->responder, $server);
 
             return 0;
-        } catch (Exception $e) {
-            $app->error->handle($e, $request)->transfer();
-
-            return 1;
         } catch (Error $e) {
             $error = new ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
             $app->error->handle($error, $request)->transfer();
+
+            return 1;
+        } catch (Exception $e) {
+            $app->error->handle($e, $request)->transfer();
 
             return 1;
         }

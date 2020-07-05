@@ -14,7 +14,7 @@ final class Injector
     /**
      * @codeCoverageIgnore
      */
-    private function __construct()
+    final private function __construct()
     {
     }
 

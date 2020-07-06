@@ -82,7 +82,7 @@ final class Install
             $composerJson['scripts']['pre-install-cmd'],
             $composerJson['scripts']['pre-update-cmd'],
             $composerJson['scripts']['post-create-project-cmd'],
-            $composerJson['require-dev']['composer/composer'],
+            $composerJson['require-dev']['composer/composer']
         );
 
         return $composerJson;

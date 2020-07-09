@@ -1,8 +1,10 @@
 <?xml version="1.0"?>
 <ruleset
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="bearcs"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd">
-
+        name ="BEAR.Sunday"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
+>
+    <description>The BEAR.Sunday coding standard</description>
     <arg name="basepath" value="."/>
     <arg name="extensions" value="php"/>
     <arg name="parallel" value="80"/>
@@ -48,21 +50,10 @@
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
         <properties>
             <property name="annotationsGroups" type="array">
-                <element value="
-				@Inject,
-				@Named,
-			"/>
-                <element value="
-				@var,
-				@param,
-			"/>
-                <element value="
-				@return,
-			"/>
-                <element value="
-				@psalm-param,
-				@phpstan-param,
-			"/>
+                <element value="@param, @psalm-param, @phpstan-param"/>
+                <element value="@return, @psalm-return, @phpstan-return"/>
+                <element value="@Inject, @Named"/>
+                <element value="@throws"/>
             </property>
         </properties>
     </rule>

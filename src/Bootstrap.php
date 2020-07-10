@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace MyVendor\MyProject;
+namespace BEAR\Skeleton;
 
 use BEAR\Sunday\Extension\Application\AppInterface;
 use Error;
 use ErrorException;
 use Exception;
-use MyVendor\MyProject\Module\App;
+use BEAR\Skeleton\Module\App;
 
 use function assert;
 

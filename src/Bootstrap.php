@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace BEAR\Skeleton;
 
-use BEAR\Sunday\Extension\Application\AppInterface;
-use Error;
-use ErrorException;
-use Exception;
 use BEAR\Skeleton\Module\App;
+use BEAR\Sunday\Extension\Application\AppInterface;
+use Throwable;
 
 use function assert;
-
-use const E_ERROR;
 
 /**
  * @psalm-import-type Globals from \BEAR\Sunday\Extension\Router\RouterInterface
@@ -21,12 +17,12 @@ use const E_ERROR;
 final class Bootstrap
 {
     /**
-     * @return 0|1
-     *
      * @psalm-param Globals $globals
      * @psalm-param Server  $server
      * @phpstan-param array<string, mixed> $globals
      * @phpstan-param array<string, mixed> $server
+     *
+     * @return 0|1
      */
     public function __invoke(string $context, array $globals, array $server): int
     {
@@ -44,13 +40,8 @@ final class Bootstrap
             $response->transfer($app->responder, $server);
 
             return 0;
-        } catch (Error $e) {
-            $error = new ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
-            $app->error->handle($error, $request)->transfer();
-
-            return 1;
-        } catch (Exception $e) {
-            $app->error->handle($e, $request)->transfer();
+        } catch (Throwable $e) {
+            $app->throwableHandler->handle($e, $request)->transfer();
 
             return 1;
         }

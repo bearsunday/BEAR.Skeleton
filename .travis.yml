@@ -18,8 +18,9 @@ before_install:
   - composer self-update
 
 install:
-  - composer update --no-scripts
+  - composer update -n
   - composer dump-autoload
 
 script:
+  - phpunit --testsuite Resource,Hypermedia
   - php bin/page.php get /

@@ -5,14 +5,9 @@ declare(strict_types=1);
 namespace BEAR\Skeleton;
 
 use BEAR\Sunday\Extension\Application\AppInterface;
-use Error;
-use ErrorException;
-use Exception;
 use Throwable;
 
 use function assert;
-
-use const E_ERROR;
 
 /**
  * @psalm-import-type Globals from \BEAR\Sunday\Extension\Router\RouterInterface
@@ -22,12 +17,12 @@ use const E_ERROR;
 final class Bootstrap
 {
     /**
-     * @return 0|1
-     *
      * @psalm-param Globals $globals
      * @psalm-param Server  $server
      * @phpstan-param array<string, mixed> $globals
      * @phpstan-param array<string, mixed> $server
+     *
+     * @return 0|1
      */
     public function __invoke(string $context, array $globals, array $server): int
     {

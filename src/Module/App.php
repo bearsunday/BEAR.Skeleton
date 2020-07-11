@@ -6,7 +6,6 @@ namespace BEAR\Skeleton\Module;
 
 use BEAR\Resource\ResourceInterface;
 use BEAR\Sunday\Extension\Application\AppInterface;
-use BEAR\Sunday\Extension\Error\ErrorInterface;
 use BEAR\Sunday\Extension\Error\ThrowableHandlerInterface;
 use BEAR\Sunday\Extension\Router\RouterInterface;
 use BEAR\Sunday\Extension\Transfer\HttpCacheInterface;
@@ -34,8 +33,7 @@ final class App implements AppInterface
         RouterInterface $router,
         TransferInterface $responder,
         ResourceInterface $resource,
-        ThrowableHandlerInterface $throwableHandler,
-        ErrorInterface $error
+        ThrowableHandlerInterface $throwableHandler
     ) {
         $this->httpCache = $httpCache;
         $this->router = $router;

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset
-        name ="BEAR.Sunday"
+        name="BEAR.Sunday"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
 >
@@ -23,9 +23,7 @@
     <rule ref="PSR12"/>
 
     <!-- Doctrine Coding Standard -->
-    <rule ref="Doctrine">
-
-        <!-- Inapplicable for this project -->
+    <rule ref="./vendor/doctrine/coding-standard/lib/Doctrine/ruleset.xml">
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame"/>
         <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar"/>
         <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
@@ -34,11 +32,9 @@
         <exclude name="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable"/>
         <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
         <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint"/>
-
-        <!-- Directories not to be checked -->
         <exclude-pattern>*/tests/Fake/*</exclude-pattern>
     </rule>
-    
+
     <!-- Require specific order of phpDoc annotations with empty newline between specific groups -->
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
         <properties>
@@ -49,5 +45,9 @@
                 <element value="@throws"/>
             </property>
         </properties>
+    </rule>
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
+        <include-pattern>src/Module/*</include-pattern>
+        <include-pattern>tests/*</include-pattern>
     </rule>
 </ruleset>

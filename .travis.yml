@@ -22,5 +22,5 @@ install:
   - composer dump-autoload
 
 script:
-  - composer tests
+  - composer test
   - php bin/page.php get /

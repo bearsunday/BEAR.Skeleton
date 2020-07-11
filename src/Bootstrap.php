@@ -14,7 +14,6 @@ use function assert;
  * @psalm-import-type Globals from \BEAR\Sunday\Extension\Router\RouterInterface
  * @psalm-import-type Server from \BEAR\Sunday\Extension\Router\RouterInterface
  */
-
 final class Bootstrap
 {
     /**

@@ -9,6 +9,7 @@ use BEAR\Sunday\Extension\Application\AppInterface;
 use Error;
 use ErrorException;
 use Exception;
+use Throwable;
 
 use function assert;
 
@@ -16,6 +17,7 @@ use function assert;
  * @psalm-import-type Globals from \BEAR\Sunday\Extension\Router\RouterInterface
  * @psalm-import-type Server from \BEAR\Sunday\Extension\Router\RouterInterface
  */
+
 final class Bootstrap
 {
     /**
@@ -42,13 +44,8 @@ final class Bootstrap
             $response->transfer($app->responder, $server);
 
             return 0;
-        } catch (Error $e) {
-            $error = new ErrorException($e->getMessage(), $e->getCode(), E_ERROR, $e->getFile(), $e->getLine());
-            $app->error->handle($error, $request)->transfer();
-
-            return 1;
-        } catch (Exception $e) {
-            $app->error->handle($e, $request)->transfer();
+        } catch (Throwable $e) {
+            $app->throwableHandler->handle($e, $request)->transfer();
 
             return 1;
         }

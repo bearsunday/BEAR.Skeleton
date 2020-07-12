@@ -24,5 +24,6 @@ final class Composer
         exec(dirname(__DIR__) . '/vendor/bin/phpcbf');
         passthru(dirname(__DIR__) . '/vendor/bin/composer dump-autoload --quiet');
         $event->getIO()->write('<info>Thank you for installing BEAR.Sunday.</info>');
+        $event->getIO()->write('<info>Read the README to run your application.</info>');
     }
 }

@@ -21,11 +21,13 @@ use function file_put_contents;
 use function in_array;
 use function is_dir;
 use function is_writable;
+use function phpversion;
 use function preg_replace;
 use function rename;
 use function sprintf;
 use function str_replace;
 use function strtolower;
+use function substr;
 use function unlink;
 
 final class Install
@@ -69,7 +71,9 @@ final class Install
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json): array
     {
         $composerJson = $json->read();
-        $composerJson = array_merge($composerJson, [
+        $require = ['php' => sprintf('>=%s.0', substr(phpversion(), 0, 3))] + (array) $composerJson['require'];
+        $composerJson = array_merge_recursive($composerJson, [
+            'require' => $require,
             'license' => 'proprietary',
             'name' => $packageName,
             'description' => '',

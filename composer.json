@@ -39,7 +39,7 @@
         "cs": "phpcs",
         "cs-fix": "phpcbf",
         "qa": ["phpmd src text ./phpmd.xml", "phpstan analyse -c phpstan.neon --no-progress", "psalm --no-progress"],
-        "metrics": "phpmetrics --config=./phpmetrics.json",
+        "metrics": "phpmetrics --junit=build/coverage/junit.xml --config=./phpmetrics.json",
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
         "page": "php bin/page.php"

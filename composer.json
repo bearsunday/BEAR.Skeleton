@@ -9,6 +9,7 @@
         "symfony/dotenv": "^5.0"
     },
     "require-dev": {
+        "ext-json": "*",
         "bear/devtools": "0.1.0",
         "bear/qatools": "^1.9.9",
         "composer/composer": "^1.10",

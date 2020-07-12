@@ -6,11 +6,11 @@
 
 ## Usage
 
-### Invoke request
+### Invoke Request
 
     composer page get /
 
-### Command
+### Available Commands
 
     composer serve             // start builtin server
     composer test              // run unit test

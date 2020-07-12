@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BEAR\Skeleton;
 
+use BEAR\Resource\ResourceObject;
 use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
 use Throwable;
@@ -37,6 +38,7 @@ final class Bootstrap
         $request = $app->router->match($globals, $server);
         try {
             $response = $app->resource->{$request->method}->uri($request->path)($request->query);
+            assert($response instanceof ResourceObject);
             $response->transfer($app->responder, $server);
 
             return 0;

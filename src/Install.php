@@ -71,9 +71,8 @@ final class Install
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json): array
     {
         $composerJson = $json->read();
-        $require = ['php' => sprintf('>=%s.0', substr(phpversion(), 0, 3))] + (array) $composerJson['require'];
         $composerJson = array_merge($composerJson, [
-            'require' => $require,
+            'require' => ['php' => sprintf('>=%s.0', substr(phpversion(), 0, 3))] + (array) $composerJson['require'],
             'license' => 'proprietary',
             'name' => $packageName,
             'description' => '',
@@ -88,7 +87,6 @@ final class Install
             $composerJson['autoload']['files'],
             $composerJson['scripts']['pre-install-cmd'],
             $composerJson['scripts']['pre-update-cmd'],
-            $composerJson['scripts']['post-create-project-cmd'],
             $composerJson['require-dev']['composer/composer']
         );
 

@@ -34,11 +34,12 @@
         "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",
         "test": "phpunit",
         "tests": ["@cs", "@qa", "@test"],
-        "coverage": "php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage",
-        "pcov": "php -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage",
+        "coverage": "php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage --log-junit=build/coverage/junit.xml",
+        "pcov": "php -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage --log-junit=build/coverage/junit.xml",
         "cs": "phpcs",
         "cs-fix": "phpcbf",
         "qa": ["phpmd src text ./phpmd.xml", "phpstan analyse -c phpstan.neon --no-progress", "psalm --no-progress"],
+        "metrics": "phpmetrics --config=./phpmetrics.json",
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
         "page": "php bin/page.php"
@@ -53,6 +54,7 @@
         "cs": "Checks the coding standard",
         "cs-fix": "Fix the coding standard",
         "qa": "Run quality checks",
+        "metrics": "Build metrics report",
         "serve": "Start built-in server",
         "app": "Request app resource",
         "page": "Request page resource"

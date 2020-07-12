@@ -21,11 +21,13 @@ use function file_put_contents;
 use function in_array;
 use function is_dir;
 use function is_writable;
+use function phpversion;
 use function preg_replace;
 use function rename;
 use function sprintf;
 use function str_replace;
 use function strtolower;
+use function substr;
 use function unlink;
 
 final class Install
@@ -70,18 +72,21 @@ final class Install
     {
         $composerJson = $json->read();
         $composerJson = array_merge($composerJson, [
+            'require' => ['php' => sprintf('>=%s.0', substr(phpversion(), 0, 3))] + (array) $composerJson['require'],
             'license' => 'proprietary',
             'name' => $packageName,
             'description' => '',
             'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
-            'scripts' => array_merge($composerJson['scripts'], ['compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./"]),
+            'scripts' => array_merge($composerJson['scripts'], [
+                'compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./",
+                'post-update-cmd' => '@setup'
+            ]),
         ]);
         unset(
             $composerJson['autoload']['files'],
             $composerJson['scripts']['pre-install-cmd'],
             $composerJson['scripts']['pre-update-cmd'],
-            $composerJson['scripts']['post-create-project-cmd'],
             $composerJson['require-dev']['composer/composer']
         );
 
@@ -111,7 +116,7 @@ final class Install
 
     private function camel2dashed(string $name): string
     {
-        return strtolower((string) preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
+        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
     }
 
     private function modifyFiles(string $vendor, string $project): void

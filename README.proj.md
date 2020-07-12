@@ -6,21 +6,19 @@
 
 ## Usage
 
-### Run request
+### Invoke Request
 
     composer page get /
 
-### Run server
+### Available Commands
 
-    composer serve
+    composer serve             // start builtin server
+    composer test              // run unit test
+    composer tests             // test and quality checks
+    composer coverage          // test coverage
+    composer cs-fix            // fix the coding standard
+    composer run-script --list // list all commands
+    
+## Links
 
-### QA
-
-    composer test     // run unit test
-    composer tests    // run test and quality checks
-    composer coverage // test coverage
-    composer cs-fix   // fix the coding standard
-
-### List all commands
-
-    composer run-script --list
+ * BEAR.Sunday http://bearsunday.github.io/

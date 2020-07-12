@@ -13,6 +13,8 @@
 !/var/tmp/di/
 /var/tmp/di/*
 !var/tmp/di/.gitkeep
+/tests/Http/log/*
+!/tests/Http/log/.gitkeep
 phpunit.xml
 /docs/api/
 autoload.php

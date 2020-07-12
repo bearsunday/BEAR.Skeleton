@@ -35,10 +35,10 @@ class WorkflowTest extends TestCase
 //    /**
 //     * @depends testIndex
 //     */
-//    public function testRelx(ResourceObject $response) : ResourceObject
+//    public function testRelFoo(ResourceObject $response): ResourceObject
 //    {
 //        $json = (string) $response;
-//        $href = json_decode($json)->_links->{'name:rel'}->href;
+//        $href = json_decode($json)->_links->{'name:foo'}->href;
 //        $ro = $this->resource->get($href);
 //        $this->assertSame(200, $ro->code);
 //

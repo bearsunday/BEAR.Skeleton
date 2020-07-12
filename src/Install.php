@@ -81,7 +81,7 @@ final class Install
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
             'scripts' => array_merge($composerJson['scripts'], [
                 'compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./",
-                'post-update' => '@setup'
+                'post-update-cmd' => '@setup'
             ]),
         ]);
         unset(

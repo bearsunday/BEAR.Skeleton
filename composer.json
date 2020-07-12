@@ -11,6 +11,7 @@
     "require-dev": {
         "bear/devtools": "0.1.0",
         "bear/qatools": "^1.9.9",
+        "composer/composer": "^1.10",
         "doctrine/coding-standard": "^8.1",
         "roave/security-advisories": "dev-master"
     },
@@ -26,7 +27,7 @@
     },
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-create-project-cmd": ["./vendor/bin/phpcbf -q > /dev/null || true", "composer dump-autoload --quiet"],
+        "post-create-project-cmd": ["BEAR\\Skeleton\\Composer::postInstall"],
         "post-install-cmd": ["@setup"],
         "post-update-cmd": ["@setup"],
         "setup": ["php bin/setup.php"],

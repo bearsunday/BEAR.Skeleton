@@ -116,7 +116,7 @@ final class Install
 
     private function camel2dashed(string $name): string
     {
-        return strtolower(preg_replace('/([a-zA-Z])(?=[A-Z])/', '$1-', $name));
+        return strtolower(preg_replace('/([^A-Z-])([A-Z])/', '$1-$2', $name));
     }
 
     private function modifyFiles(string $vendor, string $project): void

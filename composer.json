@@ -27,9 +27,7 @@
     },
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-create-project-cmd": "BEAR\\Skeleton\\Composer::postInstall",
-        "post-install-cmd": "@setup",
-        "post-update-cmd": "@setup",
+        "post-update-cmd": "BEAR\\Skeleton\\Composer::postInstall",
         "setup": "php bin/setup.php",
         "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",
         "test": "phpunit",

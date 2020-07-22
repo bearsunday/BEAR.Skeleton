@@ -6,7 +6,7 @@ This is a skeleton app which can be used a base for your own BEAR.Sunday applica
 
 The documentation available at http://bearsunday.github.io/
 
-## Testing
+(How to test the skeleton itself)
 
 1. Make sure every files are commited.
 2. Run `composer update` to emulate `create-project`.

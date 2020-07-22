@@ -2,11 +2,22 @@
 
 [![Build Status](https://travis-ci.org/bearsunday/BEAR.Skeleton.svg?branch=1.x)](https://travis-ci.org/bearsunday/BEAR.Skeleton)
 
-This is a skeleton app which can be used a base for your own BEAR.Sunday applications.
+# Introduction
 
-The documentation available at http://bearsunday.github.io/
+This is a skeleton application using the BEAR.Sunday framework.
 
-(How to test the skeleton itself)
+
+# Installation using Composer
+
+To create your new BEAR.Sunday project:
+
+```
+composer create-project bear/skeleton path/to/install
+```
+
+* Documentation http://bearsunday.github.io/
+
+## How to test the skeleton itself
 
 1. Make sure every files are commited.
 2. Run `composer update` to emulate `create-project`.

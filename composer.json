@@ -10,8 +10,8 @@
     },
     "require-dev": {
         "ext-json": "*",
-        "bear/devtools": "0.1.0",
-        "bear/qatools": "^1.9.9",
+        "bear/devtools": "^0.1",
+        "bear/qatools": "^1.9",
         "composer/composer": "^1.10",
         "doctrine/coding-standard": "^8.1",
         "roave/security-advisories": "dev-master"

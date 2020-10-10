@@ -5,8 +5,12 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": ">=7.2.0",
+        "bear/dotenv": "^1.0",
         "bear/package": "^1.10",
-        "bear/dotenv": "^1.0"
+        "bear/resource": "^1.14",
+        "bear/sunday": "^1.5",
+        "ray/aop": "^2.9",
+        "ray/di": "^2.10"
     },
     "require-dev": {
         "ext-json": "*",

@@ -1,5 +1,6 @@
 language: php
-sudo: false
+
+dist: bionic
 
 php:
   - 7.2
@@ -8,13 +9,15 @@ php:
 
 cache:
   directories:
-    - vendor
+    - ./vendor
     - $HOME/.composer/cache
 
 matrix:
   fast_finish: true
 
 before_install:
+  - phpenv config-rm xdebug.ini || true
+  - composer validate
   - composer self-update
 
 install:
@@ -24,3 +27,13 @@ install:
 script:
   - phpunit --testsuite Resource,Hypermedia
   - php bin/page.php get /
+
+jobs:
+  fast_finish: true
+  include:
+    - stage: Test
+      name: PHP 8
+      php: nightly
+      install:
+        - composer update -n --ignore-platform-reqs
+        - composer dump-autoload

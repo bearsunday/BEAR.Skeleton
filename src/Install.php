@@ -128,5 +128,6 @@ final class Install
         $this->recursiveJob((string) $projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
+        rename($projectRoot . '/.gitattributes.txt', $projectRoot . '/.gitattributes');
     }
 }

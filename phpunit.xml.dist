@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php">
-    <testsuites>
-        <testsuite name="Resource">
-            <directory suffix="Test.php">tests/Resource</directory>
-        </testsuite>
-        <testsuite name="Hypermedia">
-            <directory suffix="Test.php">tests/Hypermedia</directory>
-        </testsuite>
-        <testsuite name="HTTP">
-            <directory suffix="Test.php">tests/Http</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true" addUncoveredFilesFromWhitelist="false">
-            <directory suffix=".php">src</directory>
-            <exclude>
-                <file>src/Bootstrap.php</file>
-            </exclude>
-        </whitelist>
-    </filter>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" bootstrap="vendor/autoload.php">
+  <coverage includeUncoveredFiles="false" processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+    <exclude>
+      <file>src/Bootstrap.php</file>
+    </exclude>
+  </coverage>
+  <testsuites>
+    <testsuite name="resource">
+      <directory suffix="Test.php">tests/Resource</directory>
+    </testsuite>
+    <testsuite name="hypermedia">
+      <directory suffix="Test.php">tests/Hypermedia</directory>
+    </testsuite>
+    <testsuite name="http">
+      <directory suffix="Test.php">tests/Http</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

@@ -15,9 +15,8 @@
     "require-dev": {
         "ext-json": "*",
         "bear/devtools": "^0.1",
-        "bear/qatools": "^1.9",
+        "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^1.10",
-        "doctrine/coding-standard": "^8.1",
         "roave/security-advisories": "dev-master"
     },
     "autoload": {

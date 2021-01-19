@@ -80,6 +80,7 @@ final class Install
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
             'scripts' => array_merge($composerJson['scripts'], [
                 'compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./",
+                'post-install-cmd' => ['@composer bin all install --ansi'],
                 'post-update-cmd' => '@setup'
             ]),
         ]);

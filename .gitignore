@@ -18,5 +18,6 @@
 phpunit.xml
 /docs/api/
 autoload.php
-.phpcs.xml
-.phpcs-cache
+/.phpcs.xml
+/.phpcs-cache
+/vendor-bin/tools/vendor/

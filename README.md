@@ -1,6 +1,5 @@
 # BEAR.Skeleton
 
-[![Build Status](https://travis-ci.org/bearsunday/BEAR.Skeleton.svg?branch=1.x)](https://travis-ci.org/bearsunday/BEAR.Skeleton)
 
 # Introduction
 

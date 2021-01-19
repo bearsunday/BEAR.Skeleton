@@ -17,6 +17,7 @@
         "bear/devtools": "^0.1",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^1.10",
+        "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-master"
     },
     "autoload": {

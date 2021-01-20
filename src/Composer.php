@@ -7,6 +7,7 @@ namespace BEAR\Skeleton;
 use Composer\Script\Event;
 
 use function dirname;
+use function exec;
 use function passthru;
 use function unlink;
 

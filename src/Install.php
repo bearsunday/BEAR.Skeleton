@@ -72,7 +72,7 @@ final class Install
     {
         $composerJson = $json->read();
         $composerJson = array_merge($composerJson, [
-            'require' => ['php' => sprintf('>=%s.0', substr(phpversion(), 0, 3))] + (array) $composerJson['require'],
+            'require' => ['php' => sprintf('>=%s.0', substr((string) phpversion(), 0, 3))] + (array) $composerJson['require'],
             'license' => 'proprietary',
             'name' => $packageName,
             'description' => '',
@@ -81,7 +81,7 @@ final class Install
             'scripts' => array_merge($composerJson['scripts'], [
                 'compile' => "bear.compile '{$vendor}\\{$package}' prod-app ./",
                 'post-install-cmd' => ['@composer bin all install --ansi'],
-                'post-update-cmd' => '@setup'
+                'post-update-cmd' => '@setup',
             ]),
         ]);
         unset(
@@ -117,7 +117,7 @@ final class Install
 
     private function camel2dashed(string $name): string
     {
-        return strtolower(preg_replace('/([^A-Z-])([A-Z])/', '$1-$2', $name));
+        return strtolower((string) preg_replace('/([^A-Z-])([A-Z])/', '$1-$2', $name));
     }
 
     private function modifyFiles(string $vendor, string $project): void
@@ -125,7 +125,7 @@ final class Install
         $projectRoot = dirname(__DIR__);
         chmod($projectRoot . '/var/tmp', 0775);
         chmod($projectRoot . '/var/log', 0775);
-        $this->recursiveJob((string) $projectRoot, $this->rename($vendor, $project));
+        $this->recursiveJob($projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
         rename($projectRoot . '/.gitattributes.txt', $projectRoot . '/.gitattributes');

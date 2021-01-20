@@ -4,16 +4,16 @@
     "license":"MIT",
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
-        "php": "^7.2 || ^8.0",
+        "php": "^7.3 || ^8.0",
+        "ext-json": "*",
         "bear/dotenv": "^1.0",
         "bear/package": "^1.10",
-        "bear/resource": "^1.14",
+        "bear/resource": "^1.15",
         "bear/sunday": "^1.5",
-        "ray/aop": "^2.9",
-        "ray/di": "^2.10"
+        "ray/aop": "^2.10",
+        "ray/di": "^2.11"
     },
     "require-dev": {
-        "ext-json": "*",
         "bear/devtools": "^0.1",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^1.10",

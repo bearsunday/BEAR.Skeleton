@@ -21,8 +21,9 @@ final class Composer
 
     public static function postInstall(Event $event): void
     {
-        exec(dirname(__DIR__) . '/vendor/bin/phpcbf');
         passthru(dirname(__DIR__) . '/vendor/bin/composer install');
+        // cleanup code
+        passthru(dirname(__DIR__) . '/vendor/bin/phpcbf');
         $event->getIO()->write('<info>Thank you for installing BEAR.Sunday.</info>');
         $event->getIO()->write('<info>Read the README to run your application.</info>');
     }

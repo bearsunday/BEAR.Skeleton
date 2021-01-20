@@ -59,7 +59,7 @@
         "pcov": "Generate test coverage report (pcov)",
         "cs": "Checks the coding standard",
         "cs-fix": "Fix the coding standard",
-        "qa": "Run quality checks",
+        "sa": "Run static analysis",
         "metrics": "Build metrics report",
         "serve": "Start built-in server",
         "app": "Request app resource",

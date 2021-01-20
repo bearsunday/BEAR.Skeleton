@@ -1,5 +1,5 @@
 # BEAR.Skeleton
-
+![Static Analysis](https://github.com/bearsunday/BEAR.Skeleton/workflows/Static%20Analysis/badge.svg)
 
 # Introduction
 

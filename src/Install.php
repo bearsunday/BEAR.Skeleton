@@ -13,17 +13,21 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
 
+use function array_filter;
 use function array_merge;
 use function chmod;
 use function dirname;
 use function file_get_contents;
 use function file_put_contents;
+use function glob;
 use function in_array;
 use function is_dir;
 use function is_writable;
 use function phpversion;
 use function preg_replace;
+use function Ray\Compiler\deleteFiles;
 use function rename;
+use function rmdir;
 use function sprintf;
 use function str_replace;
 use function strtolower;
@@ -127,7 +131,19 @@ final class Install
         chmod($projectRoot . '/var/log', 0775);
         $this->recursiveJob($projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
+        $wfDir = dirname(__DIR__) .  '/.github';
+        $this->deleteFiles($wfDir);
+        rmdir($wfDir);
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
         rename($projectRoot . '/.gitattributes.txt', $projectRoot . '/.gitattributes');
     }
+
+    private function deleteFiles(string $path): void
+    {
+        foreach (array_filter((array) glob($path . '/*')) as $file) {
+            is_dir($file) ? $this->deleteFiles($file) : unlink($file);
+            @rmdir($file);
+        }
+    }
+
 }

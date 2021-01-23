@@ -15,6 +15,7 @@ use SplFileInfo;
 
 use function array_filter;
 use function array_merge;
+use function assert;
 use function chmod;
 use function dirname;
 use function file_exists;
@@ -26,7 +27,6 @@ use function is_dir;
 use function is_writable;
 use function phpversion;
 use function preg_replace;
-use function Ray\Compiler\deleteFiles;
 use function rename;
 use function rmdir;
 use function sprintf;
@@ -34,6 +34,7 @@ use function str_replace;
 use function strtolower;
 use function substr;
 use function unlink;
+
 use const PHP_VERSION_ID;
 
 final class Install
@@ -133,7 +134,7 @@ final class Install
         chmod($projectRoot . '/var/log', 0775);
         $this->recursiveJob($projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
-        $wfDir = dirname(__DIR__) .  '/.github';
+        $wfDir = dirname(__DIR__) . '/.github';
         $this->deleteFiles($wfDir);
         rmdir($wfDir);
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');

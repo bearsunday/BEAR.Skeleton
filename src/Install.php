@@ -17,6 +17,7 @@ use function array_filter;
 use function array_merge;
 use function chmod;
 use function dirname;
+use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
 use function glob;
@@ -33,6 +34,7 @@ use function str_replace;
 use function strtolower;
 use function substr;
 use function unlink;
+use const PHP_VERSION_ID;
 
 final class Install
 {
@@ -136,6 +138,7 @@ final class Install
         rmdir($wfDir);
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
         rename($projectRoot . '/.gitattributes.txt', $projectRoot . '/.gitattributes');
+        $this->replaceFile('{php_version}', (string) PHP_VERSION_ID, $projectRoot . '/phpcs.xml');
     }
 
     private function deleteFiles(string $path): void
@@ -146,4 +149,10 @@ final class Install
         }
     }
 
+    private function replaceFile(string $search, string $replace, string $file): void
+    {
+        assert(file_exists($file));
+        $fileContents = file_get_contents($file);
+        file_put_contents($file, str_replace($search, $replace, $fileContents));
+    }
 }

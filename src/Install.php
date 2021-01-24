@@ -15,8 +15,10 @@ use SplFileInfo;
 
 use function array_filter;
 use function array_merge;
+use function assert;
 use function chmod;
 use function dirname;
+use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
 use function glob;
@@ -25,7 +27,6 @@ use function is_dir;
 use function is_writable;
 use function phpversion;
 use function preg_replace;
-use function Ray\Compiler\deleteFiles;
 use function rename;
 use function rmdir;
 use function sprintf;
@@ -33,6 +34,8 @@ use function str_replace;
 use function strtolower;
 use function substr;
 use function unlink;
+
+use const PHP_VERSION_ID;
 
 final class Install
 {
@@ -131,11 +134,12 @@ final class Install
         chmod($projectRoot . '/var/log', 0775);
         $this->recursiveJob($projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
-        $wfDir = dirname(__DIR__) .  '/.github';
+        $wfDir = dirname(__DIR__) . '/.github';
         $this->deleteFiles($wfDir);
         rmdir($wfDir);
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
         rename($projectRoot . '/.gitattributes.txt', $projectRoot . '/.gitattributes');
+        $this->replaceFile('{php_version}', (string) PHP_VERSION_ID, $projectRoot . '/phpcs.xml');
     }
 
     private function deleteFiles(string $path): void
@@ -146,4 +150,10 @@ final class Install
         }
     }
 
+    private function replaceFile(string $search, string $replace, string $file): void
+    {
+        assert(file_exists($file));
+        $fileContents = file_get_contents($file);
+        file_put_contents($file, str_replace($search, $replace, $fileContents));
+    }
 }

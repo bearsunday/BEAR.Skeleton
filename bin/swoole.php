@@ -12,5 +12,5 @@ exit((require $bootstrap)(
     'prod-app',
     'BEAR\Skeleton',
     '127.0.0.1',
-    '8080'
+    8080
 ));

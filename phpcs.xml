@@ -2,7 +2,7 @@
 <ruleset
         name="BEAR.Skeleton"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
+        xsi:noNamespaceSchemaLocation="vendor-bin/tools/vendor/squizlabs/php_codesniffer/phpcs.xsd"
 >
     <description>BEAR.Skeleton Coding Standard</description>
     <arg name="basepath" value="."/>

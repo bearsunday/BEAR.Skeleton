@@ -1,10 +1,11 @@
-<ruleset
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://pmd.sf.net/ruleset/1.0.0"
-        xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
-        xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+<ruleset name="BEAR.Skeleton PHPMD rule set"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0
+                   http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
     <!--codesize-->
-    <rule ref="rulesets/codesize.xml/CyclomaticComplexity">
+    <rule ref="rulesets/codesize.xml/CyclomaticComplexity" >
         <properties>
             <property name="reportLevel" description="The Cyclomatic Complexity reporting threshold"  value="10"/>
         </properties>

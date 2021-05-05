@@ -61,6 +61,7 @@
         "cs-fix": "Fix the coding standard",
         "sa": "Run static analysis",
         "metrics": "Build metrics report",
+        "clean": "Clear cache files",
         "serve": "Start built-in server",
         "app": "Request app resource",
         "page": "Request page resource"

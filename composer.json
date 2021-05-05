@@ -52,7 +52,7 @@
     },
     "scripts-descriptions": {
         "setup": "Setup the project",
-        "compile": "Compile scripts for the production. See http://bearsunday.github.io/manuals/1.0/en/production.html",
+        "compile": "Compile scripts for the production",
         "test": "Run unit tests",
         "tests": "Run tests and quality checks",
         "coverage": "Generate test coverage report",

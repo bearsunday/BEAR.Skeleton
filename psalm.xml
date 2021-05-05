@@ -6,9 +6,10 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/tools/vendor/vimeo/psalm/config.xsd"
 >
     <projectFiles>
-        <directory name="src" />
+        <directory name="src"/>
+        <directory name="tests"/>
         <ignoreFiles>
-            <directory name="vendor" />
+            <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
     <!-- suppress -->
@@ -23,5 +24,12 @@
                 <directory name="src/Resource"/>
             </errorLevel>
         </NonInvariantDocblockPropertyType>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="src/Resource"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+    </issueHandlers>
+    <plugins><pluginClass class="Psalm\PhpUnitPlugin\Plugin"/></plugins></psalm>
     </issueHandlers>
 </psalm>

@@ -1,38 +1,23 @@
 <ruleset
+        name="PHPMD rule sets"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="http://pmd.sf.net/ruleset/1.0.0"
         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
-    <!--codesize-->
-    <rule ref="rulesets/codesize.xml/CyclomaticComplexity">
-        <properties>
-            <property name="reportLevel" description="The Cyclomatic Complexity reporting threshold"  value="10"/>
-        </properties>
-    </rule>
-    <rule ref="rulesets/codesize.xml/NPathComplexity" />
-    <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity"/>
-    <rule ref="rulesets/codesize.xml/ExcessiveClassLength"/>
-    <rule ref="rulesets/codesize.xml/ExcessiveMethodLength"/>
-    <rule ref="rulesets/codesize.xml/ExcessiveParameterList"/>
-    <rule ref="rulesets/codesize.xml/ExcessivePublicCount"/>
-    <rule ref="rulesets/codesize.xml/TooManyFields"/>
-    <rule ref="rulesets/codesize.xml/TooManyMethods"/>
+    <description>PHPMD rule sets</description>
+
+    <!-- clean code -->
+    <rule ref="rulesets/cleancode.xml" externalInfoUrl="https://phpmd.org/rules/cleancode.html"/>
+    <!-- codesize -->
+    <rule ref="rulesets/codesize.xml" externalInfoUrl="https://phpmd.org/rules/codesize.html"/>
+    <!--controversial -->
+    <rule ref="rulesets/controversial.xml" externalInfoUrl="https://phpmd.org/rules/controversial.html"/>
     <!--design-->
-    <rule ref="rulesets/design.xml/NumberOfChildren"/>
-    <rule ref="rulesets/design.xml/DepthOfInheritance"/>
-    <rule ref="rulesets/design.xml/CouplingBetweenObjects" />
-    <rule ref="rulesets/design.xml/CountInLoopExpression" />
+    <rule ref="rulesets/design.xml" externalInfoUrl="https://phpmd.org/rules/design.html"/>
     <!--naming-->
-    <rule ref="rulesets/naming.xml/ConstantNamingConventions"/>
-    <rule ref="rulesets/naming.xml/BooleanGetMethodName"/>
+    <rule ref="rulesets/naming.xml" externalInfoUrl="https://phpmd.org/rules/naming.html">
+        <exclude name="ShortVariable"/>
+    </rule>
     <!--unusedcode-->
-    <rule ref="rulesets/unusedcode.xml/UnusedFormalParameter"/>
-    <rule ref="rulesets/unusedcode.xml/UnusedLocalVariable"/>
-    <rule ref="rulesets/unusedcode.xml/UnusedPrivateField"/>
-    <rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod"/>
-    <!--cleancode-->
-    <rule ref="rulesets/cleancode.xml/BooleanArgumentFlag"/>
-    <rule ref="rulesets/cleancode.xml/ElseExpression" />
-    <rule ref="rulesets/cleancode.xml/IfStatementAssignment" />
-    <rule ref="rulesets/cleancode.xml/DuplicatedArrayKey" />
+    <rule ref="rulesets/unusedcode.xml" externalInfoUrl="https://phpmd.org/rules/unusedcode.html"/>
 </ruleset>

@@ -2,7 +2,7 @@
 <ruleset
         name="BEAR.Skeleton"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
+        xsi:noNamespaceSchemaLocation="vendor-bin/tools/vendor/squizlabs/php_codesniffer/phpcs.xsd"
 >
     <description>BEAR.Skeleton Coding Standard</description>
     <arg name="basepath" value="."/>
@@ -28,24 +28,21 @@
     <rule ref="Doctrine">
         <!-- Inapplicable for this project -->
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
+        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
         <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming.SuperfluousPrefix"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming.SuperfluousSuffix"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming.SuperfluousSuffix"/>
-        <exclude name="SlevomatCodingStandard.Commenting.InlineDocCommentDeclaration.MissingVariable"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint"/>
-        <exclude name="SlevomatCodingStandard.TypeHints.ReturnTypeHint.MissingNativeTypeHint"/>
-        <!-- PHP8 Attribute -->
-        <exclude name="PSR12.Files.FileHeader.IncorrectOrder"/>
-        <exclude name="PSR12.Files.FileHeader.SpacingAfterBlock"/>
-        <exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion"/>
-        <exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
         <!-- Exclude files -->
         <exclude-pattern>*/tests/Fake/*</exclude-pattern>
         <exclude-pattern>*/tmp/*</exclude-pattern>
     </rule>
-
+    
     <!-- Additional Rules -->
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
+        <properties>
+            <property name="searchAnnotations" value="true"/>
+        </properties>
+    </rule>
     <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
         <properties>
             <property name="annotationsGroups" type="array">

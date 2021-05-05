@@ -5,15 +5,16 @@ declare(strict_types=1);
 namespace BEAR\Skeleton;
 
 use BEAR\Resource\ResourceObject;
-use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
+use BEAR\Sunday\Extension\Router\RouterInterface;
+use BEAR\Skeleton\Module\App;
 use Throwable;
 
 use function assert;
 
 /**
- * @psalm-import-type Globals from \BEAR\Sunday\Extension\Router\RouterInterface
- * @psalm-import-type Server from \BEAR\Sunday\Extension\Router\RouterInterface
+ * @psalm-import-type Globals from RouterInterface
+ * @psalm-import-type Server from RouterInterface
  */
 final class Bootstrap
 {

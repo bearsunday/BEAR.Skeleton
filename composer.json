@@ -52,7 +52,7 @@
     },
     "scripts-descriptions": {
         "setup": "Setup the project",
-        "compile": "Compile scripts for the production. See http://bearsunday.github.io/manuals/1.0/en/production.html",
+        "compile": "Compile scripts for the production",
         "test": "Run unit tests",
         "tests": "Run tests and quality checks",
         "coverage": "Generate test coverage report",
@@ -61,6 +61,7 @@
         "cs-fix": "Fix the coding standard",
         "sa": "Run static analysis",
         "metrics": "Build metrics report",
+        "clean": "Clear cache files",
         "serve": "Start built-in server",
         "app": "Request app resource",
         "page": "Request page resource"

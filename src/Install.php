@@ -39,6 +39,7 @@ use const PHP_VERSION_ID;
 
 final class Install
 {
+    /** @SuppressWarnings(PHPMD.StaticAccess) */
     public function __invoke(Event $event): void
     {
         $io = $event->getIO();
@@ -79,7 +80,7 @@ final class Install
     {
         $composerJson = $json->read();
         $composerJson = array_merge($composerJson, [
-            'require' => ['php' => sprintf('>=%s.0', substr((string) phpversion(), 0, 3))] + (array) $composerJson['require'],
+            'require' => ['php' => sprintf('^%s.0', substr((string) phpversion(), 0, 3))] + (array) $composerJson['require'],
             'license' => 'proprietary',
             'name' => $packageName,
             'description' => '',
@@ -142,6 +143,7 @@ final class Install
         $this->replaceFile('{php_version}', (string) PHP_VERSION_ID, $projectRoot . '/phpcs.xml');
     }
 
+    /** @SuppressWarnings(PHPMD.ErrorControlOperator) */
     private function deleteFiles(string $path): void
     {
         foreach (array_filter((array) glob($path . '/*')) as $file) {

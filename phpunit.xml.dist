@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd" bootstrap="vendor/autoload.php">
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd" bootstrap="vendor/autoload.php">
   <coverage includeUncoveredFiles="false" processUncoveredFiles="true">
     <include>
       <directory suffix=".php">src</directory>
@@ -10,13 +10,13 @@
   </coverage>
   <testsuites>
     <testsuite name="resource">
-      <directory suffix="Test.php">tests/Resource</directory>
+      <directory>tests/Resource</directory>
     </testsuite>
     <testsuite name="hypermedia">
-      <directory suffix="Test.php">tests/Hypermedia</directory>
+      <directory>tests/Hypermedia</directory>
     </testsuite>
     <testsuite name="http">
-      <directory suffix="Test.php">tests/Http</directory>
+      <directory>tests/Http</directory>
     </testsuite>
   </testsuites>
 </phpunit>

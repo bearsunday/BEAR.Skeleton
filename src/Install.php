@@ -79,7 +79,7 @@ final class Install
     {
         $composerJson = $json->read();
         $composerJson = array_merge($composerJson, [
-            'require' => ['php' => sprintf('>=%s.0', substr((string) phpversion(), 0, 3))] + (array) $composerJson['require'],
+            'require' => ['php' =>  printf("^%s", substr((string) phpversion(), 0, 3))] + (array) $composerJson['require'],
             'license' => 'proprietary',
             'name' => $packageName,
             'description' => '',

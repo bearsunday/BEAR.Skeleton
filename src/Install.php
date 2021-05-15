@@ -65,7 +65,7 @@ final class Install
     {
         $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path), RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $file) {
-            if (! in_array($file->getExtension(), ['php', 'md', 'xml'], true)) {
+            if (! in_array($file->getExtension(), ['php', 'md', 'xml', 'dist'], true)) {
                 continue;
             }
 

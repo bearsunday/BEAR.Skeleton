@@ -14,6 +14,7 @@
         "ray/di": "^2.11"
     },
     "require-dev": {
+        "bear/api-doc": "1.x-dev",
         "bear/devtools": "^0.1",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^1.10",
@@ -36,6 +37,7 @@
         "post-install-cmd": "@setup",
         "setup": "php bin/setup.php",
         "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",
+        "doc": "./vendor/bin/apidoc",
         "test": "./vendor/bin/phpunit",
         "coverage": "php -dzend_extension=xdebug.so -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage",
         "pcov": "php -dextension=pcov.so -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage  --coverage-clover=coverage.xml",
@@ -53,6 +55,7 @@
     "scripts-descriptions": {
         "setup": "Setup the project",
         "compile": "Compile scripts for the production",
+        "doc": "Generate API document",
         "test": "Run unit tests",
         "tests": "Run tests and quality checks",
         "coverage": "Generate test coverage report",

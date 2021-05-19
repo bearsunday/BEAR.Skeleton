@@ -17,6 +17,7 @@
     composer tests             // test and quality checks
     composer coverage          // test coverage
     composer cs-fix            // fix the coding standard
+    composer doc               // generate API document
     composer run-script --list // list all commands
     
 ## Links

@@ -45,7 +45,7 @@
         "cs-fix": "./vendor/bin/phpcbf src tests",
         "metrics": "./vendor/bin/phpmetrics --report-html=build/metrics --exclude=Exception src",
         "clean": ["./vendor/bin/phpstan clear-result-cache", "./vendor/bin/psalm --clear-cache", "rm -rf ./var/tmp/*.php"],
-        "sa": ["./vendor/bin/phpstan analyse -c phpstan.neon", "psalm --show-info=true"],
+        "sa": ["./vendor/bin/psalm --show-info=true", "./vendor/bin/phpstan analyse -c phpstan.neon", "./vendor/bin/phpmd src text ./phpmd.xml"],
         "tests": ["@cs", "@sa", "@test"],
         "build": ["@clean", "@cs", "@sa", "@pcov", "@compile", "@metrics"],
         "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",

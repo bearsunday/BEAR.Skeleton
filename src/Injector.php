@@ -10,6 +10,9 @@ use Ray\Di\InjectorInterface;
 
 use function dirname;
 
+/**
+ * @SuppressWarnings(PHPMD.StaticAccess)
+ */
 final class Injector
 {
     /**
@@ -19,9 +22,6 @@ final class Injector
     {
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.StaticAccess)
-     */
     public static function getInstance(string $context): InjectorInterface
     {
         return PackageInjector::getInstance(__NAMESPACE__, $context, dirname(__DIR__));

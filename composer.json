@@ -7,7 +7,7 @@
         "php": "^7.3 || ^8.0",
         "ext-json": "*",
         "bear/dotenv": "^1.0",
-        "bear/package": "^1.10",
+        "bear/package": "^1.11",
         "bear/resource": "^1.15",
         "bear/sunday": "^1.5",
         "ray/aop": "^2.10",
@@ -19,7 +19,7 @@
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^1.10",
         "phpunit/phpunit": "^9.5",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-latest"
     },
     "autoload": {
         "psr-4": {

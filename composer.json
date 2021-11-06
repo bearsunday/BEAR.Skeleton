@@ -7,17 +7,17 @@
         "php": "^7.3 || ^8.0",
         "ext-json": "*",
         "bear/dotenv": "^1.0",
-        "bear/package": "^1.11",
-        "bear/resource": "^1.15",
+        "bear/package": "^1.12",
+        "bear/resource": "^1.16",
         "bear/sunday": "^1.5",
-        "ray/aop": "^2.10",
-        "ray/di": "^2.11"
+        "ray/aop": "^2.11",
+        "ray/di": "^2.13"
     },
     "require-dev": {
         "bear/api-doc": "1.x-dev",
         "bear/devtools": "^0.1",
         "bamarni/composer-bin-plugin": "^1.4",
-        "composer/composer": "^1.10",
+        "composer/composer": "^2.1",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-latest"
     },

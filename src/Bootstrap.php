@@ -21,8 +21,6 @@ final class Bootstrap
     /**
      * @psalm-param Globals $globals
      * @psalm-param Server  $server
-     * @phpstan-param array<string, mixed> $globals
-     * @phpstan-param array<string, mixed> $server
      *
      * @return 0|1
      */

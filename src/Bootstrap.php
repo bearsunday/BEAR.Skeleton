@@ -19,8 +19,8 @@ use function assert;
 final class Bootstrap
 {
     /**
-     * @psalm-param Globals $globals
-     * @psalm-param Server  $server
+     * @param Globals $globals
+     * @param Server  $server
      *
      * @return 0|1
      */

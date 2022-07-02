@@ -4,7 +4,7 @@
     "license":"MIT",
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.1",
         "ext-json": "*",
         "bear/package": "^1.14",
         "bear/resource": "^1.17",

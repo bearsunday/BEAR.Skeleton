@@ -13,32 +13,11 @@ use BEAR\Sunday\Extension\Transfer\TransferInterface;
 
 final class App implements AppInterface
 {
-    /** @var HttpCacheInterface */
-    public $httpCache;
-
-    /** @var RouterInterface */
-    public $router;
-
-    /** @var TransferInterface */
-    public $responder;
-
-    /** @var ResourceInterface */
-    public $resource;
-
-    /** @var ThrowableHandlerInterface */
-    public $throwableHandler;
-
     public function __construct(
-        HttpCacheInterface $httpCache,
-        RouterInterface $router,
-        TransferInterface $responder,
-        ResourceInterface $resource,
-        ThrowableHandlerInterface $throwableHandler
-    ) {
-        $this->httpCache = $httpCache;
-        $this->router = $router;
-        $this->responder = $responder;
-        $this->resource = $resource;
-        $this->throwableHandler = $throwableHandler;
-    }
+        public readonly HttpCacheInterface $httpCache,
+        public readonly RouterInterface $router,
+        public readonly TransferInterface $responder,
+        public readonly ResourceInterface $resource,
+        public readonly ThrowableHandlerInterface $throwableHandler
+    ) {}
 }

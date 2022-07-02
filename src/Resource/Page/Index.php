@@ -11,8 +11,7 @@ class Index extends ResourceObject
     /** @var array{greeting: string} */
     public $body;
 
-    /** @return static */
-    public function onGet(string $name = 'BEAR.Sunday')
+    public function onGet(string $name = 'BEAR.Sunday'): static
     {
         $this->body = [
             'greeting' => 'Hello ' . $name,

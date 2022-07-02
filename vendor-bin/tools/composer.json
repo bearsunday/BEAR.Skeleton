@@ -6,10 +6,11 @@
         "phpmd/phpmd": "^2.10",
         "phpmetrics/phpmetrics": "^v2.7",
         "phpstan/phpstan": "^1.0",
-        "psalm/plugin-phpunit": "^0.16",
+        "psalm/plugin-phpunit": "^0",
         "slevomat/coding-standard": "^7.0",
         "squizlabs/php_codesniffer": "^3.6",
-        "vimeo/psalm": "^4.11"
+        "vimeo/psalm": "^4.11",
+        "phpstan/phpstan-phpunit": "^1.1"
     },
     "config": {
         "allow-plugins": {

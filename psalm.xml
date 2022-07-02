@@ -10,6 +10,8 @@
         <directory name="tests"/>
         <ignoreFiles>
             <directory name="vendor"/>
+            <file name="tests/Http/index.php"/>
+            <file name="src/Bootstrap.php" />
         </ignoreFiles>
     </projectFiles>
     <!-- suppress -->

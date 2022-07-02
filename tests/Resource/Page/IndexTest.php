@@ -6,7 +6,9 @@ namespace BEAR\Skeleton\Resource\Page;
 
 use BEAR\Resource\ResourceInterface;
 use BEAR\Skeleton\Injector;
+use MyVendor\MyProject\Resource\Page\Index;
 use PHPUnit\Framework\TestCase;
+use function assert;
 
 class IndexTest extends TestCase
 {
@@ -22,6 +24,7 @@ class IndexTest extends TestCase
     public function testOnGet(): void
     {
         $ro = $this->resource->get('page://self/index', ['name' => 'BEAR.Sunday']);
+        assert($ro instanceof Index);
         $this->assertSame(200, $ro->code);
         $this->assertSame('Hello BEAR.Sunday', $ro->body['greeting']);
     }

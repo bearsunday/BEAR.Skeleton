@@ -17,7 +17,6 @@
 !/tests/Http/log/.gitkeep
 phpunit.xml
 /docs/api/
-autoload.php
 /.phpcs.xml
 /.phpcs-cache
 /vendor-bin/tools/vendor/

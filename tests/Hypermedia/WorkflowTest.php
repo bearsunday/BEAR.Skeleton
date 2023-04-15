@@ -12,11 +12,8 @@ use Ray\Di\InjectorInterface;
 
 class WorkflowTest extends TestCase
 {
-    /** @var ResourceInterface */
-    protected $resource;
-
-    /** @var InjectorInterface */
-    protected $injector;
+    protected ResourceInterface $resource;
+    protected InjectorInterface $injector;
 
     protected function setUp(): void
     {

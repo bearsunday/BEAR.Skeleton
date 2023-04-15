@@ -8,6 +8,7 @@ use BEAR\Resource\ResourceInterface;
 use BEAR\Skeleton\Injector;
 use MyVendor\MyProject\Resource\Page\Index;
 use PHPUnit\Framework\TestCase;
+
 use function assert;
 
 class IndexTest extends TestCase

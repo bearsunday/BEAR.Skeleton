@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace BEAR\Skeleton;
 
 use BEAR\Resource\ResourceObject;
+use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
 use BEAR\Sunday\Extension\Router\RouterInterface;
-use BEAR\Skeleton\Module\App;
 use Throwable;
 
 use function assert;

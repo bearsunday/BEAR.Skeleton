@@ -73,9 +73,7 @@ final class Install
         }
     }
 
-    /**
-     * @return array<string, string|array>
-     */
+    /** @return array<string, string|array> */
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json): array
     {
         $composerJson = $json->read();
@@ -87,9 +85,7 @@ final class Install
             'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
             'scripts' => array_merge($composerJson['scripts'], [
-                'compile' => "./vendor/bin/bear.compile '{$vendor}\\{$package}' prod-app ./",
-                'post-install-cmd' => '@composer bin all install --ansi',
-                'post-update-cmd' => '@setup',
+                'compile' => "./vendor/bin/bear.compile '{$vendor}\\{$package}' prod-app ./"
             ]),
         ]);
         unset(
@@ -102,9 +98,7 @@ final class Install
         return $composerJson;
     }
 
-    /**
-     * @psalm-return Closure(SplFileInfo ): void
-     */
+    /** @psalm-return Closure(SplFileInfo ): void */
     private function rename(string $vendor, string $package): Closure
     {
         return static function (SplFileInfo $file) use ($vendor, $package): void {

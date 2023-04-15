@@ -6,6 +6,7 @@
     "require": {
         "php": "^8.1",
         "ext-json": "*",
+        "bear/dotenv": "^1.0",
         "bear/package": "^1.14",
         "bear/resource": "^1.17",
         "bear/sunday": "^1.6",

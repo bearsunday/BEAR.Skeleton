@@ -19,4 +19,4 @@ phpunit.xml
 /docs/api/
 /.phpcs.xml
 /.phpcs-cache
-/vendor-bin/tools/vendor/
+/vendor-bin/**/vendor/

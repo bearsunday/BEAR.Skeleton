@@ -19,5 +19,6 @@ final class App implements AppInterface
         public readonly TransferInterface $responder,
         public readonly ResourceInterface $resource,
         public readonly ThrowableHandlerInterface $throwableHandler
-    ) {}
+    ) {
+    }
 }

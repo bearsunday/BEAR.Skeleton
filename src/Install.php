@@ -73,9 +73,7 @@ final class Install
         }
     }
 
-    /**
-     * @return array<string, string|array>
-     */
+    /** @return array<string, string|array> */
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json): array
     {
         $composerJson = $json->read();
@@ -102,9 +100,7 @@ final class Install
         return $composerJson;
     }
 
-    /**
-     * @psalm-return Closure(SplFileInfo ): void
-     */
+    /** @psalm-return Closure(SplFileInfo ): void */
     private function rename(string $vendor, string $package): Closure
     {
         return static function (SplFileInfo $file) use ($vendor, $package): void {

@@ -33,7 +33,7 @@
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
         "post-update-cmd": "BEAR\\Skeleton\\Composer::postInstall",
-        "post-install-cmd": "@setup",
+        "post-install-cmd": ["@setup", "./vendor-bin/tools/vendor/bin/phpcbf src tests > /dev/null"],
         "setup": "php bin/setup.php",
         "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",
         "doc": "./vendor-bin/tools/vendor/bin/apidoc",

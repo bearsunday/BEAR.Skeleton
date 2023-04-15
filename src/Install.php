@@ -85,9 +85,7 @@ final class Install
             'autoload' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'src/']],
             'autoload-dev' => ['psr-4' => ["{$vendor}\\{$package}\\" => 'tests/']],
             'scripts' => array_merge($composerJson['scripts'], [
-                'compile' => "./vendor/bin/bear.compile '{$vendor}\\{$package}' prod-app ./",
-                'post-install-cmd' => '@composer bin all install --ansi',
-                'post-update-cmd' => '@setup',
+                'compile' => "./vendor/bin/bear.compile '{$vendor}\\{$package}' prod-app ./"
             ]),
         ]);
         unset(

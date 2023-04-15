@@ -35,7 +35,7 @@ jobs:
         run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: Run PHPStan
-        run: ./vendor/bin/phpstan analyse -c phpstan.neon --no-progress --no-interaction --error-format=checkstyle | cs2pr
+        run: ./vendor-bin/tools/vendor/bin/phpstan analyse -c phpstan.neon --no-progress --no-interaction --error-format=checkstyle | cs2pr
 
   static-analysis-phpmd:
     name: Static Analysis with PHPMD
@@ -64,7 +64,7 @@ jobs:
         run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: Run PHP Mess Detector
-        run: ./vendor/bin/phpmd src text ./phpmd.xml
+        run: ./vendor-bin/tools/vendor/bin/phpmd src text ./phpmd.xml
 
   static-analysis-composer-require-checker:
     name: Static Analysis with ComposerRequireChecker

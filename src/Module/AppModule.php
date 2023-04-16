@@ -7,6 +7,7 @@ namespace MyVendor\MyProject\Module;
 use BEAR\Dotenv\Dotenv;
 use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
+
 use function dirname;
 
 class AppModule extends AbstractAppModule

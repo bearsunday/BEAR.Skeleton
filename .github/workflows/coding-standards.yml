@@ -40,4 +40,4 @@ jobs:
           composer validate --strict
 
       - name: Run PHP_CodeSniffer
-        run: ./vendor-bin/tools/vendor/bin/phpcs -q --no-colors --report=checkstyle src tests | cs2pr
+        run: ./vendor/bin/phpcs -q --no-colors --report=checkstyle src tests | cs2pr

@@ -47,7 +47,7 @@
         "sa": ["./vendor/bin/psalm --show-info=true", "./vendor/bin/phpstan analyse -c phpstan.neon", "./vendor/bin/phpmd src text ./phpmd.xml"],
         "tests": ["@cs", "@sa", "@test"],
         "build": ["@clean", "@cs", "@sa", "@pcov", "@compile", "@metrics"],
-        "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
+        "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
         "page": "php bin/page.php"
     },
@@ -70,7 +70,6 @@
     },
     "config": {
         "sort-packages": true,
-        "process-timeout": 0,
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true
         }

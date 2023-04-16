@@ -32,7 +32,7 @@
     },
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-update-cmd": ["BEAR\\Skeleton\\Composer::postInstall", "@composer update", "./bin/cs-fix.sh", "rm ./bin/cs-fix.sh"],
+        "post-update-cmd": ["@composer update",  "@composer bin all update --ansi", "./finalyze.sh"],
         "post-install-cmd": ["@setup", "@composer bin all install --ansi"],
         "setup": "php bin/setup.php",
         "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",

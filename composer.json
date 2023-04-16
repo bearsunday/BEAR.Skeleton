@@ -33,8 +33,8 @@
     },
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-update-cmd": "BEAR\\Skeleton\\Composer::postInstall",
-        "post-install-cmd": ["@setup", "./vendor/bin/phpcbf src tests > /dev/null"],
+        "post-update-cmd": ["BEAR\\Skeleton\\Composer::postInstall", "@composer update", "./vendor/bin/phpcbf src tests > /dev/null"],
+        "post-install-cmd": ["@setup", "@composer bin all install --ansi"],
         "setup": "php bin/setup.php",
         "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",
         "doc": "./vendor/bin/apidoc",
@@ -79,7 +79,7 @@
     "extra": {
         "bamarni-bin": {
             "bin-links": true,
-            "forward-command": true
+            "forward-command": false
         }
     }
 }

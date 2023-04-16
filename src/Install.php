@@ -92,6 +92,7 @@ final class Install
             $composerJson['autoload']['files'],
             $composerJson['scripts']['pre-install-cmd'],
             $composerJson['scripts']['pre-update-cmd'],
+            $composerJson['scripts']['post-update-cmd'],
             $composerJson['require-dev']['composer/composer']
         );
 

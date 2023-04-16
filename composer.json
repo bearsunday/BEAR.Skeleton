@@ -5,7 +5,6 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": "^8.1",
-        "ext-json": "*",
         "bear/dotenv": "^1.0",
         "bear/package": "^1.14",
         "bear/resource": "^1.17",
@@ -18,7 +17,7 @@
         "bear/devtools": "^1.0",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^2.1",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.0",
         "roave/security-advisories": "dev-latest"
     },
     "autoload": {
@@ -33,22 +32,22 @@
     },
     "scripts" :{
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-update-cmd": "BEAR\\Skeleton\\Composer::postInstall",
-        "post-install-cmd": ["@setup", "./vendor-bin/tools/vendor/bin/phpcbf src tests > /dev/null"],
+        "post-update-cmd": ["@composer update",  "@composer bin all update --ansi", "./finalyze.sh"],
+        "post-install-cmd": ["@setup", "@composer bin all install --ansi"],
         "setup": "php bin/setup.php",
         "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",
         "doc": "./vendor/bin/apidoc",
         "test": "./vendor/bin/phpunit",
         "coverage": "php -dzend_extension=xdebug.so -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage",
         "pcov": "php -dextension=pcov.so -d pcov.enabled=1 ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage  --coverage-clover=coverage.xml",
-        "cs": "./vendor-bin/tools/vendor/bin/phpcs",
-        "cs-fix": "./vendor-bin/tools/vendor/bin/phpcbf src tests",
-        "metrics": "./vendor-bin/tools/vendor/bin/phpmetrics --report-html=build/metrics --exclude=Exception src",
-        "clean": ["./vendor-bin/tools/vendor/bin/phpstan clear-result-cache", "./vendor-bin/tools/vendor/bin/psalm --clear-cache", "rm -rf ./var/tmp/*.php"],
-        "sa": ["./vendor-bin/tools/vendor/bin/psalm --show-info=true", "./vendor-bin/tools/vendor/bin/phpstan analyse -c phpstan.neon", "./vendor-bin/tools/vendor/bin/phpmd src text ./phpmd.xml"],
+        "cs": "./vendor/bin/phpcs",
+        "cs-fix": "./vendor/bin/phpcbf src tests",
+        "metrics": "./vendor/bin/phpmetrics --report-html=build/metrics --exclude=Exception src",
+        "clean": ["./vendor/bin/phpstan clear-result-cache", "./vendor/bin/psalm --clear-cache", "rm -rf ./var/tmp/*.php"],
+        "sa": ["./vendor/bin/psalm --show-info=true", "./vendor/bin/phpstan analyse -c phpstan.neon", "./vendor/bin/phpmd src text ./phpmd.xml"],
         "tests": ["@cs", "@sa", "@test"],
         "build": ["@clean", "@cs", "@sa", "@pcov", "@compile", "@metrics"],
-        "serve": "php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
+        "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
         "page": "php bin/page.php"
     },
@@ -71,15 +70,14 @@
     },
     "config": {
         "sort-packages": true,
-        "process-timeout": 0,
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true
         }
     },
     "extra": {
         "bamarni-bin": {
-            "bin-links": false,
-            "forward-command": true
+            "bin-links": true,
+            "forward-command": false
         }
     }
 }

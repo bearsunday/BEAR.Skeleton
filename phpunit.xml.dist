@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd" bootstrap="vendor/autoload.php">
-  <coverage includeUncoveredFiles="false" processUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">src</directory>
-    </include>
-    <exclude>
-      <file>src/Bootstrap.php</file>
-    </exclude>
-  </coverage>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd" bootstrap="vendor/autoload.php" cacheDirectory=".phpunit.cache">
+  <coverage includeUncoveredFiles="false"/>
   <testsuites>
     <testsuite name="resource">
       <directory>tests/Resource</directory>
@@ -19,4 +12,12 @@
       <directory>tests/Http</directory>
     </testsuite>
   </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">src</directory>
+    </include>
+    <exclude>
+      <file>src/Bootstrap.php</file>
+    </exclude>
+  </source>
 </phpunit>

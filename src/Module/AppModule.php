@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace MyVendor\MyProject\Module;
+namespace BEAR\Skeleton\Module;
 
 use BEAR\Dotenv\Dotenv;
 use BEAR\Package\AbstractAppModule;

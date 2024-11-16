@@ -6,7 +6,8 @@
     "require": {
         "php": ">=5.5.0",
         "bear/package": "~1.0",
-        "josegonzalez/dotenv": "~2.0"
+        "josegonzalez/dotenv": "~2.0",
+        "doctrine/annotations": "^1.0"
     },
     "require-dev": {
         "composer/composer": "~1.0",

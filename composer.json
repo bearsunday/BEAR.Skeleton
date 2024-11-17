@@ -30,7 +30,7 @@
         }
     },
     "scripts" :{
-        "bin": "echo ",
+        "bin": "echo 'bin not installed'",
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
         "post-update-cmd": ["@composer update",  "@composer bin all update --ansi", "./finalyze.sh"],
         "post-install-cmd": ["@setup", "@composer bin all install --ansi"],
@@ -76,7 +76,7 @@
     },
     "extra": {
         "bamarni-bin": {
-            "bin-links": true,
+            "bin-links": false,
             "forward-command": false
         }
     }

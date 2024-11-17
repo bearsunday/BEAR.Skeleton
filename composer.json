@@ -10,7 +10,6 @@
     },
     "require-dev": {
         "bear/qatools": "^1.0",
-        "roave/security-advisories": "dev-master",
         "composer/composer": "^1.7.1"
     },
     "autoload": {

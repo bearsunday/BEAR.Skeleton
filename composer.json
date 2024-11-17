@@ -4,7 +4,7 @@
     "license":"MIT",
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
-        "php": "^8.1",
+        "php": "^8.3",
         "bear/dotenv": "^1.0",
         "bear/package": "^1.14",
         "bear/resource": "^1.17",
@@ -31,6 +31,7 @@
         }
     },
     "scripts" :{
+        "bin": "echo ",
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
         "post-update-cmd": ["@composer update",  "@composer bin all update --ansi", "./finalyze.sh"],
         "post-install-cmd": ["@setup", "@composer bin all install --ansi"],

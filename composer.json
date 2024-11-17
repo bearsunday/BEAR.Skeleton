@@ -2,7 +2,7 @@
     "name": "bear/skeleton",
     "type": "project",
     "license":"MIT",
-    "description": "Skeleton application for BEAR.Sunday",
+    "description": "Skeleton for BEAR.Sunday projects",
     "require": {
         "php": "^8.1",
         "koriym/env-json": "^1.0",

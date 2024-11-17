@@ -17,7 +17,7 @@
         "bear/devtools": "^1.0",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^2.1",
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^10.5.38"
     },
     "autoload": {
         "psr-4": {

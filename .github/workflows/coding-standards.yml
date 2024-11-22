@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.3
           tools: cs2pr
           coverage: none
 
@@ -35,9 +35,7 @@ jobs:
         run: composer install --no-interaction --no-progress --prefer-dist
 
       - name: Validate composer.json
-        run |
-          composer update
-          composer validate --strict
+        run: composer validate --strict
 
       - name: Run PHP_CodeSniffer
         run: ./vendor/bin/phpcs -q --no-colors --report=checkstyle src tests | cs2pr

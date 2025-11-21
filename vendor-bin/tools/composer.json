@@ -3,7 +3,7 @@
     "description": "QA tools",
     "require-dev": {
         "doctrine/coding-standard": "^14.0",
-        "phpmd/phpmd": "^2.10",
+        "phpmd/phpmd": "^2.15",
         "phpstan/phpstan": "^2.1",
         "squizlabs/php_codesniffer": "^4.0",
         "vimeo/psalm": "6.x-dev as 6.14.0",
@@ -13,9 +13,6 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "composer/package-versions-deprecated": true
-        },
-        "platform": {
-            "php": "8.4.99"
         }
     }
 }

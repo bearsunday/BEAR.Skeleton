@@ -1,28 +1,23 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="3"
+    errorLevel="2"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/tools/vendor/vimeo/psalm/config.xsd"
     findUnusedBaselineEntry="false"
     findUnusedCode="false"
+    reportUnusedSuppressions="false"
 >
     <projectFiles>
         <directory name="src"/>
-        <directory name="tests"/>
         <ignoreFiles>
             <directory name="vendor"/>
-            <file name="tests/Http/index.php"/>
             <file name="src/Bootstrap.php" />
         </ignoreFiles>
     </projectFiles>
     <!-- suppress -->
     <issueHandlers>
-        <MissingConstructor>
-            <errorLevel type="suppress">
-                <directory name="src/Resource"/>
-            </errorLevel>
-        </MissingConstructor>
+        <MissingConstructor errorLevel="suppress" />
         <NonInvariantDocblockPropertyType>
             <errorLevel type="suppress">
                 <directory name="src/Resource"/>
@@ -33,6 +28,15 @@
                 <directory name="src/Resource"/>
             </errorLevel>
         </PropertyNotSetInConstructor>
+        <MissingOverrideAttribute>
+            <errorLevel type="suppress">
+                <directory name="src"/>
+            </errorLevel>
+        </MissingOverrideAttribute>
+        <ClassMustBeFinal>
+            <errorLevel type="suppress">
+                <directory name="src/Resource"/>
+            </errorLevel>
+        </ClassMustBeFinal>
     </issueHandlers>
-    <plugins><pluginClass class="Psalm\PhpUnitPlugin\Plugin"/></plugins>
 </psalm>

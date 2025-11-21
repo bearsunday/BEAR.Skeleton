@@ -43,10 +43,30 @@
         "cs": "./vendor/bin/phpcs",
         "cs-fix": "./vendor/bin/phpcbf src tests",
         "metrics": "./vendor/bin/phpmetrics --report-html=build/metrics --exclude=Exception src",
-        "clean": ["./vendor/bin/phpstan clear-result-cache", "./vendor/bin/psalm --clear-cache", "rm -rf ./var/tmp/*.php"],
-        "sa": ["./vendor/bin/psalm --show-info=true", "./vendor/bin/phpstan analyse -c phpstan.neon", "./vendor/bin/phpmd src text ./phpmd.xml"],
-        "tests": ["@cs", "@sa", "@test"],
-        "build": ["@clean", "@cs", "@sa", "@pcov", "@compile", "@metrics"],
+        "clean": [
+            "./vendor/bin/phpstan clear-result-cache",
+            "./vendor/bin/psalm --clear-cache",
+            "rm -rf ./var/tmp/*.php"
+        ],
+        "sa": [
+            "./vendor/bin/psalm --show-info=true",
+            "./vendor/bin/phpstan analyse -c phpstan.neon"
+        ],
+        "phpmd": "php -d error_reporting=22527 ./vendor/bin/phpmd src text ./phpmd.xml",
+        "tests": [
+            "@cs",
+            "@sa",
+            "@phpmd",
+            "@test"
+        ],
+        "build": [
+            "@clean",
+            "@cs",
+            "@sa",
+            "@pcov",
+            "@compile",
+            "@metrics"
+        ],
         "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
         "page": "php bin/page.php"
@@ -62,6 +82,7 @@
         "cs": "Checks the coding standard",
         "cs-fix": "Fix the coding standard",
         "sa": "Run static analysis",
+        "phpmd": "Detect code quality issues",
         "metrics": "Build metrics report",
         "clean": "Clear cache files",
         "serve": "Start built-in server",

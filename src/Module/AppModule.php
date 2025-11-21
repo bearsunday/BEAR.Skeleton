@@ -10,7 +10,7 @@ use BEAR\Package\PackageModule;
 
 use function dirname;
 
-class AppModule extends AbstractAppModule
+final class AppModule extends AbstractAppModule
 {
     protected function configure(): void
     {

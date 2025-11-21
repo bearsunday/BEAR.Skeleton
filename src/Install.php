@@ -39,7 +39,7 @@ use const PHP_VERSION_ID;
 
 final class Install
 {
-    /** @SuppressWarnings(PHPMD.StaticAccess) */
+    /** @SuppressWarnings("PHPMD.StaticAccess") */
     public function __invoke(Event $event): void
     {
         $io = $event->getIO();
@@ -73,7 +73,7 @@ final class Install
         }
     }
 
-    /** @return array<string, string|array> */
+    /** @return array<string, string|array<array-key, mixed>> */
     private function getComposerJson(string $vendor, string $package, string $packageName, JsonFile $json): array
     {
         $composerJson = $json->read();
@@ -136,7 +136,7 @@ final class Install
         $this->replaceFile('{php_version}', (string) PHP_VERSION_ID, $projectRoot . '/phpcs.xml');
     }
 
-    /** @SuppressWarnings(PHPMD.ErrorControlOperator) */
+    /** @SuppressWarnings("PHPMD.ErrorControlOperator") */
     private function deleteFiles(string $path): void
     {
         foreach (array_filter((array) glob($path . '/*')) as $file) {
@@ -149,6 +149,7 @@ final class Install
     {
         assert(file_exists($file));
         $fileContents = file_get_contents($file);
+        assert($fileContents !== false);
         file_put_contents($file, str_replace($search, $replace, $fileContents));
     }
 }

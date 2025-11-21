@@ -69,7 +69,8 @@
         ],
         "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
-        "page": "php bin/page.php"
+        "page": "php bin/page.php",
+        "profile": "php -dzend_extension=xdebug.so -dxdebug.mode=profile -dxdebug.output_dir=./var/log -dxdebug.profiler_output_name=cachegrind.out.%t bin/page.php get /"
     },
     "scripts-descriptions": {
         "setup": "Setup the project",
@@ -87,7 +88,8 @@
         "clean": "Clear cache files",
         "serve": "Start built-in server",
         "app": "Request app resource",
-        "page": "Request page resource"
+        "page": "Request page resource",
+        "profile": "Profile page request (customize endpoint as needed)"
     },
     "config": {
         "sort-packages": true,

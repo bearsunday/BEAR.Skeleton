@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BEAR\Skeleton\Module;
 
-use BEAR\Dotenv\Dotenv;
+use Koriym\EnvJson\EnvJson;
 use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
 
@@ -14,7 +14,7 @@ final class AppModule extends AbstractAppModule
 {
     protected function configure(): void
     {
-        (new Dotenv())->load(dirname(__DIR__, 2));
+        (new EnvJson())->load(dirname(__DIR__, 2));
         $this->install(new PackageModule());
     }
 }

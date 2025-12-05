@@ -1,5 +1,5 @@
 .env
-env.json
+/env.json
 .phpunit.result.cache
 /.phpunit.cache/
 /vendor/

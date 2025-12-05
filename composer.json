@@ -5,7 +5,7 @@
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": "^8.1",
-        "bear/dotenv": "^1.0",
+        "koriym/env-json": "^1.0",
         "bear/package": "^1.14",
         "bear/resource": "^1.17",
         "bear/sunday": "^1.6",

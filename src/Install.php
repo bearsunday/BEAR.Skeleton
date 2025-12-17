@@ -21,9 +21,11 @@ use function dirname;
 use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
+use function getenv;
 use function glob;
 use function in_array;
 use function is_dir;
+use function is_string;
 use function is_writable;
 use function phpversion;
 use function preg_replace;
@@ -39,12 +41,16 @@ use const PHP_VERSION_ID;
 
 final class Install
 {
-    /** @SuppressWarnings("PHPMD.StaticAccess") */
+    /**
+     * Set VENDOR and PACKAGE environment variables for non-interactive installation.
+     *
+     * @SuppressWarnings("PHPMD.StaticAccess")
+     */
     public function __invoke(Event $event): void
     {
         $io = $event->getIO();
-        $vendor = $this->ask($io, 'What is the vendor name ?', 'MyVendor');
-        $project = $this->ask($io, 'What is the project name ?', 'MyProject');
+        $vendor = $this->getVendorName($io);
+        $project = $this->getPackageName($io);
         $packageName = sprintf('%s/%s', $this->camel2dashed($vendor), $this->camel2dashed($project));
         $json = new JsonFile(Factory::getComposerFile());
         $composerJson = $this->getComposerJson($vendor, $project, $packageName, $json);
@@ -52,6 +58,26 @@ final class Install
         $io->write("<info>composer.json for {$packageName} is created.\n</info>");
         $json->write($composerJson);
         unlink(__FILE__);
+    }
+
+    private function getVendorName(IOInterface $io): string
+    {
+        $envVendor = getenv('VENDOR');
+        if (is_string($envVendor) && $envVendor !== '') {
+            return $envVendor;
+        }
+
+        return $this->ask($io, 'What is the vendor name ?', 'MyVendor');
+    }
+
+    private function getPackageName(IOInterface $io): string
+    {
+        $envPackage = getenv('PACKAGE');
+        if (is_string($envPackage) && $envPackage !== '') {
+            return $envPackage;
+        }
+
+        return $this->ask($io, 'What is the project name ?', 'MyProject');
     }
 
     private function ask(IOInterface $io, string $question, string $default): string

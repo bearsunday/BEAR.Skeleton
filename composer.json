@@ -15,6 +15,7 @@
     "require-dev": {
         "bear/api-doc": "^1.1",
         "bear/devtools": "^1.0",
+        "bear/security": "^0.1",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^2.1",
         "phpunit/phpunit": "^10.0",
@@ -53,6 +54,7 @@
             "./vendor/bin/phpstan analyse -c phpstan.neon"
         ],
         "phpmd": "php -d error_reporting=22527 ./vendor/bin/phpmd src text ./phpmd.xml",
+        "security": "./vendor/bin/bear.security-scan src",
         "tests": [
             "@cs",
             "@sa",
@@ -84,6 +86,7 @@
         "cs-fix": "Fix the coding standard",
         "sa": "Run static analysis",
         "phpmd": "Detect code quality issues",
+        "security": "Run security scan",
         "metrics": "Build metrics report",
         "clean": "Clear cache files",
         "serve": "Start built-in server",

@@ -1,6 +1,9 @@
 name: Continuous Integration
 
 on:
+  push:
+    branches: [1.x]
+  pull_request:
   workflow_dispatch:
 
 jobs:
@@ -13,7 +16,7 @@ jobs:
         operating-system:
           - ubuntu-latest
         php-version:
-          - '8.4'
+          - '8.5'
     steps:
       - name: Checkout
         uses: actions/checkout@v4

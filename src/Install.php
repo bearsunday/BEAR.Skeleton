@@ -22,7 +22,6 @@ use function file_exists;
 use function file_get_contents;
 use function file_put_contents;
 use function getenv;
-use function glob;
 use function in_array;
 use function is_dir;
 use function is_string;
@@ -30,7 +29,6 @@ use function is_writable;
 use function phpversion;
 use function preg_replace;
 use function rename;
-use function rmdir;
 use function sprintf;
 use function str_replace;
 use function strtolower;
@@ -154,21 +152,9 @@ final class Install
         chmod($projectRoot . '/var/log', 0775);
         $this->recursiveJob($projectRoot, $this->rename($vendor, $project));
         unlink($projectRoot . '/README.md');
-        $wfDir = dirname(__DIR__) . '/.github';
-        $this->deleteFiles($wfDir);
-        rmdir($wfDir);
         rename($projectRoot . '/README.proj.md', $projectRoot . '/README.md');
         rename($projectRoot . '/.gitattributes.txt', $projectRoot . '/.gitattributes');
         $this->replaceFile('{php_version}', (string) PHP_VERSION_ID, $projectRoot . '/phpcs.xml');
-    }
-
-    /** @SuppressWarnings("PHPMD.ErrorControlOperator") */
-    private function deleteFiles(string $path): void
-    {
-        foreach (array_filter((array) glob($path . '/*')) as $file) {
-            is_dir($file) ? $this->deleteFiles($file) : unlink($file);
-            @rmdir($file);
-        }
     }
 
     private function replaceFile(string $search, string $replace, string $file): void

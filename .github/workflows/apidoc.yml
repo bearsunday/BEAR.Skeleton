@@ -1,0 +1,10 @@
+name: API Documentation
+
+on:
+  workflow_dispatch:
+
+jobs:
+  apidoc:
+    uses: bearsunday/BEAR.ApiDoc/.github/workflows/apidoc.yml@1.x
+    with:
+      format: 'html,openapi,llms'

@@ -7,6 +7,7 @@
     findUnusedBaselineEntry="false"
     findUnusedCode="false"
     reportUnusedSuppressions="false"
+    runTaintAnalysis="true"
 >
     <projectFiles>
         <directory name="src"/>
@@ -39,4 +40,16 @@
             </errorLevel>
         </ClassMustBeFinal>
     </issueHandlers>
+    <stubs>
+        <file name="vendor/bear/security/stubs/AuraSql.phpstub"/>
+        <file name="vendor/bear/security/stubs/PDO.phpstub"/>
+        <file name="vendor/bear/security/stubs/Qiq.phpstub"/>
+    </stubs>
+    <plugins>
+        <pluginClass class="BEAR\Security\Psalm\ResourceTaintPlugin">
+            <targets>
+                <target>Page</target>
+            </targets>
+        </pluginClass>
+    </plugins>
 </psalm>

@@ -6,8 +6,6 @@ namespace BEAR\Skeleton;
 
 use Composer\Script\Event;
 
-use function dirname;
-use function passthru;
 use function unlink;
 
 final class Composer

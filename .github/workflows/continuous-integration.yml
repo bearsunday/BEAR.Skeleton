@@ -3,7 +3,11 @@ name: Continuous Integration
 on:
   push:
     branches: [1.x]
+    paths-ignore:
+      - '**.md'
   pull_request:
+    paths-ignore:
+      - '**.md'
   workflow_dispatch:
 
 jobs:

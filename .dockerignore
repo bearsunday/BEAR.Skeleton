@@ -1,0 +1,12 @@
+.git
+.idea
+vendor
+vendor-bin/**/vendor
+build
+docs/api
+var/log/*
+var/tmp/*
+.phpunit.cache
+.phpunit.result.cache
+.phpcs-cache
+composer.lock

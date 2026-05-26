@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /app
+    volumes:
+      - .:/app
+      - var-tmp:/app/var/tmp
+      - var-log:/app/var/log
+    ports:
+      - "8080:8080"
+    environment:
+      XDEBUG_MODE: ${XDEBUG_MODE:-off}
+      XDEBUG_START_WITH_REQUEST: ${XDEBUG_START_WITH_REQUEST:-trigger}
+      XDEBUG_CLIENT_HOST: ${XDEBUG_CLIENT_HOST:-host.docker.internal}
+      XDEBUG_CLIENT_PORT: ${XDEBUG_CLIENT_PORT:-9003}
+      PHP_IDE_CONFIG: ${PHP_IDE_CONFIG:-serverName=BEAR.Skeleton}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  var-tmp:
+  var-log:

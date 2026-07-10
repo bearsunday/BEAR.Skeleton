@@ -50,11 +50,6 @@ final class Injector
         string|null $tmpDir,
         string|null $logDir,
     ): Meta {
-        $appDir = dirname(__DIR__);
-        if ($tmpDir === null && $logDir === null) {
-            return new Meta(__NAMESPACE__, $context, $appDir);
-        }
-
-        return new Meta(__NAMESPACE__, $context, $appDir, $tmpDir, $logDir);
+        return new Meta(__NAMESPACE__, $context, dirname(__DIR__), $tmpDir, $logDir);
     }
 }

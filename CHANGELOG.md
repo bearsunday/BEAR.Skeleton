@@ -8,12 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.15.0] - 2026-07-10
 
 ### Added
-- `bin/compile.php` using `Compiler::fromInjector(Injector::getInstance($context), $context)->run()`
+- `bin/compile.php`: `Compiler::fromInjector(Injector::getInstance($context), $context)->run()`
 
 ### Changed
-- `Injector` builds `Meta` explicitly and accepts optional `$tmpDir` / `$logDir` (defaults unchanged)
+- `Injector` builds `Meta`; optional `$tmpDir` / `$logDir` (null = `{appDir}/var/{tmp|log}/{context}`)
 - Require `bear/app-meta` `^1.11` and `bear/package` `^1.21`
-- `composer compile` script uses `php bin/compile.php` instead of `bear.compile`
+- `composer compile` uses `php bin/compile.php` instead of `bear.compile`
 
 ## [1.14.0] - 2026-01-11
 

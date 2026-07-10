@@ -1,8 +1,8 @@
 {
     "name": "bear/skeleton",
     "type": "project",
-    "license":"proprietary",
-    "description": "Skeleton for BEAR.Sunday projects",
+    "license": "MIT",
+    "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": "^8.1",
         "koriym/env-json": "^1.0",
@@ -19,7 +19,8 @@
         "bear/security": "^0.1",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^2.1",
-        "phpunit/phpunit": "^10.5.38"
+        "phpunit/phpunit": "^10.0",
+        "roave/security-advisories": "dev-latest"
     },
     "autoload": {
         "psr-4": {
@@ -31,10 +32,17 @@
             "BEAR\\Skeleton\\": "tests/"
         }
     },
-    "scripts" :{
+    "scripts": {
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-update-cmd": ["@composer update",  "@composer bin all update --ansi", "./finalyze.sh"],
-        "post-install-cmd": ["@setup", "@composer bin all install --ansi"],
+        "post-update-cmd": [
+            "@composer update",
+            "@composer bin all update --ansi",
+            "./finalyze.sh"
+        ],
+        "post-install-cmd": [
+            "@setup",
+            "@composer bin all install --ansi"
+        ],
         "setup": "php bin/setup.php",
         "compile": "php bin/compile.php prod-app",
         "doc": "./vendor/bin/apidoc",

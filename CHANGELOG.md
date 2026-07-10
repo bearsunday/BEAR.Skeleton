@@ -11,7 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `bin/compile.php`: `Compiler::fromInjector(Injector::getInstance($context), $context)()`
 
 ### Changed
-- Require `bear/package` `^1.21`
+- `Injector::getInstance` builds `Meta` (optional `$tmpDir` / `$logDir` pass-through)
+- Require `bear/app-meta` `^1.11` and `bear/package` `^1.21`
 - `composer compile` uses `php bin/compile.php` instead of `bear.compile`
 
 ## [1.14.0] - 2026-01-11

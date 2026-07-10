@@ -6,6 +6,7 @@
     "require": {
         "php": "^8.1",
         "koriym/env-json": "^1.0",
+        "bear/app-meta": "^1.11",
         "bear/package": "^1.21",
         "bear/resource": "^1.17",
         "bear/sunday": "^1.6",

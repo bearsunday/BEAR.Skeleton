@@ -1,12 +1,13 @@
 {
     "name": "bear/skeleton",
     "type": "project",
-    "license":"MIT",
+    "license": "MIT",
     "description": "Skeleton application for BEAR.Sunday",
     "require": {
         "php": "^8.1",
         "koriym/env-json": "^1.0",
-        "bear/package": "^1.14",
+        "bear/app-meta": "^1.11",
+        "bear/package": "^1.21",
         "bear/resource": "^1.17",
         "bear/sunday": "^1.6",
         "ray/aop": "^2.12",
@@ -31,12 +32,19 @@
             "BEAR\\Skeleton\\": "tests/"
         }
     },
-    "scripts" :{
+    "scripts": {
         "pre-update-cmd": "BEAR\\Skeleton\\Composer::install",
-        "post-update-cmd": ["@composer update",  "@composer bin all update --ansi", "./finalyze.sh"],
-        "post-install-cmd": ["@setup", "@composer bin all install --ansi"],
+        "post-update-cmd": [
+            "@composer update",
+            "@composer bin all update --ansi",
+            "./finalyze.sh"
+        ],
+        "post-install-cmd": [
+            "@setup",
+            "@composer bin all install --ansi"
+        ],
         "setup": "php bin/setup.php",
-        "compile": "bear.compile 'BEAR\\Skeleton' prod-app ./",
+        "compile": "php bin/compile.php prod-app",
         "doc": "./vendor/bin/apidoc",
         "test": "./vendor/bin/phpunit",
         "coverage": "php -dzend_extension=xdebug.so -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage",

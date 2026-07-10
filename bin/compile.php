@@ -16,4 +16,4 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 $context = $argv[1] ?? 'prod-app';
 
-exit(Compiler::fromInjector(Injector::getInstance($context), $context)->run());
+exit(Compiler::fromInjector(Injector::getInstance($context), $context)());

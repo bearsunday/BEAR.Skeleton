@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.15.0] - 2026-07-10
 
 ### Added
-- `bin/compile.php`: `Compiler::fromInjector(Injector::getInstance($context), $context)->run()`
+- `bin/compile.php`: `Compiler::fromInjector(Injector::getInstance($context), $context)()`
 
 ### Changed
 - `Injector` builds `Meta`; optional `$tmpDir` / `$logDir` (null = `{appDir}/var/{tmp|log}/{context}`)

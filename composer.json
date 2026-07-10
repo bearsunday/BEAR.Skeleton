@@ -105,13 +105,5 @@
             "bin-links": true,
             "forward-command": false
         }
-    },
-    "repositories": [{
-        "name": "app-meta",
-        "type": "path",
-        "url": "/Users/akihito/git/BEAR.AppMeta",
-        "options": {
-            "symlink": true
-        }
-    }]
+    }
 }

@@ -24,8 +24,8 @@ final class Injector
     /** @param non-empty-string $context */
     public static function getInstance(
         string $context,
-        string|null $tmpDir = null,
-        string|null $logDir = null,
+        string|null $tmpDir = null, // ={appDir}/var/tmp/{context}
+        string|null $logDir = null, // ={appDir}/var/log/{context}
     ): InjectorInterface {
         $meta = self::newMeta($context, $tmpDir, $logDir);
         $cacheNamespace = str_replace('/', '_', $meta->appDir) . $context;
@@ -38,8 +38,8 @@ final class Injector
     public static function getOverrideInstance(
         string $context,
         AbstractModule $overrideModule,
-        string|null $tmpDir = null,
-        string|null $logDir = null,
+        string|null $tmpDir = null, // ={appDir}/var/tmp/{context}
+        string|null $logDir = null, // ={appDir}/var/log/{context}
     ): InjectorInterface {
         return PackageInjector::factory(self::newMeta($context, $tmpDir, $logDir), $context, $overrideModule);
     }

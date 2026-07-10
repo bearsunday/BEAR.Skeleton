@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.15.0] - 2026-07-10
 
 ### Added
-- `bin/compile.php` using `Compiler::fromInjector()` + `run()` (`$tmpDir` / `$logDir` default to null = Meta paths)
+- `bin/compile.php` using `Compiler::fromInjector(Injector::getInstance($context), $context)->run()`
 
 ### Changed
 - `Injector` builds `Meta` explicitly and accepts optional `$tmpDir` / `$logDir` (defaults unchanged)

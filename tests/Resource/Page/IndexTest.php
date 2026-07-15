@@ -6,7 +6,6 @@ namespace BEAR\Skeleton\Resource\Page;
 
 use BEAR\Resource\ResourceInterface;
 use BEAR\Skeleton\Injector;
-use BEAR\Skeleton\Resource\Page\Index;
 use PHPUnit\Framework\TestCase;
 
 use function assert;

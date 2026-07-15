@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace BEAR\Skeleton\Module;
 
-use Koriym\EnvJson\EnvJson;
 use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
+use Koriym\EnvJson\EnvJson;
 
 use function dirname;
 

@@ -13,7 +13,6 @@ use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use SplFileInfo;
 
-use function array_filter;
 use function array_merge;
 use function assert;
 use function chmod;

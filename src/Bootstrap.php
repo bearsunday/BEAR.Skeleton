@@ -35,7 +35,6 @@ final class Bootstrap
             return 0;
         }
 
-        // match() throws BadRequestException on client input it cannot read.
         $request = new NullMatch();
         try {
             $request = $app->router->match($globals, $server);

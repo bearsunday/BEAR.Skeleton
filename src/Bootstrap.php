@@ -35,8 +35,7 @@ final class Bootstrap
             return 0;
         }
 
-        // The router reads the request line, so it fails on client input: a request URI with no
-        // path, or a JSON body that does not parse. Those answer 4xx only if the handler sees them.
+        // match() throws BadRequestException on client input it cannot read.
         $request = new NullMatch();
         try {
             $request = $app->router->match($globals, $server);

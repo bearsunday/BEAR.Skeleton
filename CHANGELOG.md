@@ -21,6 +21,7 @@ write directory. Without `APP_WRITE_DIR` nothing changes: the application writes
 
 ### Fixed
 - `src/Install.php` injects `php bin/compile.php prod-app` as the `compile` script into created projects, instead of the deprecated `vendor/bin/bear.compile`
+- `Bootstrap` calls `router->match()` inside its `try`, so a malformed request answers through the error handler instead of an uncaught fatal (bearsunday/BEAR.Package#493)
 
 ## [1.15.0] - 2026-07-10
 

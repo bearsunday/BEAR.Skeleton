@@ -7,6 +7,7 @@ namespace BEAR\Skeleton;
 use BEAR\Resource\ResourceObject;
 use BEAR\Skeleton\Module\App;
 use BEAR\Sunday\Extension\Application\AppInterface;
+use BEAR\Sunday\Extension\Router\NullMatch;
 use BEAR\Sunday\Extension\Router\RouterInterface;
 use Throwable;
 
@@ -35,8 +36,9 @@ final class Bootstrap
             return 0;
         }
 
-        $request = $app->router->match($globals, $server);
+        $request = new NullMatch();
         try {
+            $request = $app->router->match($globals, $server);
             $response = $app->resource->{$request->method}->uri($request->path)($request->query);
             assert($response instanceof ResourceObject);
             $response->transfer($app->responder, $server);

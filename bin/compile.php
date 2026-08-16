@@ -8,7 +8,7 @@ declare(strict_types=1);
  *
  * Usage: php bin/compile.php [context]
  *
- * @see https://bearsunday.github.io/manuals/1.0/en/production.html#compilation
+ * @see https://bearsunday.github.io/manuals/1.0/en/production.html#compilation-recommended
  */
 
 use BEAR\Package\Compiler;
@@ -21,5 +21,6 @@ $dotCompile = dirname(__DIR__) . '/.compile.php';
 is_file($dotCompile) && require $dotCompile;
 
 $context = $argv[1] ?? 'prod-app';
+$writeDir = getenv('APP_WRITE_DIR') ?: null;
 
-exit(Compiler::fromInjector(Injector::getInstance($context), $context)());
+exit(Compiler::fromInjector(Injector::getInstance($context, $writeDir), $context, $writeDir)());

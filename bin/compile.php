@@ -12,7 +12,6 @@ declare(strict_types=1);
  */
 
 use BEAR\Package\Compiler;
-use BEAR\Skeleton\Injector;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -23,4 +22,4 @@ is_file($dotCompile) && require $dotCompile;
 $context = $argv[1] ?? 'prod-app';
 $writeDir = getenv('APP_WRITE_DIR') ?: null;
 
-exit(Compiler::fromInjector(Injector::getInstance($context, $writeDir), $context, $writeDir)());
+exit((new Compiler('BEAR\Skeleton', $context, dirname(__DIR__), $writeDir))());

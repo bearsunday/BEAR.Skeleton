@@ -21,13 +21,12 @@ final class Bootstrap
     /**
      * @param Globals               $globals
      * @param Server                $server
-     * @param non-empty-string|null $writeDir absolute base to write under, when this directory is read-only
      *
      * @return 0|1
      */
-    public function __invoke(string $context, array $globals, array $server, string|null $writeDir = null): int
+    public function __invoke(string $context, array $globals, array $server): int
     {
-        $app = Injector::getInstance($context, $writeDir)->getInstance(AppInterface::class);
+        $app = Injector::getInstance($context)->getInstance(AppInterface::class);
         assert($app instanceof App);
         if ($app->httpCache->isNotModified($server)) {
             $app->httpCache->transfer();

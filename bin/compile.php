@@ -20,6 +20,5 @@ $dotCompile = dirname(__DIR__) . '/.compile.php';
 is_file($dotCompile) && require $dotCompile;
 
 $context = $argv[1] ?? 'prod-app';
-$writeDir = getenv('APP_WRITE_DIR') ?: null;
 
-exit((new Compiler('BEAR\Skeleton', $context, dirname(__DIR__), $writeDir))());
+exit((new Compiler('BEAR\Skeleton', $context, dirname(__DIR__)))());

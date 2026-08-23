@@ -19,12 +19,11 @@ final class Injector
     }
 
     /**
-     * @param non-empty-string      $context
-     * @param non-empty-string|null $writeDir absolute base to write under, when this directory is read-only
+     * @param non-empty-string $context
      */
-    public static function getInstance(string $context, string|null $writeDir = null): InjectorInterface
+    public static function getInstance(string $context): InjectorInterface
     {
-        return PackageInjector::getInstance(__NAMESPACE__, $context, dirname(__DIR__), null, $writeDir);
+        return PackageInjector::getInstance(__NAMESPACE__, $context, dirname(__DIR__));
     }
 
     /** @param non-empty-string $context */

@@ -18,9 +18,7 @@ final class Injector
     {
     }
 
-    /**
-     * @param non-empty-string $context
-     */
+    /** @param non-empty-string $context */
     public static function getInstance(string $context): InjectorInterface
     {
         return PackageInjector::getInstance(__NAMESPACE__, $context, dirname(__DIR__));

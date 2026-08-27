@@ -4,21 +4,18 @@ declare(strict_types=1);
 
 namespace BEAR\Skeleton\Hypermedia;
 
+use BEAR\Dev\Http\AbstractWorkflowTest;
 use BEAR\Resource\ResourceInterface;
 use BEAR\Resource\ResourceObject;
 use BEAR\Skeleton\Injector;
-use PHPUnit\Framework\TestCase;
-use Ray\Di\InjectorInterface;
 
-class WorkflowTest extends TestCase
+class WorkflowTest extends AbstractWorkflowTest
 {
-    protected ResourceInterface $resource;
-    protected InjectorInterface $injector;
-
-    protected function setUp(): void
+    protected function newResource(): ResourceInterface
     {
-        $this->injector = Injector::getInstance('app');
-        $this->resource = $this->injector->getInstance(ResourceInterface::class);
+        $injector = Injector::getInstance('app');
+
+        return $injector->getInstance(ResourceInterface::class);
     }
 
     public function testIndex(): ResourceObject
@@ -29,16 +26,9 @@ class WorkflowTest extends TestCase
         return $index;
     }
 
-//    /**
-//     * @depends testIndex
-//     */
-//    public function testRelFoo(ResourceObject $response): ResourceObject
-//    {
-//        $json = (string) $response;
-//        $href = json_decode($json)->_links->{'name:foo'}->href;
-//        $ro = $this->resource->get($href);
-//        $this->assertSame(200, $ro->code);
-//
-//        return $ro;
-//    }
+    /** @depends testIndex */
+    public function testRelFoo(ResourceObject $response): ResourceObject
+    {
+        return $this->follow($response, 'name:foo');
+    }
 }

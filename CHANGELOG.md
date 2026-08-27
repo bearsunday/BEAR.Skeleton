@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- `bin/compile.php` builds the compiler directly: `new Compiler('BEAR\Skeleton', $context, dirname(__DIR__))`. `Compiler::fromInjector()` is gone in `bear/package` 1.24
+
+### Removed
+- `APP_WRITE_DIR`, and the write directory the entries took: an application declares where it writes in its own `ProdModule`, with `BEAR\Package\Module\ReadOnlyAppModule`
+
 ## [1.16.0] - 2026-08-17
 
 An application directory can be read-only - a container image, a Phar archive - so the entries take a

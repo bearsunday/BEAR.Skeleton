@@ -7,7 +7,7 @@
         "php": "^8.2",
         "koriym/env-json": "^1.0",
         "bear/app-meta": "^1.11",
-        "bear/package": "^1.22",
+        "bear/package": "^1.24",
         "bear/resource": "^1.17",
         "bear/sunday": "^1.6",
         "ray/aop": "^2.12",

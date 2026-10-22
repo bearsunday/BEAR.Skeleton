@@ -16,9 +16,11 @@
     "require-dev": {
         "bear/api-doc": "^1.7",
         "bear/devtools": "^1.0",
+        "bear/event-sourcing": "dev-resource-response-code-truth",
         "bear/security": "^0.1",
         "bamarni/composer-bin-plugin": "^1.4",
         "composer/composer": "^2.1",
+        "koriym/semantic-logger": "dev-log-format as 0.10.0",
         "phpunit/phpunit": "^10.0",
         "roave/security-advisories": "dev-latest"
     },
@@ -80,6 +82,7 @@
         "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
         "page": "php bin/page.php",
+        "observe": "php bin/observe.php",
         "profile": "php -dzend_extension=xdebug.so -dxdebug.mode=profile -dxdebug.output_dir=./var/log -dxdebug.profiler_output_name=cachegrind.out.%t bin/page.php get /"
     },
     "scripts-descriptions": {
@@ -100,6 +103,7 @@
         "serve": "Start built-in server",
         "app": "Request app resource",
         "page": "Request page resource",
+        "observe": "Request a resource in a dev context; the log is written to var/log/<context>/ automatically",
         "profile": "Profile page request (customize endpoint as needed)"
     },
     "config": {

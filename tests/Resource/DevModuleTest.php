@@ -10,6 +10,7 @@ use BEAR\QueryRepository\Log\LogSinkInterface;
 use BEAR\Resource\ResourceInterface;
 use BEAR\Skeleton\Injector;
 use Koriym\SemanticLogger\SemanticLoggerInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 use function file_exists;
@@ -19,9 +20,20 @@ use function unlink;
 
 class DevModuleTest extends TestCase
 {
-    public function testGetRecordsExactlyOneRootResourceRequest(): void
+    /** @return array<string, array{0: non-empty-string}> */
+    public static function devContexts(): array
     {
-        $injector = Injector::getInstance('dev-app');
+        return [
+            'dev-app' => ['dev-app'],
+            'dev-cli-hal-app (bin/page.php)' => ['dev-cli-hal-app'],
+            'dev-cli-hal-api-app (bin/app.php)' => ['dev-cli-hal-api-app'],
+        ];
+    }
+
+    #[DataProvider('devContexts')]
+    public function testGetRecordsExactlyOneRootResourceRequest(string $context): void
+    {
+        $injector = Injector::getInstance($context);
         $resource = $injector->getInstance(ResourceInterface::class);
         $resource->get('page://self/index', ['name' => 'BEAR.Sunday']);
 

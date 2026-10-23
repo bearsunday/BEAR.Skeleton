@@ -12,8 +12,10 @@ use BEAR\Skeleton\Log\ShutdownFlush;
 use Koriym\SemanticLogger\SemanticLoggerInterface;
 use PHPUnit\Framework\TestCase;
 
+use function file_exists;
 use function file_get_contents;
 use function json_decode;
+use function unlink;
 
 class DevModuleTest extends TestCase
 {
@@ -29,8 +31,7 @@ class DevModuleTest extends TestCase
         $root = $log['log'][0];
         $this->assertSame('resource_request', $root['type']);
         $this->assertSame(200, $root['close']['context']['code']);
-        // A re-provided PackageModule would register the pointcut twice and the
-        // invoker would record itself: a nested resource_request under $root['log'].
+        // Nothing else recorded under the root: observation does not record itself.
         $this->assertArrayNotHasKey('log', $root);
     }
 
@@ -38,6 +39,12 @@ class DevModuleTest extends TestCase
     public function testFlushWritesLatestJsonForDevContextRequest(): void
     {
         $injector = Injector::getInstance('dev-app');
+        $logDir = $injector->getInstance(AbstractAppMeta::class)->logDir;
+        $latest = $logDir . '/' . LogFileWriter::LATEST;
+        if (file_exists($latest)) {
+            unlink($latest); // a stale file from an earlier test run must not make this pass vacuously
+        }
+
         $resource = $injector->getInstance(ResourceInterface::class);
         $resource->get('page://self/index', ['name' => 'BEAR.Sunday']);
 
@@ -46,10 +53,9 @@ class DevModuleTest extends TestCase
         // process to actually end.
         $injector->getInstance(ShutdownFlush::class)->flush($logger);
 
-        $logDir = $injector->getInstance(AbstractAppMeta::class)->logDir;
-        $latest = $logDir . '/' . LogFileWriter::LATEST;
         $this->assertFileExists($latest);
         $written = json_decode((string) file_get_contents($latest), true);
         $this->assertSame('resource_request', $written['log'][0]['type']);
+        $this->assertSame(200, $written['log'][0]['close']['context']['code']);
     }
 }

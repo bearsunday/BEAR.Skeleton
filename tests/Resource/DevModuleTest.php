@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace BEAR\Skeleton\Resource;
 
 use BEAR\AppMeta\AbstractAppMeta;
+use BEAR\QueryRepository\Log\LogFileWriter;
+use BEAR\QueryRepository\Log\LogSinkInterface;
 use BEAR\Resource\ResourceInterface;
 use BEAR\Skeleton\Injector;
-use BEAR\Skeleton\Log\LogFileWriter;
-use BEAR\Skeleton\Log\ShutdownFlush;
 use Koriym\SemanticLogger\SemanticLoggerInterface;
 use PHPUnit\Framework\TestCase;
 
@@ -39,7 +39,7 @@ class DevModuleTest extends TestCase
     public function testFlushWritesLatestJsonForDevContextRequest(): void
     {
         $injector = Injector::getInstance('dev-app');
-        $logDir = $injector->getInstance(AbstractAppMeta::class)->logDir;
+        $logDir = $injector->getInstance(AbstractAppMeta::class)->logDir . '/observe';
         $latest = $logDir . '/' . LogFileWriter::LATEST;
         if (file_exists($latest)) {
             unlink($latest); // a stale file from an earlier test run must not make this pass vacuously
@@ -51,7 +51,7 @@ class DevModuleTest extends TestCase
         $logger = $injector->getInstance(SemanticLoggerInterface::class);
         // What the armed shutdown callback does; triggered here instead of waiting for the
         // process to actually end.
-        $injector->getInstance(ShutdownFlush::class)->flush($logger);
+        $injector->getInstance(LogSinkInterface::class)->flush($logger);
 
         $this->assertFileExists($latest);
         $written = json_decode((string) file_get_contents($latest), true);

@@ -12,17 +12,12 @@ use BEAR\EventSourcing\Resource\BodyStoreInterface;
 use BEAR\EventSourcing\Resource\FileBodyStore;
 use BEAR\EventSourcing\Resource\SemanticLogInvoker;
 use BEAR\Package\AbstractAppModule;
+use BEAR\QueryRepository\DevQueryRepositoryLogModule;
 use BEAR\Resource\InvokerInterface;
-use BEAR\Skeleton\Log\LogFileWriter;
-use BEAR\Skeleton\Log\ShutdownFlush;
 use Koriym\SemanticLogger\SemanticLoggerInterface;
 use Ray\Di\Scope;
 
-/**
- * Resolved for a `dev-` prefixed context; absent from `composer install --no-dev`.
- *
- * @SuppressWarnings("PHPMD.CouplingBetweenObjects")
- */
+/** Resolved for a `dev-` prefixed context; absent from `composer install --no-dev`. */
 final class DevModule extends AbstractAppModule
 {
     private const ORIGINAL_INVOKER = 'original_invoker';
@@ -48,11 +43,16 @@ final class DevModule extends AbstractAppModule
         $this->bind(RecordedMethods::class)->annotatedWith(Recorded::class)
             ->toInstance(new RecordedMethods(RecordedMethods::WITH_READS));
         $this->bind(BodyStoreInterface::class)->toInstance(new FileBodyStore($bodyDir));
-        // The module owns the flush: the process-end write happens once per process, however
-        // the request arrived (bin/observe.php, PHPUnit, ...), not inside the entry script.
-        $this->bind(LogFileWriter::class)->toInstance(new LogFileWriter($this->appMeta->logDir));
-        $this->bind(ShutdownFlush::class)->in(Scope::SINGLETON);
-        $this->bind(SemanticLoggerInterface::class)->toProvider(DevSemanticLoggerProvider::class)->in(Scope::SINGLETON);
+
+        // The cache log module owns the writer and the shutdown flush (bear/event-sourcing's
+        // documented pattern, vendor/bear/event-sourcing/skills/bear-observe/templates/), so
+        // nothing here flushes on its own.
+        $this->install(new DevQueryRepositoryLogModule($this->appMeta->logDir . '/observe'));
+        // SemanticLogInvoker takes the unannotated logger; alias it to the #[CacheLog]
+        // instance the module above arms and flushes, so one request writes one tree.
+        $this->bind(SemanticLoggerInterface::class)
+            ->toProvider(ObserveLoggerProvider::class)->in(Scope::SINGLETON);
+
         $this->install(new EventSourcingModule());
     }
 }

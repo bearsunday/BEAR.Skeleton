@@ -10,9 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `composer page` / `composer app` (`bin/page.php` / `bin/app.php`) now run in a `dev-` context and are observed automatically with `koriym/semantic-logger`, via `bear/event-sourcing` and `bear/query-repository`: each request's log lands at `var/log/<context>/observe/latest.json`, no flush call needed. Requires `composer install` (not `--no-dev`); `public/index.php` is unaffected and stays on its plain/`prod-` context.
 
-### Removed
-- `bin/observe.php` and the `observe` composer script - `composer page` / `composer app` are observed the same way without a separate command.
-
 ## [1.17.0] - 2026-08-27
 
 ### Changed

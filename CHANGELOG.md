@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- `dev-` context (`DevModule`) records the cache log to `var/log/{context}/query-repository`, keeping the latest 10; `cache-` (`CacheModule`) stores cacheable resources in the store production uses
+
+### Changed
+- `composer page` and `composer app` run in `dev-cli-hal-app` / `dev-cli-hal-api-app`, or in the context `BEAR_CONTEXT` names
+- `composer serve` runs in `dev-cache-hal-app`: responses are cached as in production and the cache log is recorded
+
 ## [1.17.0] - 2026-08-27
 
 ### Changed

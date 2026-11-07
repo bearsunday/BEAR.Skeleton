@@ -81,8 +81,6 @@
             "@metrics"
         ],
         "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
-        "serve-dev": "BEAR_CONTEXT=dev-hal-app COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
-        "serve-dev-cache": "BEAR_CONTEXT=dev-cache-hal-app COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
         "page": "php bin/page.php",
         "profile": "php -dzend_extension=xdebug.so -dxdebug.mode=profile -dxdebug.output_dir=./var/log -dxdebug.profiler_output_name=cachegrind.out.%t bin/page.php get /"
@@ -102,9 +100,7 @@
         "security": "Run security scan",
         "metrics": "Build metrics report",
         "clean": "Clear cache files",
-        "serve": "Start built-in server",
-        "serve-dev": "Start built-in server recording the cache log",
-        "serve-dev-cache": "Start built-in server recording the cache log, with a cache store",
+        "serve": "Start built-in server in dev-cache-hal-app",
         "app": "Request app resource",
         "page": "Request page resource",
         "profile": "Profile page request (customize endpoint as needed)"

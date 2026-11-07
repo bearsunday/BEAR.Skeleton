@@ -12,9 +12,7 @@
 
 ### Available Commands
 
-    composer serve             // start builtin server (hal-app)
-    composer serve-dev         // ... recording the cache log (dev-hal-app)
-    composer serve-dev-cache   // ... recording the cache log, with a cache store (dev-cache-hal-app)
+    composer serve             // start builtin server (dev-cache-hal-app)
     composer test              // run unit test
     composer tests             // test and quality checks
     composer coverage          // test coverage
@@ -24,21 +22,22 @@
     
 ### Observe the Cache
 
-| Context | Cache store | Cache log |
-|---|---|---|
-| `hal-app` | none | not recorded |
-| `dev-hal-app` | none | recorded |
-| `dev-cache-hal-app` | the one production uses | recorded |
+`composer page` and `composer app` run in the development context: every response is fresh, and a process that touches a `#[Cacheable]` resource records its cache log (one with no cache activity writes no file). `composer serve` adds the store production uses, so hits and 304s appear as they would in production.
 
-`dev-` is the development context (`src/Module/DevModule.php`). It installs the cache log, which records each request's cache decisions to `var/log/{context}/query-repository`; remove that `install()` to stop recording:
+| Command | Context | Cache store | Cache log |
+|---|---|---|---|
+| `composer page`, `composer app` | `dev-cli-hal-app`, `dev-cli-hal-api-app` | none | recorded |
+| `composer serve` | `dev-cache-hal-app` | the one production uses | recorded |
 
-    vendor/bin/stree var/log/dev-hal-app/query-repository/latest.json
+`dev-` is the development context (`src/Module/DevModule.php`). It installs the cache log, which writes each process's cache decisions to `var/log/{context}/query-repository` and keeps the latest 10; remove that `install()` to stop recording:
 
-Without `cache-` the store is `NullAdapter`: it accepts a write (`saved: true`) and keeps nothing, so every read is a miss and every response is fresh. The log still shows what each resource declares, its tags, and whether its body can be stored.
+    vendor/bin/stree var/log/dev-cli-hal-app/query-repository/latest.json
 
-With `cache-` entries are kept, so hits and 304s appear. They also outlive code edits: to see an edited resource, restart the server (APCu) or delete `var/tmp/dev-cache-hal-app/cache` (files, used when APCu is not loaded).
+Without `cache-` the store is `NullAdapter`: it accepts a write (`saved: true`) and keeps nothing, so every read is a miss. The log still shows what each resource declares, its tags, and whether its body can be stored.
 
-The words combine with any context, e.g. `dev-cache-cli-hal-app` for a CLI request. See [Reading the cache log](https://github.com/bearsunday/BEAR.QueryRepository/blob/1.x/docs/reading-the-log.md).
+With `cache-` entries outlive code edits: to see an edited resource, restart the server (APCu) or delete `var/tmp/{context}/cache` (files, used when APCu is not loaded and in the CLI).
+
+`bin/page.php` and `bin/app.php` take another context from `BEAR_CONTEXT`, e.g. `BEAR_CONTEXT=dev-cache-cli-hal-app composer page get /`. `public/index.php` reads no environment: `dev-cache-hal-app` under the built-in server, `prod-hal-app` otherwise. See [Reading the cache log](https://github.com/bearsunday/BEAR.QueryRepository/blob/1.x/docs/reading-the-log.md).
 
 ## Links
 

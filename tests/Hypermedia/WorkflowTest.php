@@ -28,8 +28,8 @@ class WorkflowTest extends AbstractWorkflowTest
     }
 
     #[Depends('testIndex')]
-    public function testRelFoo(ResourceObject $response): ResourceObject
+    public function testGoIndex(ResourceObject $response): ResourceObject
     {
-        return $this->follow($response, 'name:foo');
+        return $this->follow($response, 'goIndex');
     }
 }

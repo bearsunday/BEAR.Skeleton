@@ -12,7 +12,7 @@ class Index extends ResourceObject
     /** @var array{greeting: string} */
     public $body;
 
-    #[Link(rel: 'name:foo', href: '/index?name=Foo')]
+    #[Link(rel: 'goIndex', href: '/index?name=BEAR')]
     public function onGet(string $name = 'BEAR.Sunday'): static
     {
         $this->body = [

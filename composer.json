@@ -8,7 +8,6 @@
         "koriym/env-json": "^1.0",
         "bear/app-meta": "^1.14",
         "bear/package": "^1.26",
-        "bear/query-repository": "^1.20",
         "bear/resource": "^1.34",
         "bear/sunday": "^1.9",
         "ray/aop": "^2.20",

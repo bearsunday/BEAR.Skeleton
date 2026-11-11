@@ -1,0 +1,5 @@
+{
+  "symbol-whitelist": [
+    "BEAR\\EventSourcing\\Module\\DevObservationModule"
+  ]
+}

@@ -6,7 +6,7 @@
         "phpmd/phpmd": "^3.0",
         "phpstan/phpstan": "^2.3",
         "squizlabs/php_codesniffer": "^4.0",
-        "vimeo/psalm": "^6.20",
+        "vimeo/psalm": "^7.3",
         "phpstan/phpstan-phpunit": "^2.1"
     },
     "config": {

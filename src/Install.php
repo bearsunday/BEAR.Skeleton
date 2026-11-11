@@ -110,7 +110,6 @@ final class Install
             'scripts' => array_merge($composerJson['scripts'], ['compile' => 'php bin/compile.php prod-app']),
         ]);
         unset(
-            $composerJson['autoload']['files'],
             $composerJson['scripts']['pre-install-cmd'],
             $composerJson['scripts']['pre-update-cmd'],
             $composerJson['scripts']['post-update-cmd'],

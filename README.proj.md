@@ -23,13 +23,13 @@
     
 ### Observe Requests and the Cache
 
-`composer page` and `composer app` run in the development context: every response is fresh, and each request records the resource requests it made together with their cache decisions. `composer cache` and `composer serve` add the store production uses, so hits and 304s appear as they would in production.
+`composer page` and `composer app` run in the development context: every response is fresh, and each request records the resource requests it made together with their cache decisions. `composer cache` and `composer serve` add a local cache store for development (APCu, or files under `var/tmp`), so hits and 304s show up. Production uses a shared store such as Redis, bound in its own module.
 
 | Command | Context | Cache store | Log |
 |---|---|---|---|
 | `composer page`, `composer app` | `dev-cli-hal-app`, `dev-cli-hal-api-app` | none | recorded |
-| `composer cache` | `dev-cache-cli-hal-app` | the one production uses | recorded |
-| `composer serve` | `dev-cache-hal-app` | the one production uses | recorded |
+| `composer cache` | `dev-cache-cli-hal-app` | local (APCu or files) | recorded |
+| `composer serve` | `dev-cache-hal-app` | local (APCu or files) | recorded |
 
 `dev-` is the development context (`src/Module/DevModule.php`). It installs bear/event-sourcing's `DevObservationModule`, which writes each request (a CLI command or an HTTP request) as one tree to `var/log/{context}/events`, response bodies under `bodies/` there, and keeps the latest 10; remove that `install()` to stop recording. Run a request, then read its tree:
 

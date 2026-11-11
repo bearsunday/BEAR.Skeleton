@@ -104,7 +104,7 @@
         "serve": "Start built-in server in dev-cache-hal-app",
         "app": "Request app resource",
         "page": "Request page resource",
-        "cache": "Request page resource in dev-cache-cli-hal-app, with the cache store production uses",
+        "cache": "Request page resource in dev-cache-cli-hal-app, with a local cache store for development",
         "profile": "Profile page request (customize endpoint as needed)"
     },
     "config": {

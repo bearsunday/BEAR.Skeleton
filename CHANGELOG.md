@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- `composer cache get /` requests a page in `dev-cache-cli-hal-app`, with the cache store production uses, so a CLI request shows hits as `composer serve` does
+- `composer cache get /` requests a page in `dev-cache-cli-hal-app`, with a local cache store for development, so a CLI request shows hits as `composer serve` does
 - `composer-require-checker.json` lists `DevObservationModule`: `DevModule` uses it from bear/event-sourcing, a development dependency, and only development contexts load `DevModule`
 
 ### Changed

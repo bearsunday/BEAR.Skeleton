@@ -12,7 +12,7 @@ use Ray\PsrCacheModule\LocalCacheProvider;
 use Symfony\Component\Cache\Adapter\AdapterInterface;
 
 /**
- * Stores cacheable resources in the store production uses: prefix the app context with `cache-`
+ * Stores cacheable resources in a local store for development: prefix the app context with `cache-`
  *
  * APCu under a web server when the extension is loaded, otherwise files in var/tmp/{context}/cache.
  * Entries outlive code edits; restart the server or delete that directory to see an edited resource.

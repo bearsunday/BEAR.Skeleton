@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- The `dev-` context records each request's resource requests together with their cache decisions (bear/event-sourcing `DevObservationModule`, added to `require-dev`) in `var/log/{context}/events`, instead of the cache decisions alone in `var/log/{context}/query-repository`
+
 ## [1.18.0] - 2026-11-11
 
 ### Added

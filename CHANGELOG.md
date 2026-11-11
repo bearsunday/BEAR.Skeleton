@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - The `dev-` context records each request's resource requests together with their cache decisions (bear/event-sourcing `DevObservationModule`, added to `require-dev`) in `var/log/{context}/events`, instead of the cache decisions alone in `var/log/{context}/query-repository`
+- Requires PHP `^8.4`
+- Every other dependency now names the newest version it can resolve to instead of a range: `bear/*`, `ray/*`, PHPStan, PHPCS, Doctrine Coding Standard and PHPMD are at their latest; PHPUnit `^10.5` and `symfony/cache` `^7.4` stay behind their latest majors because `bear/devtools` and `bear/package` don't support them yet. `composer tests`'s `phpmd` script moved to PHPMD 3's `analyze` CLI
+- `roave/security-advisories` removed from `require-dev`
 
 ## [1.18.0] - 2026-11-11
 

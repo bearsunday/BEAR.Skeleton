@@ -23,7 +23,7 @@
     
 ### Observe Requests and the Cache
 
-`composer page` and `composer app` run in the development context: every response is fresh, and each request records the resource requests it made together with their cache decisions. `composer cache` and `composer serve` add a local cache store for development (APCu, or files under `var/tmp`), so hits and 304s show up. Production uses a shared store such as Redis, bound in its own module.
+`composer page` and `composer app` run in the development context: every response is fresh, and each request records the resource requests it made together with their cache decisions. `composer cache` and `composer serve` add a local cache store for development (APCu, or files under `var/tmp`), so hits and 304s show up. Production uses a shared store such as Redis, through a module the project adds (e.g. bear/query-repository's `StorageRedisDsnModule`).
 
 | Command | Context | Cache store | Log |
 |---|---|---|---|

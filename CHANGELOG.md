@@ -9,13 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - `composer cache get /` requests a page in `dev-cache-cli-hal-app`, with the cache store production uses, so a CLI request shows hits as `composer serve` does
-- `composer-require-checker.json` lists the two classes the project uses through other packages: `DevObservationModule` (bear/event-sourcing, a development dependency) and `ResourceObjectPool` (bear/query-repository, through bear/package)
+- `composer-require-checker.json` lists `DevObservationModule`: `DevModule` uses it from bear/event-sourcing, a development dependency, and only development contexts load `DevModule`
 
 ### Changed
 - The `dev-` context records each request's resource requests together with their cache decisions (bear/event-sourcing `DevObservationModule`, added to `require-dev`) in `var/log/{context}/events`, instead of the cache decisions alone in `var/log/{context}/query-repository`
 - Requires PHP 8.4
 - Every other dependency now names the newest version it can resolve to instead of a range: `bear/*`, `ray/*`, `symfony/cache` 8, PHPUnit 13, Psalm 7 with `bear/security` 0.4, PHPStan and PHPMD. `composer tests`'s `phpmd` script moved to PHPMD 3's `analyze` CLI
-- `bear/query-repository` is no longer required directly: `bear/package` 1.26 requires `^1.20`
 - Code is checked with bear/coding-standard (`<rule ref="BearSunday">`): the Doctrine standard plus the BEAR.Sunday rules, including the excludes `phpcs.xml` used to list itself
 - `roave/security-advisories` removed from `require-dev`
 

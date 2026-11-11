@@ -42,7 +42,7 @@ Without `cache-` the store is `NullAdapter`: it accepts a write (`saved: true`) 
 
 With `cache-` entries outlive code edits: to see an edited resource, restart the server (APCu) or delete `var/tmp/{context}/cache` (files, used when APCu is not loaded and in the CLI).
 
-`bin/page.php` and `bin/app.php` take another context from `BEAR_CONTEXT`, e.g. `BEAR_CONTEXT=dev-cache-cli-hal-api-app composer app get /`. `public/index.php` reads no environment: `dev-cache-hal-app` under the built-in server, `prod-hal-app` otherwise. See [Reading the cache log](https://github.com/bearsunday/BEAR.QueryRepository/blob/1.x/docs/reading-the-log.md).
+`bin/page.php` and `bin/app.php` take another context from `BEAR_CONTEXT`, e.g. `BEAR_CONTEXT=cli-hal-app composer page get /` runs without the development context and records nothing. `public/index.php` reads no environment: `dev-cache-hal-app` under the built-in server, `prod-hal-app` otherwise. See [Reading the cache log](https://github.com/bearsunday/BEAR.QueryRepository/blob/1.x/docs/reading-the-log.md).
 
 ## Links
 

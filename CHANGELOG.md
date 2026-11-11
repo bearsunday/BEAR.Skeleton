@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- `composer cache get /` requests a page in `dev-cache-cli-hal-app`, with the cache store production uses, so a CLI request shows hits as `composer serve` does
+- `composer-require-checker.json` lists the two classes the project uses through other packages: `DevObservationModule` (bear/event-sourcing, a development dependency) and `ResourceObjectPool` (bear/query-repository, through bear/package)
+
 ### Changed
 - The `dev-` context records each request's resource requests together with their cache decisions (bear/event-sourcing `DevObservationModule`, added to `require-dev`) in `var/log/{context}/events`, instead of the cache decisions alone in `var/log/{context}/query-repository`
 - Requires PHP 8.4

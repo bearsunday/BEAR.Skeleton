@@ -22,14 +22,14 @@
     
 ### Observe the Cache
 
-`composer page` and `composer app` run in the development context: every response is fresh, and a process that touches a `#[Cacheable]` resource records its cache log (one with no cache activity writes no file). `composer serve` adds the store production uses, so hits and 304s appear as they would in production.
+`composer page` and `composer app` run in the development context: every response is fresh, and a request that touches a `#[Cacheable]` resource records its cache log (one with no cache activity writes no file). `composer serve` adds the store production uses, so hits and 304s appear as they would in production.
 
 | Command | Context | Cache store | Cache log |
 |---|---|---|---|
 | `composer page`, `composer app` | `dev-cli-hal-app`, `dev-cli-hal-api-app` | none | recorded |
 | `composer serve` | `dev-cache-hal-app` | the one production uses | recorded |
 
-`dev-` is the development context (`src/Module/DevModule.php`). It installs the cache log, which writes each process's cache decisions to `var/log/{context}/query-repository` and keeps the latest 10; remove that `install()` to stop recording. The skeleton has no `#[Cacheable]` resource yet: put `#[Cacheable]` on `src/Resource/Page/Index.php`, run `composer page get /`, then read the log:
+`dev-` is the development context (`src/Module/DevModule.php`). It installs the cache log, which writes the cache decisions of each request (a CLI command or an HTTP request) to `var/log/{context}/query-repository` and keeps the latest 10; remove that `install()` to stop recording. The skeleton has no `#[Cacheable]` resource yet: put `#[Cacheable]` on `src/Resource/Page/Index.php`, run `composer page get /`, then read the log:
 
     vendor/bin/stree var/log/dev-cli-hal-app/query-repository/latest.json
 

@@ -21,42 +21,13 @@
     <file>tests</file>
     <exclude-pattern>*/tests/tmp/*</exclude-pattern>
 
-    <!-- PSR12 Coding Standard -->
-    <rule ref="PSR12"/>
-
-    <!-- Doctrine Coding Standard -->
-    <rule ref="Doctrine">
-        <!-- Inapplicable for this project -->
-        <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousAbstractClassNaming"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousExceptionNaming"/>
-        <exclude name="SlevomatCodingStandard.Classes.SuperfluousInterfaceNaming"/>
-        <exclude name="Squiz.Strings.DoubleQuoteUsage.ContainsVar"/>
-        <!-- Exclude files -->
+    <!-- BEAR.Sunday Coding Standard: Doctrine plus the BEAR.Sunday rules -->
+    <rule ref="BearSunday">
         <exclude-pattern>*/tests/Fake/*</exclude-pattern>
         <exclude-pattern>*/tmp/*</exclude-pattern>
     </rule>
-    
+
     <!-- Additional Rules -->
-    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses">
-        <properties>
-            <property name="searchAnnotations" value="true"/>
-        </properties>
-    </rule>
-    <rule ref="SlevomatCodingStandard.Commenting.DocCommentSpacing">
-        <properties>
-            <property name="annotationsGroups" type="array">
-                <element value="@param, @psalm-param, @phpstan-param"/>
-                <element value="@return, @psalm-return, @phpstan-return"/>
-                <element value="@Inject, @Named"/>
-                <element value="@throws"/>
-            </property>
-        </properties>
-    </rule>
-    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
-        <include-pattern>src/Module/*</include-pattern>
-        <include-pattern>tests/*</include-pattern>
-    </rule>
     <rule ref="SlevomatCodingStandard.Classes.PropertySpacing">
         <properties>
             <property name="minLinesCountBeforeWithComment" value="1"/>

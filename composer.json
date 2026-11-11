@@ -8,10 +8,13 @@
         "koriym/env-json": "^1.0",
         "bear/app-meta": "^1.11",
         "bear/package": "^1.24",
+        "bear/query-repository": "^1.20",
         "bear/resource": "^1.17",
         "bear/sunday": "^1.6",
         "ray/aop": "^2.12",
-        "ray/di": "^2.14"
+        "ray/di": "^2.14",
+        "ray/psr-cache-module": "^1.6",
+        "symfony/cache": "^6.0 || ^7.3 || ^8.0"
     },
     "require-dev": {
         "bear/api-doc": "^1.7",
@@ -97,7 +100,7 @@
         "security": "Run security scan",
         "metrics": "Build metrics report",
         "clean": "Clear cache files",
-        "serve": "Start built-in server",
+        "serve": "Start built-in server in dev-cache-hal-app",
         "app": "Request app resource",
         "page": "Request page resource",
         "profile": "Profile page request (customize endpoint as needed)"

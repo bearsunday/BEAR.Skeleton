@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.18.0] - 2026-11-11
 
 ### Added
 - `dev-` context (`DevModule`) records the cache log to `var/log/{context}/query-repository`, keeping the latest 10; `cache-` (`CacheModule`) stores cacheable resources in the store production uses

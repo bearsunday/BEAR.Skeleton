@@ -35,4 +35,8 @@
             <property name="maxLinesCountBeforeWithoutComment" value="0"/>
         </properties>
     </rule>
+    <!-- Exception declares $message and $code without a type, so a subclass cannot add one -->
+    <rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint.MissingNativeTypeHint">
+        <exclude-pattern>*/Exception/*</exclude-pattern>
+    </rule>
 </ruleset>

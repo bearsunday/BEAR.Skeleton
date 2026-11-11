@@ -5,7 +5,7 @@
     <appName>BEAR\Skeleton</appName>
     <scheme>app</scheme>
     <docDir>docs</docDir>
-    <format>html,openapi,llms</format>
+    <format>html,openapi,llms,bindings</format>
     <title>BEAR.Skeleton API</title>
     <description>API Document</description>
 </apidoc>

@@ -29,7 +29,7 @@
 | `composer page`, `composer app` | `dev-cli-hal-app`, `dev-cli-hal-api-app` | none | recorded |
 | `composer serve` | `dev-cache-hal-app` | the one production uses | recorded |
 
-`dev-` is the development context (`src/Module/DevModule.php`). It installs the cache log, which writes each process's cache decisions to `var/log/{context}/query-repository` and keeps the latest 10; remove that `install()` to stop recording:
+`dev-` is the development context (`src/Module/DevModule.php`). It installs the cache log, which writes each process's cache decisions to `var/log/{context}/query-repository` and keeps the latest 10; remove that `install()` to stop recording. The skeleton has no `#[Cacheable]` resource yet: put `#[Cacheable]` on `src/Resource/Page/Index.php`, run `composer page get /`, then read the log:
 
     vendor/bin/stree var/log/dev-cli-hal-app/query-repository/latest.json
 
